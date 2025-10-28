@@ -1,0 +1,30 @@
+<turbo-frame id="form-result">
+  <%= ui_card(header: "Form Submitted Successfully") do %>
+    <div class="space-y-4">
+      <%= ui_alert message: "Thank you for your submission!", variant: :success %>
+      
+      <div class="bg-gray-50 rounded-lg p-4">
+        <h5 class="text-sm font-medium text-gray-900 mb-2">Submitted Data:</h5>
+        <div class="space-y-1 text-sm">
+          <div><strong>Name:</strong> <%= @form_data[:name] %></div>
+          <div><strong>Email:</strong> <%= @form_data[:email] %></div>
+          <div><strong>Message:</strong> <%= @form_data[:message] %></div>
+        </div>
+      </div>
+      
+      <div class="flex gap-2">
+        <%= ui_button "Submit Another", 
+            href: "/turbo-frame-examples/reset-form",
+            data: { turbo_frame: "form-result" },
+            variant: :primary,
+            size: :sm %>
+        
+        <%= ui_button "View All Submissions", 
+            href: "/turbo-frame-examples/view-submissions",
+            data: { turbo_frame: "form-result" },
+            variant: :outline,
+            size: :sm %>
+      </div>
+    </div>
+  <% end %>
+</turbo-frame>

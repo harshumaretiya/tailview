@@ -1,0 +1,28 @@
+Started GET "/" for ::1 at 2025-10-28 09:43:24 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TailViewUI'*/[0m
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | GC: 0.1ms)
+Completed 200 OK in 34ms (Views: 8.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/breadcrumbs" for ::1 at 2025-10-28 09:43:29 +0530
+Processing by BreadcrumbsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering breadcrumbs/index.html.erb within layouts/application
+  Rendered breadcrumbs/index.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.1ms | GC: 0.0ms)
+Completed 200 OK in 32ms (Views: 3.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/buttons" for ::1 at 2025-10-28 09:43:30 +0530
+Processing by ButtonsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering buttons/index.html.erb within layouts/application
+  Rendered buttons/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.8ms | GC: 0.0ms)
+Completed 200 OK in 25ms (Views: 1.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+

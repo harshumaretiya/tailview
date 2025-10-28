@@ -1,0 +1,25 @@
+<!-- Simple Accordion Item -->
+<div class="border-b border-gray-200 last:border-b-0" data-accordion-target="item" data-open="<%= item[:open] || false %>">
+  <button 
+    class="w-full flex items-center justify-between px-6 py-4 text-left font-medium text-gray-900 hover:bg-gray-50 transition-colors"
+    data-action="click->accordion#toggle"
+  >
+    <span><%= item[:title] || item[:question] %></span>
+    <svg 
+      class="w-5 h-5 text-gray-500 transition-transform duration-200 <%= 'rotate-180' if item[:open] %>" 
+      data-accordion-target="icon"
+      fill="none" 
+      stroke="currentColor" 
+      viewBox="0 0 24 24"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+    </svg>
+  </button>
+  
+  <div 
+    class="px-6 py-4 text-sm text-gray-600"
+    data-accordion-target="content"
+  >
+    <%= yield %>
+  </div>
+</div>

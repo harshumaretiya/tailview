@@ -1,0 +1,62 @@
+<section>
+  <div class="mb-4">
+    <h2 class="text-2xl font-semibold text-gray-900">Live Search with Turbo Frames</h2>
+    <p class="mt-1 text-sm text-gray-600">Server-side filtering • Real-time results • Debounced requests</p>
+  </div>
+
+  <div class="bg-white rounded-lg border border-gray-200 p-6">
+    <%= turbo_frame_tag "search_results" do %>
+      <!-- Search Input -->
+      <div class="mb-4">
+        <%= form_with url: tables_filter_path, method: :get, data: { turbo_frame: "search_results", turbo_action: "advance" } do |f| %>
+          <%= f.text_field :query, 
+              placeholder: "Search users...",
+              class: "w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent",
+              data: { 
+                action: "input->debounce#search",
+                debounce_delay_value: 300
+              } %>
+        <% end %>
+      </div>
+
+      <!-- Table -->
+      <div class="overflow-x-auto">
+        <%= render partial: "tables/users_table", locals: { users: @users } %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+    <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+      <span class="text-xs text-gray-400">HTML + Turbo Frame</span>
+      <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+        Copy
+      </button>
+    </div>
+    <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;%= turbo_frame_tag "search_results" do %&gt;
+  &lt;%= form_with url: filter_path, 
+      data: { 
+        turbo_frame: "search_results",
+        action: "input-&gt;debounce#search" 
+      } do |f| %&gt;
+    &lt;%= f.text_field :query %&gt;
+  &lt;% end %&gt;
+
+  &lt;table id="users_table"&gt;
+    &lt;!-- Table content --&gt;
+  &lt;/table&gt;
+&lt;% end %&gt;
+
+&lt;!-- Controller --&gt;
+def filter
+  @users = User.where("name LIKE ?", "%#{params[:query]}%")
+  
+  render turbo_stream: turbo_stream.replace(
+    "users_table",
+    partial: "users_table",
+    locals: { users: @users }
+  )
+end</code></pre>
+  </div>
+</section>
+

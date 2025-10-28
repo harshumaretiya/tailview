@@ -1,0 +1,123 @@
+<section>
+  <div class="mb-4">
+    <h2 class="text-2xl font-semibold text-gray-900">Responsive Mobile-Friendly Table</h2>
+    <p class="mt-1 text-sm text-gray-600">Adapts to small screens • Card layout on mobile • Powered by Tailwind</p>
+  </div>
+
+  <div class="bg-white rounded-lg border border-gray-200 p-6">
+    <!-- Desktop Table View -->
+    <div class="hidden md:block overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <% @products.each do |product| %>
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><%= product[:name] %></td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Electronics</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$<%= sprintf("%.2f", product[:price]) %></td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= product[:stock] %></td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <% badge_class = product[:status] == "In Stock" ? "bg-green-100 text-green-800" : product[:status] == "Low Stock" ? "bg-yellow-100 text-yellow-800" : "bg-red-100 text-red-800" %>
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full <%= badge_class %>">
+                  <%= product[:status] %>
+                </span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">Edit</a>
+                <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Mobile Card View -->
+    <div class="md:hidden space-y-4">
+      <% @products.each do |product| %>
+        <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+          <div class="flex items-start justify-between mb-3">
+            <div class="flex-1">
+              <h3 class="text-sm font-semibold text-gray-900"><%= product[:name] %></h3>
+              <p class="text-xs text-gray-500 mt-1">Electronics</p>
+            </div>
+            <% badge_class = product[:status] == "In Stock" ? "bg-green-100 text-green-800" : product[:status] == "Low Stock" ? "bg-yellow-100 text-yellow-800" : "bg-red-100 text-red-800" %>
+            <span class="px-2 py-1 text-xs font-semibold rounded-full <%= badge_class %>">
+              <%= product[:status] %>
+            </span>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-3 mb-3">
+            <div>
+              <p class="text-xs text-gray-500">Price</p>
+              <p class="text-sm font-medium text-gray-900">$<%= sprintf("%.2f", product[:price]) %></p>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500">Stock</p>
+              <p class="text-sm font-medium text-gray-900"><%= product[:stock] %> units</p>
+            </div>
+          </div>
+          
+          <div class="flex justify-end space-x-3 pt-3 border-t border-gray-200">
+            <a href="#" class="text-sm text-blue-600 hover:text-blue-900 font-medium">Edit</a>
+            <a href="#" class="text-sm text-red-600 hover:text-red-900 font-medium">Delete</a>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+    <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+      <span class="text-xs text-gray-400">HTML + Tailwind Responsive</span>
+      <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+        Copy
+      </button>
+    </div>
+    <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;!-- Desktop Table View --&gt;
+&lt;div class="hidden md:block"&gt;
+  &lt;table class="min-w-full"&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;Product&lt;/th&gt;
+        &lt;th&gt;Price&lt;/th&gt;
+        &lt;th&gt;Actions&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;Wireless Headphones&lt;/td&gt;
+        &lt;td&gt;$299.99&lt;/td&gt;
+        &lt;td&gt;&lt;a href="#"&gt;Edit&lt;/a&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;
+
+&lt;!-- Mobile Card View --&gt;
+&lt;div class="md:hidden space-y-4"&gt;
+  &lt;div class="border rounded-lg p-4"&gt;
+    &lt;h3 class="font-semibold"&gt;Wireless Headphones&lt;/h3&gt;
+    &lt;div class="grid grid-cols-2 gap-3 mt-3"&gt;
+      &lt;div&gt;
+        &lt;p class="text-xs text-gray-500"&gt;Price&lt;/p&gt;
+        &lt;p class="font-medium"&gt;$299.99&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="flex justify-end mt-3 pt-3 border-t"&gt;
+      &lt;a href="#"&gt;Edit&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+</section>
+

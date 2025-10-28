@@ -1,0 +1,174 @@
+<div class="min-h-screen bg-gray-50" data-controller="accordion clipboard">
+  <!-- Header -->
+  <div class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">Accordions</h1>
+          <p class="mt-1 text-sm text-gray-500">
+            Simple, clean accordion components with Hotwire integration
+          </p>
+        </div>
+        <%= link_to "/", class: "text-sm text-blue-600 hover:text-blue-700" do %>
+          ← Back to Home
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="space-y-12">
+
+      <!-- FAQ Accordion -->
+      <section>
+        <div class="mb-6">
+          <h2 class="text-2xl font-semibold text-gray-900">FAQ Accordion</h2>
+          <p class="mt-1 text-sm text-gray-600">Simple FAQ with dynamic content loading</p>
+        </div>
+
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="bg-white border border-gray-200 rounded-lg overflow-hidden max-w-4xl" data-controller="accordion" data-accordion-allow-multiple-value="false">
+            <% @faq_data.each do |faq| %>
+              <%= render "accordions/faq_item", faq: faq %>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML + Stimulus</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div data-controller="accordion" data-accordion-allow-multiple-value="false"&gt;
+  &lt;div data-accordion-target="item" data-open="true"&gt;
+    &lt;button data-action="click->accordion#toggle"&gt;
+      &lt;span&gt;Question&lt;/span&gt;
+      &lt;svg data-accordion-target="icon"&gt;...&lt;/svg&gt;
+    &lt;/button&gt;
+    &lt;div data-accordion-target="content"&gt;
+      Answer content here
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Basic Accordion -->
+      <section>
+        <div class="mb-6">
+          <h2 class="text-2xl font-semibold text-gray-900">Basic Accordion</h2>
+          <p class="mt-1 text-sm text-gray-600">Simple collapsible content sections</p>
+        </div>
+
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="bg-white border border-gray-200 rounded-lg overflow-hidden max-w-2xl" data-controller="accordion" data-accordion-allow-multiple-value="false">
+            <%= render "accordions/accordion_item", item: { title: "What is TailView?", open: true } do %>
+              TailView is a comprehensive UI component library built with Tailwind CSS. It provides beautiful, accessible components for Rails applications.
+            <% end %>
+            
+            <%= render "accordions/accordion_item", item: { title: "How do I install it?", open: false } do %>
+              Simply add the gem to your Gemfile and run the generator to set up the components.
+            <% end %>
+            
+            <%= render "accordions/accordion_item", item: { title: "Is it customizable?", open: false } do %>
+              Yes! All components are built with Tailwind CSS and can be easily customized.
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML + Stimulus</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div data-controller="accordion"&gt;
+  &lt;div data-accordion-target="item" data-open="true"&gt;
+    &lt;button data-action="click->accordion#toggle"&gt;
+      &lt;span&gt;What is TailView?&lt;/span&gt;
+      &lt;svg data-accordion-target="icon"&gt;...&lt;/svg&gt;
+    &lt;/button&gt;
+    &lt;div data-accordion-target="content"&gt;
+      Content goes here...
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Multiple Open Accordion -->
+      <section>
+        <div class="mb-6">
+          <h2 class="text-2xl font-semibold text-gray-900">Multiple Open Accordion</h2>
+          <p class="mt-1 text-sm text-gray-600">Allow multiple items to be open simultaneously</p>
+        </div>
+
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="bg-white border border-gray-200 rounded-lg overflow-hidden max-w-2xl" data-controller="accordion" data-accordion-allow-multiple-value="true">
+            <div class="mb-4 flex space-x-4 p-4 bg-gray-50 border-b border-gray-200">
+              <button 
+                class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                data-action="click->accordion#openAll"
+              >
+                Open All
+              </button>
+              <button 
+                class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors"
+                data-action="click->accordion#closeAll"
+              >
+                Close All
+              </button>
+            </div>
+            <%= render "accordions/accordion_item", item: { title: "Feature 1: Multiple Open Items", open: true } do %>
+              This accordion allows multiple items to be open simultaneously.
+            <% end %>
+            
+            <%= render "accordions/accordion_item", item: { title: "Feature 2: Keyboard Navigation", open: true } do %>
+              Use Tab to navigate between accordion items, Enter or Space to toggle them.
+            <% end %>
+            
+            <%= render "accordions/accordion_item", item: { title: "Feature 3: Simple Implementation", open: false } do %>
+              Clean, simple code that's easy to understand and maintain.
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">JavaScript</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">// Simple Stimulus Controller
+toggle(event) {
+  const item = event.target.closest('[data-accordion-target="item"]')
+  const content = item.querySelector('[data-accordion-target="content"]')
+  const icon = item.querySelector('[data-accordion-target="icon"]')
+  
+  const isOpen = content.style.display === "block"
+  
+  if (isOpen) {
+    content.style.display = "none"
+    icon?.classList.remove("rotate-180")
+  } else {
+    if (!this.allowMultipleValue) {
+      this.closeAllItems()
+    }
+    content.style.display = "block"
+    icon?.classList.add("rotate-180")
+  }
+}</code></pre>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>

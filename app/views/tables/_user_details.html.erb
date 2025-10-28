@@ -1,0 +1,37 @@
+<div class="py-4 bg-gray-50 rounded-lg">
+  <div class="grid grid-cols-2 gap-4 px-4">
+    <div>
+      <h4 class="text-xs font-medium text-gray-500 uppercase tracking-wider">Full Name</h4>
+      <p class="mt-1 text-sm text-gray-900"><%= user[:name] %></p>
+    </div>
+    <div>
+      <h4 class="text-xs font-medium text-gray-500 uppercase tracking-wider">Email</h4>
+      <p class="mt-1 text-sm text-gray-900"><%= user[:email] %></p>
+    </div>
+    <div>
+      <h4 class="text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</h4>
+      <p class="mt-1 text-sm text-gray-900"><%= user[:phone] %></p>
+    </div>
+    <div>
+      <h4 class="text-xs font-medium text-gray-500 uppercase tracking-wider">Address</h4>
+      <p class="mt-1 text-sm text-gray-900"><%= user[:address] %></p>
+    </div>
+    <div>
+      <h4 class="text-xs font-medium text-gray-500 uppercase tracking-wider">Member Since</h4>
+      <p class="mt-1 text-sm text-gray-900"><%= user[:created_at] %></p>
+    </div>
+    <div>
+      <h4 class="text-xs font-medium text-gray-500 uppercase tracking-wider">Last Login</h4>
+      <p class="mt-1 text-sm text-gray-900"><%= user[:last_login] %></p>
+    </div>
+  </div>
+  <div class="mt-4 px-4 pt-4 border-t border-gray-200">
+    <button 
+      onclick="this.closest('turbo-frame').innerHTML = '<div class=\'py-4 text-center\'><a href=\'#\' data-turbo-frame=\'transaction_details_<%= user[:id] %>\' class=\'text-blue-600 hover:text-blue-900\'>View Details</a></div>'"
+      class="text-sm text-gray-600 hover:text-gray-900"
+    >
+      Close Details
+    </button>
+  </div>
+</div>
+

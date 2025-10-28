@@ -1,0 +1,572 @@
+<div class="min-h-screen bg-gray-50" data-controller="clipboard">
+  <!-- Header -->
+  <div class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">Toasts</h1>
+          <p class="mt-1 text-sm text-gray-500">
+            Copy-paste ready toast notification components
+          </p>
+        </div>
+        <%= link_to "/", class: "text-sm text-blue-600 hover:text-blue-700" do %>
+          ← Back to Home
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="space-y-12">
+
+      <!-- Basic Toasts -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Basic Toasts</h2>
+          <p class="mt-1 text-sm text-gray-600">Simple notification toasts with different variants</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-4 max-w-sm">
+            <!-- Success Toast -->
+            <div class="bg-white rounded-lg shadow-lg border-l-4 border-green-500 p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="ml-3 flex-1">
+                  <p class="text-sm font-medium text-gray-900">Successfully saved!</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Error Toast -->
+            <div class="bg-white rounded-lg shadow-lg border-l-4 border-red-500 p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="ml-3 flex-1">
+                  <p class="text-sm font-medium text-gray-900">Error occurred!</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Warning Toast -->
+            <div class="bg-white rounded-lg shadow-lg border-l-4 border-yellow-500 p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="ml-3 flex-1">
+                  <p class="text-sm font-medium text-gray-900">Warning message</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Info Toast -->
+            <div class="bg-white rounded-lg shadow-lg border-l-4 border-blue-500 p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="ml-3 flex-1">
+                  <p class="text-sm font-medium text-gray-900">Information</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;!-- Success Toast --&gt;
+&lt;div class="bg-white rounded-lg shadow-lg border-l-4 border-green-500 p-4"&gt;
+  &lt;div class="flex items-start"&gt;
+    &lt;div class="flex-shrink-0"&gt;
+      &lt;svg class="h-5 w-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"&gt;
+        &lt;path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"&gt;&lt;/path&gt;
+      &lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;div class="ml-3 flex-1"&gt;
+      &lt;p class="text-sm font-medium text-gray-900"&gt;Successfully saved!&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Toasts with Description -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Toasts with Description</h2>
+          <p class="mt-1 text-sm text-gray-600">Include additional details in your toast messages</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-4 max-w-sm">
+            <div class="bg-white rounded-lg shadow-lg border-l-4 border-green-500 p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="ml-3 flex-1">
+                  <p class="text-sm font-medium text-gray-900">Order completed</p>
+                  <p class="mt-1 text-sm text-gray-500">Your order has been successfully placed and is being processed.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg border-l-4 border-blue-500 p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="ml-3 flex-1">
+                  <p class="text-sm font-medium text-gray-900">New update available</p>
+                  <p class="mt-1 text-sm text-gray-500">A new software update is ready to be installed.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div class="bg-white rounded-lg shadow-lg border-l-4 border-green-500 p-4"&gt;
+  &lt;div class="flex items-start"&gt;
+    &lt;div class="flex-shrink-0"&gt;
+      &lt;svg class="h-5 w-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"&gt;...&lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;div class="ml-3 flex-1"&gt;
+      &lt;p class="text-sm font-medium text-gray-900"&gt;Order completed&lt;/p&gt;
+      &lt;p class="mt-1 text-sm text-gray-500"&gt;Your order has been successfully placed.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Dismissible Toasts -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Dismissible Toasts</h2>
+          <p class="mt-1 text-sm text-gray-600">Toasts with close button</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-4 max-w-sm">
+            <div class="bg-white rounded-lg shadow-lg border-l-4 border-green-500 p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="ml-3 flex-1">
+                  <p class="text-sm font-medium text-gray-900">Successfully saved!</p>
+                  <p class="mt-1 text-sm text-gray-500">Your changes have been saved.</p>
+                </div>
+                <div class="ml-4 flex-shrink-0 flex">
+                  <button class="inline-flex text-gray-400 hover:text-gray-500">
+                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div class="bg-white rounded-lg shadow-lg border-l-4 border-green-500 p-4"&gt;
+  &lt;div class="flex items-start"&gt;
+    &lt;div class="flex-shrink-0"&gt;
+      &lt;svg class="h-5 w-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"&gt;...&lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;div class="ml-3 flex-1"&gt;
+      &lt;p class="text-sm font-medium text-gray-900"&gt;Successfully saved!&lt;/p&gt;
+      &lt;p class="mt-1 text-sm text-gray-500"&gt;Your changes have been saved.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="ml-4 flex-shrink-0 flex"&gt;
+      &lt;button class="inline-flex text-gray-400 hover:text-gray-500"&gt;
+        &lt;svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"&gt;...&lt;/svg&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Toasts with Actions -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Toasts with Actions</h2>
+          <p class="mt-1 text-sm text-gray-600">Include action buttons in your toasts</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-4 max-w-md">
+            <div class="bg-white rounded-lg shadow-lg border-l-4 border-blue-500 p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="ml-3 flex-1">
+                  <p class="text-sm font-medium text-gray-900">Update available</p>
+                  <p class="mt-1 text-sm text-gray-500">A new version is available.</p>
+                  <div class="mt-3 flex space-x-3">
+                    <button class="px-3 py-1.5 text-sm font-medium text-blue-600 hover:text-blue-700">
+                      Update now
+                    </button>
+                    <button class="px-3 py-1.5 text-sm font-medium text-gray-600 hover:text-gray-700">
+                      Later
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg border-l-4 border-yellow-500 p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="ml-3 flex-1">
+                  <p class="text-sm font-medium text-gray-900">Connection lost</p>
+                  <p class="mt-1 text-sm text-gray-500">Please check your internet connection.</p>
+                  <div class="mt-3">
+                    <button class="px-3 py-1.5 text-sm font-medium text-white bg-yellow-500 rounded hover:bg-yellow-600">
+                      Retry
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div class="bg-white rounded-lg shadow-lg border-l-4 border-blue-500 p-4"&gt;
+  &lt;div class="flex items-start"&gt;
+    &lt;div class="flex-shrink-0"&gt;
+      &lt;svg class="h-5 w-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20"&gt;...&lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;div class="ml-3 flex-1"&gt;
+      &lt;p class="text-sm font-medium text-gray-900"&gt;Update available&lt;/p&gt;
+      &lt;p class="mt-1 text-sm text-gray-500"&gt;A new version is available.&lt;/p&gt;
+      &lt;div class="mt-3 flex space-x-3"&gt;
+        &lt;button class="px-3 py-1.5 text-sm font-medium text-blue-600 hover:text-blue-700"&gt;
+          Update now
+        &lt;/button&gt;
+        &lt;button class="px-3 py-1.5 text-sm font-medium text-gray-600 hover:text-gray-700"&gt;
+          Later
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Toast Positions -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Toast Positions</h2>
+          <p class="mt-1 text-sm text-gray-600">Different positioning options for toasts</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-6">
+            <!-- Top Right -->
+            <div>
+              <p class="text-sm text-gray-600 mb-2">Top Right (Default)</p>
+              <div class="relative h-32 bg-gray-50 rounded border border-gray-200">
+                <div class="absolute top-4 right-4 bg-white rounded-lg shadow-lg border-l-4 border-green-500 p-3 max-w-xs">
+                  <p class="text-xs font-medium text-gray-900">Top right toast</p>
+                </div>
+              </div>
+              <p class="text-xs text-gray-500 mt-1">fixed top-4 right-4</p>
+            </div>
+
+            <!-- Top Left -->
+            <div>
+              <p class="text-sm text-gray-600 mb-2">Top Left</p>
+              <div class="relative h-32 bg-gray-50 rounded border border-gray-200">
+                <div class="absolute top-4 left-4 bg-white rounded-lg shadow-lg border-l-4 border-blue-500 p-3 max-w-xs">
+                  <p class="text-xs font-medium text-gray-900">Top left toast</p>
+                </div>
+              </div>
+              <p class="text-xs text-gray-500 mt-1">fixed top-4 left-4</p>
+            </div>
+
+            <!-- Bottom Right -->
+            <div>
+              <p class="text-sm text-gray-600 mb-2">Bottom Right</p>
+              <div class="relative h-32 bg-gray-50 rounded border border-gray-200">
+                <div class="absolute bottom-4 right-4 bg-white rounded-lg shadow-lg border-l-4 border-yellow-500 p-3 max-w-xs">
+                  <p class="text-xs font-medium text-gray-900">Bottom right toast</p>
+                </div>
+              </div>
+              <p class="text-xs text-gray-500 mt-1">fixed bottom-4 right-4</p>
+            </div>
+
+            <!-- Bottom Left -->
+            <div>
+              <p class="text-sm text-gray-600 mb-2">Bottom Left</p>
+              <div class="relative h-32 bg-gray-50 rounded border border-gray-200">
+                <div class="absolute bottom-4 left-4 bg-white rounded-lg shadow-lg border-l-4 border-red-500 p-3 max-w-xs">
+                  <p class="text-xs font-medium text-gray-900">Bottom left toast</p>
+                </div>
+              </div>
+              <p class="text-xs text-gray-500 mt-1">fixed bottom-4 left-4</p>
+            </div>
+
+            <!-- Top Center -->
+            <div>
+              <p class="text-sm text-gray-600 mb-2">Top Center</p>
+              <div class="relative h-32 bg-gray-50 rounded border border-gray-200">
+                <div class="absolute top-4 left-1/2 -translate-x-1/2 bg-white rounded-lg shadow-lg border-l-4 border-purple-500 p-3 max-w-xs">
+                  <p class="text-xs font-medium text-gray-900">Top center toast</p>
+                </div>
+              </div>
+              <p class="text-xs text-gray-500 mt-1">fixed top-4 left-1/2 -translate-x-1/2</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;!-- Top Right --&gt;
+&lt;div class="fixed top-4 right-4 z-50"&gt;
+  &lt;div class="bg-white rounded-lg shadow-lg border-l-4 border-green-500 p-4"&gt;
+    &lt;p class="text-sm font-medium text-gray-900"&gt;Top right toast&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Bottom Right --&gt;
+&lt;div class="fixed bottom-4 right-4 z-50"&gt;
+  &lt;div class="bg-white rounded-lg shadow-lg border-l-4 border-green-500 p-4"&gt;
+    &lt;p class="text-sm font-medium text-gray-900"&gt;Bottom right toast&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Top Center --&gt;
+&lt;div class="fixed top-4 left-1/2 -translate-x-1/2 z-50"&gt;
+  &lt;div class="bg-white rounded-lg shadow-lg border-l-4 border-green-500 p-4"&gt;
+    &lt;p class="text-sm font-medium text-gray-900"&gt;Top center toast&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Colored Background Toasts -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Colored Background Toasts</h2>
+          <p class="mt-1 text-sm text-gray-600">Toasts with solid background colors</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-4 max-w-sm">
+            <!-- Success -->
+            <div class="bg-green-500 rounded-lg shadow-lg p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="ml-3 flex-1">
+                  <p class="text-sm font-medium text-white">Successfully saved!</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Error -->
+            <div class="bg-red-500 rounded-lg shadow-lg p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="ml-3 flex-1">
+                  <p class="text-sm font-medium text-white">Error occurred!</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Warning -->
+            <div class="bg-yellow-500 rounded-lg shadow-lg p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="ml-3 flex-1">
+                  <p class="text-sm font-medium text-white">Warning message</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Info -->
+            <div class="bg-blue-500 rounded-lg shadow-lg p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="ml-3 flex-1">
+                  <p class="text-sm font-medium text-white">Information</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dark -->
+            <div class="bg-gray-900 rounded-lg shadow-lg p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="ml-3 flex-1">
+                  <p class="text-sm font-medium text-white">Dark mode toast</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;!-- Success with Colored Background --&gt;
+&lt;div class="bg-green-500 rounded-lg shadow-lg p-4"&gt;
+  &lt;div class="flex items-start"&gt;
+    &lt;div class="flex-shrink-0"&gt;
+      &lt;svg class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 20 20"&gt;...&lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;div class="ml-3 flex-1"&gt;
+      &lt;p class="text-sm font-medium text-white"&gt;Successfully saved!&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Compact Toasts -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Compact Toasts</h2>
+          <p class="mt-1 text-sm text-gray-600">Smaller toasts for brief notifications</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-3 max-w-xs">
+            <div class="bg-white rounded-lg shadow-lg border border-gray-200 px-3 py-2">
+              <p class="text-sm text-gray-900">File uploaded</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg border border-gray-200 px-3 py-2 flex items-center">
+              <svg class="h-4 w-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <p class="text-sm text-gray-900">Copied to clipboard</p>
+            </div>
+
+            <div class="bg-gray-900 rounded-lg shadow-lg px-3 py-2">
+              <p class="text-sm text-white">Action completed</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;!-- Simple Compact Toast --&gt;
+&lt;div class="bg-white rounded-lg shadow-lg border border-gray-200 px-3 py-2"&gt;
+  &lt;p class="text-sm text-gray-900"&gt;File uploaded&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- With Icon --&gt;
+&lt;div class="bg-white rounded-lg shadow-lg border border-gray-200 px-3 py-2 flex items-center"&gt;
+  &lt;svg class="h-4 w-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"&gt;...&lt;/svg&gt;
+  &lt;p class="text-sm text-gray-900"&gt;Copied to clipboard&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>

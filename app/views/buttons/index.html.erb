@@ -1,0 +1,500 @@
+<div class="min-h-screen bg-gray-50" data-controller="clipboard">
+  <!-- Header -->
+  <div class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">Buttons</h1>
+          <p class="mt-1 text-sm text-gray-500">
+            Copy-paste ready button components with all variants
+          </p>
+        </div>
+        <%= link_to "/", class: "text-sm text-blue-600 hover:text-blue-700" do %>
+          ← Back to Home
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="space-y-12">
+
+      <!-- Button Variants -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Button Variants</h2>
+          <p class="mt-1 text-sm text-gray-600">Different button styles for various actions</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="flex flex-wrap gap-4">
+            <!-- Primary Button -->
+            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+              Primary
+            </button>
+
+            <!-- Secondary Button -->
+            <button class="bg-gray-200 text-gray-900 px-4 py-2 rounded-lg hover:bg-gray-300 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors">
+              Secondary
+            </button>
+
+            <!-- Success Button -->
+            <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors">
+              Success
+            </button>
+
+            <!-- Danger Button -->
+            <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors">
+              Danger
+            </button>
+
+            <!-- Warning Button -->
+            <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-colors">
+              Warning
+            </button>
+
+            <!-- Info Button -->
+            <button class="bg-cyan-500 text-white px-4 py-2 rounded-lg hover:bg-cyan-600 focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 transition-colors">
+              Info
+            </button>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;!-- Primary Button --&gt;
+&lt;button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"&gt;
+  Primary
+&lt;/button&gt;
+
+&lt;!-- Secondary Button --&gt;
+&lt;button class="bg-gray-200 text-gray-900 px-4 py-2 rounded-lg hover:bg-gray-300 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"&gt;
+  Secondary
+&lt;/button&gt;
+
+&lt;!-- Success Button --&gt;
+&lt;button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"&gt;
+  Success
+&lt;/button&gt;
+
+&lt;!-- Danger Button --&gt;
+&lt;button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors"&gt;
+  Danger
+&lt;/button&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Outline Buttons -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Outline Buttons</h2>
+          <p class="mt-1 text-sm text-gray-600">Buttons with transparent background and colored border</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="flex flex-wrap gap-4">
+            <button class="border-2 border-blue-600 text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+              Primary Outline
+            </button>
+
+            <button class="border-2 border-green-600 text-green-600 px-4 py-2 rounded-lg hover:bg-green-600 hover:text-white focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors">
+              Success Outline
+            </button>
+
+            <button class="border-2 border-red-600 text-red-600 px-4 py-2 rounded-lg hover:bg-red-600 hover:text-white focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors">
+              Danger Outline
+            </button>
+
+            <button class="border-2 border-gray-400 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 hover:text-white focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors">
+              Secondary Outline
+            </button>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;button class="border-2 border-blue-600 text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"&gt;
+  Primary Outline
+&lt;/button&gt;
+
+&lt;button class="border-2 border-green-600 text-green-600 px-4 py-2 rounded-lg hover:bg-green-600 hover:text-white focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"&gt;
+  Success Outline
+&lt;/button&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Ghost Buttons -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Ghost Buttons</h2>
+          <p class="mt-1 text-sm text-gray-600">Minimal buttons with hover background</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="flex flex-wrap gap-4">
+            <button class="text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-50 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+              Primary Ghost
+            </button>
+
+            <button class="text-green-600 px-4 py-2 rounded-lg hover:bg-green-50 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors">
+              Success Ghost
+            </button>
+
+            <button class="text-red-600 px-4 py-2 rounded-lg hover:bg-red-50 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors">
+              Danger Ghost
+            </button>
+
+            <button class="text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-100 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors">
+              Secondary Ghost
+            </button>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;button class="text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-50 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"&gt;
+  Primary Ghost
+&lt;/button&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Button Sizes -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Button Sizes</h2>
+          <p class="mt-1 text-sm text-gray-600">Different button sizes for various use cases</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="flex flex-wrap items-center gap-4">
+            <!-- Extra Small -->
+            <button class="bg-blue-600 text-white px-2 py-1 text-xs rounded hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+              Extra Small
+            </button>
+
+            <!-- Small -->
+            <button class="bg-blue-600 text-white px-3 py-1.5 text-sm rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+              Small
+            </button>
+
+            <!-- Medium (Default) -->
+            <button class="bg-blue-600 text-white px-4 py-2 text-sm rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+              Medium
+            </button>
+
+            <!-- Large -->
+            <button class="bg-blue-600 text-white px-6 py-3 text-base rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+              Large
+            </button>
+
+            <!-- Extra Large -->
+            <button class="bg-blue-600 text-white px-8 py-4 text-lg rounded-xl hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+              Extra Large
+            </button>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;!-- Extra Small --&gt;
+&lt;button class="bg-blue-600 text-white px-2 py-1 text-xs rounded hover:bg-blue-700"&gt;
+  Extra Small
+&lt;/button&gt;
+
+&lt;!-- Small --&gt;
+&lt;button class="bg-blue-600 text-white px-3 py-1.5 text-sm rounded-md hover:bg-blue-700"&gt;
+  Small
+&lt;/button&gt;
+
+&lt;!-- Medium --&gt;
+&lt;button class="bg-blue-600 text-white px-4 py-2 text-sm rounded-lg hover:bg-blue-700"&gt;
+  Medium
+&lt;/button&gt;
+
+&lt;!-- Large --&gt;
+&lt;button class="bg-blue-600 text-white px-6 py-3 text-base rounded-lg hover:bg-blue-700"&gt;
+  Large
+&lt;/button&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Buttons with Icons -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Buttons with Icons</h2>
+          <p class="mt-1 text-sm text-gray-600">Add icons to make buttons more visual</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="flex flex-wrap gap-4">
+            <!-- Icon Left -->
+            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors inline-flex items-center">
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+              </svg>
+              Add Item
+            </button>
+
+            <!-- Icon Right -->
+            <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors inline-flex items-center">
+              Save Changes
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </button>
+
+            <!-- Icon Only (Square) -->
+            <button class="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+              </svg>
+            </button>
+
+            <!-- Icon Only (Rounded) -->
+            <button class="bg-red-600 text-white p-2 rounded-full hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;!-- Icon Left --&gt;
+&lt;button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 inline-flex items-center"&gt;
+  &lt;svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;
+    &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"&gt;&lt;/path&gt;
+  &lt;/svg&gt;
+  Add Item
+&lt;/button&gt;
+
+&lt;!-- Icon Only (Square) --&gt;
+&lt;button class="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700"&gt;
+  &lt;svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;
+    &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"&gt;&lt;/path&gt;
+  &lt;/svg&gt;
+&lt;/button&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Button States -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Button States</h2>
+          <p class="mt-1 text-sm text-gray-600">Loading, disabled, and active states</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="flex flex-wrap gap-4">
+            <!-- Normal -->
+            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+              Normal
+            </button>
+
+            <!-- Loading -->
+            <button disabled class="bg-blue-600 text-white px-4 py-2 rounded-lg opacity-75 cursor-not-allowed inline-flex items-center">
+              <svg class="animate-spin h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Loading...
+            </button>
+
+            <!-- Disabled -->
+            <button disabled class="bg-gray-300 text-gray-500 px-4 py-2 rounded-lg cursor-not-allowed">
+              Disabled
+            </button>
+
+            <!-- Active/Pressed -->
+            <button class="bg-blue-700 text-white px-4 py-2 rounded-lg shadow-inner">
+              Active
+            </button>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;!-- Loading --&gt;
+&lt;button disabled class="bg-blue-600 text-white px-4 py-2 rounded-lg opacity-75 cursor-not-allowed inline-flex items-center"&gt;
+  &lt;svg class="animate-spin h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"&gt;
+    &lt;circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"&gt;&lt;/circle&gt;
+    &lt;path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"&gt;&lt;/path&gt;
+  &lt;/svg&gt;
+  Loading...
+&lt;/button&gt;
+
+&lt;!-- Disabled --&gt;
+&lt;button disabled class="bg-gray-300 text-gray-500 px-4 py-2 rounded-lg cursor-not-allowed"&gt;
+  Disabled
+&lt;/button&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Full Width Buttons -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Full Width Buttons</h2>
+          <p class="mt-1 text-sm text-gray-600">Buttons that span the full width of their container</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-3 max-w-md">
+            <button class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+              Full Width Primary
+            </button>
+
+            <button class="w-full bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors">
+              Full Width Success
+            </button>
+
+            <button class="w-full border-2 border-blue-600 text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+              Full Width Outline
+            </button>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;button class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"&gt;
+  Full Width Primary
+&lt;/button&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Button Groups -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Button Groups</h2>
+          <p class="mt-1 text-sm text-gray-600">Group related buttons together</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-6">
+            <!-- Horizontal Group -->
+            <div>
+              <p class="text-sm text-gray-600 mb-2">Horizontal Group</p>
+              <div class="inline-flex rounded-lg border border-gray-300 overflow-hidden">
+                <button class="px-4 py-2 text-sm text-gray-700 bg-white hover:bg-gray-50 border-r border-gray-300">
+                  Left
+                </button>
+                <button class="px-4 py-2 text-sm text-gray-700 bg-white hover:bg-gray-50 border-r border-gray-300">
+                  Middle
+                </button>
+                <button class="px-4 py-2 text-sm text-gray-700 bg-white hover:bg-gray-50">
+                  Right
+                </button>
+              </div>
+            </div>
+
+            <!-- Segmented Control -->
+            <div>
+              <p class="text-sm text-gray-600 mb-2">Segmented Control</p>
+              <div class="inline-flex rounded-lg border border-gray-300 overflow-hidden">
+                <button class="px-4 py-2 text-sm text-white bg-blue-600 border-r border-blue-700">
+                  Active
+                </button>
+                <button class="px-4 py-2 text-sm text-gray-700 bg-white hover:bg-gray-50 border-r border-gray-300">
+                  Inactive
+                </button>
+                <button class="px-4 py-2 text-sm text-gray-700 bg-white hover:bg-gray-50">
+                  Inactive
+                </button>
+              </div>
+            </div>
+
+            <!-- Action Group -->
+            <div>
+              <p class="text-sm text-gray-600 mb-2">Action Group</p>
+              <div class="inline-flex gap-2">
+                <button class="px-4 py-2 text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700">
+                  Save
+                </button>
+                <button class="px-4 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
+                  Cancel
+                </button>
+                <button class="px-4 py-2 text-sm text-red-600 bg-white border border-red-300 rounded-lg hover:bg-red-50">
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;!-- Button Group --&gt;
+&lt;div class="inline-flex rounded-lg border border-gray-300 overflow-hidden"&gt;
+  &lt;button class="px-4 py-2 text-sm text-gray-700 bg-white hover:bg-gray-50 border-r border-gray-300"&gt;
+    Left
+  &lt;/button&gt;
+  &lt;button class="px-4 py-2 text-sm text-gray-700 bg-white hover:bg-gray-50 border-r border-gray-300"&gt;
+    Middle
+  &lt;/button&gt;
+  &lt;button class="px-4 py-2 text-sm text-gray-700 bg-white hover:bg-gray-50"&gt;
+    Right
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>

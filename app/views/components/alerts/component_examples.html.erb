@@ -1,0 +1,96 @@
+<!-- ViewComponent Examples for Alert Component -->
+
+<div class="space-y-8">
+  <section>
+    <h3 class="text-lg font-semibold mb-4">Basic Alerts using ViewComponent</h3>
+    <div class="space-y-4">
+      <!-- Success Alert -->
+      <%= render(AlertComponent.new(variant: :success, message: "Success! Your changes have been saved.")) %>
+
+      <!-- Error Alert -->
+      <%= render(AlertComponent.new(variant: :error, message: "Error! There was a problem with your request.")) %>
+
+      <!-- Warning Alert -->
+      <%= render(AlertComponent.new(variant: :warning, message: "Warning! Please review before proceeding.")) %>
+
+      <!-- Info Alert -->
+      <%= render(AlertComponent.new(variant: :info, message: "Info: Here's some helpful information.")) %>
+    </div>
+  </section>
+
+  <section>
+    <h3 class="text-lg font-semibold mb-4">Alerts with Title and Description</h3>
+    <div class="space-y-4">
+      <%= render(AlertComponent.new(
+        variant: :success,
+        title: "Order completed",
+        message: "Your order has been successfully processed and will be shipped within 2-3 business days."
+      )) %>
+
+      <%= render(AlertComponent.new(
+        variant: :error,
+        title: "Payment failed",
+        message: "Your payment could not be processed. Please check your card details and try again."
+      )) %>
+    </div>
+  </section>
+
+  <section data-controller="alert">
+    <h3 class="text-lg font-semibold mb-4">Dismissible Alert</h3>
+    <%= render(AlertComponent.new(
+      variant: :info,
+      title: "Dismissible Alert",
+      message: "This alert can be dismissed by clicking the X button.",
+      dismissible: true
+    )) %>
+  </section>
+
+  <section>
+    <h3 class="text-lg font-semibold mb-4">Alert with List Items</h3>
+    <%= render(AlertComponent.new(
+      variant: :error,
+      title: "Please fix the following errors:",
+      list_items: [
+        "Email address is required",
+        "Password must be at least 8 characters",
+        "Phone number format is invalid"
+      ]
+    )) %>
+  </section>
+
+  <section>
+    <h3 class="text-lg font-semibold mb-4">Compact Alerts</h3>
+    <div class="space-y-3">
+      <%= render(AlertComponent.new(variant: :success, message: "Changes saved successfully", compact: true)) %>
+      <%= render(AlertComponent.new(variant: :error, message: "Error: Unable to process request", compact: true)) %>
+      <%= render(AlertComponent.new(variant: :info, message: "New update available", compact: true)) %>
+    </div>
+  </section>
+
+  <section>
+    <h3 class="text-lg font-semibold mb-4">Alert with Custom Content (using block)</h3>
+    <%= render(AlertComponent.new(variant: :warning, title: "Upgrade your plan")) do %>
+      <p>You've reached 90% of your storage limit. Upgrade now to continue uploading files.</p>
+      <div class="mt-4">
+        <div class="flex space-x-3">
+          <button class="bg-yellow-50 px-3 py-2 text-sm font-medium text-yellow-800 border border-yellow-300 rounded-md hover:bg-yellow-100">
+            Upgrade Now
+          </button>
+          <button class="px-3 py-2 text-sm font-medium text-yellow-800 hover:text-yellow-900">
+            Remind me later
+          </button>
+        </div>
+      </div>
+    <% end %>
+  </section>
+
+  <section>
+    <h3 class="text-lg font-semibold mb-4">Alert without Icon</h3>
+    <%= render(AlertComponent.new(
+      variant: :info,
+      message: "This is an alert without an icon.",
+      show_icon: false
+    )) %>
+  </section>
+</div>
+

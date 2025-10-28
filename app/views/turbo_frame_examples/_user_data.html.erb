@@ -1,0 +1,38 @@
+<turbo-frame id="dynamic-card">
+  <%= ui_card(header: "User Data") do %>
+    <div class="space-y-4">
+      <div class="flex items-center space-x-3">
+        <%= ui_avatar alt: "JS", size: :md %>
+        <div>
+          <h4 class="text-sm font-medium text-gray-900"><%= @user[:name] %></h4>
+          <p class="text-sm text-gray-500"><%= @user[:email] %></p>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-3">
+        <div class="bg-blue-50 rounded-lg p-3">
+          <h5 class="text-xs font-medium text-blue-900">Role</h5>
+          <p class="text-sm text-blue-700"><%= @user[:role] %></p>
+        </div>
+        <div class="bg-green-50 rounded-lg p-3">
+          <h5 class="text-xs font-medium text-green-900">Last Login</h5>
+          <p class="text-sm text-green-700"><%= @user[:last_login] %></p>
+        </div>
+      </div>
+      
+      <div class="flex gap-2">
+        <%= ui_button "Edit User", 
+            href: "/turbo-frame-examples/edit-user",
+            data: { turbo_frame: "dynamic-card" },
+            variant: :primary,
+            size: :sm %>
+        
+        <%= ui_button "View Activity", 
+            href: "/turbo-frame-examples/user-activity",
+            data: { turbo_frame: "dynamic-card" },
+            variant: :outline,
+            size: :sm %>
+      </div>
+    </div>
+  <% end %>
+</turbo-frame>

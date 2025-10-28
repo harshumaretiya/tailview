@@ -1,0 +1,81 @@
+<div class="flex items-center justify-between">
+  <div class="flex-1 flex justify-between sm:hidden">
+    <% if current_page > 1 %>
+      <%= link_to "Previous", 
+          tables_paginate_path(page: current_page - 1),
+          data: { turbo_frame: "_top" },
+          class: "relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" %>
+    <% else %>
+      <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-400 bg-gray-100 cursor-not-allowed">Previous</span>
+    <% end %>
+    
+    <% if current_page < total_pages %>
+      <%= link_to "Next", 
+          tables_paginate_path(page: current_page + 1),
+          data: { turbo_frame: "_top" },
+          class: "ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" %>
+    <% else %>
+      <span class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-400 bg-gray-100 cursor-not-allowed">Next</span>
+    <% end %>
+  </div>
+  
+  <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+    <div>
+      <p class="text-sm text-gray-700">
+        Page <span class="font-medium"><%= current_page %></span> of <span class="font-medium"><%= total_pages %></span>
+      </p>
+    </div>
+    <div>
+      <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+        <!-- Previous Button -->
+        <% if current_page > 1 %>
+          <%= link_to tables_paginate_path(page: current_page - 1),
+              data: { turbo_frame: "_top" },
+              class: "relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" do %>
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          <% end %>
+        <% else %>
+          <span class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-gray-100 text-sm font-medium text-gray-400 cursor-not-allowed">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </span>
+        <% end %>
+
+        <!-- Page Numbers -->
+        <% (1..total_pages).each do |page| %>
+          <% if page == current_page %>
+            <span class="z-10 bg-blue-50 border-blue-500 text-blue-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+              <%= page %>
+            </span>
+          <% else %>
+            <%= link_to page,
+                tables_paginate_path(page: page),
+                data: { turbo_frame: "_top" },
+                class: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium" %>
+          <% end %>
+        <% end %>
+
+        <!-- Next Button -->
+        <% if current_page < total_pages %>
+          <%= link_to tables_paginate_path(page: current_page + 1),
+              data: { turbo_frame: "_top" },
+              class: "relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" do %>
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          <% end %>
+        <% else %>
+          <span class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-gray-100 text-sm font-medium text-gray-400 cursor-not-allowed">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </span>
+        <% end %>
+      </nav>
+    </div>
+  </div>
+</div>
+

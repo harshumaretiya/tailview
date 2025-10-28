@@ -1,0 +1,59 @@
+<section>
+  <div class="mb-4">
+    <h2 class="text-2xl font-semibold text-gray-900">Pagination with Turbo Frames</h2>
+    <p class="mt-1 text-sm text-gray-600">Navigate pages • No full page reload • Smooth transitions</p>
+  </div>
+
+  <div class="bg-white rounded-lg border border-gray-200 p-6">
+    <div class="overflow-x-auto">
+      <%= turbo_frame_tag "paginated_users" do %>
+        <%= render partial: "tables/users_table", locals: { users: @users.first(5) } %>
+      <% end %>
+    </div>
+
+    <!-- Pagination Controls -->
+    <div class="mt-4 pt-4 border-t border-gray-200">
+      <%= turbo_frame_tag "pagination" do %>
+        <%= render partial: "tables/pagination", locals: { current_page: 1, total_pages: 4 } %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+    <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+      <span class="text-xs text-gray-400">HTML + Turbo Frame</span>
+      <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+        Copy
+      </button>
+    </div>
+    <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;%= turbo_frame_tag "paginated_users" do %&gt;
+  &lt;table&gt;
+    &lt;!-- Table content --&gt;
+  &lt;/table&gt;
+&lt;% end %&gt;
+
+&lt;%= turbo_frame_tag "pagination" do %&gt;
+  &lt;div class="flex justify-between"&gt;
+    &lt;%= link_to "Previous", 
+        paginate_path(page: @page - 1),
+        data: { turbo_frame: "paginated_users" } %&gt;
+    &lt;%= link_to "Next", 
+        paginate_path(page: @page + 1),
+        data: { turbo_frame: "paginated_users" } %&gt;
+  &lt;/div&gt;
+&lt;% end %&gt;
+
+&lt;!-- Controller --&gt;
+def paginate
+  @users = User.page(params[:page])
+  
+  render turbo_stream: [
+    turbo_stream.replace("paginated_users", 
+      partial: "users_table"),
+    turbo_stream.replace("pagination", 
+      partial: "pagination")
+  ]
+end</code></pre>
+  </div>
+</section>
+

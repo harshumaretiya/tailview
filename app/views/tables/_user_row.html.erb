@@ -1,0 +1,40 @@
+<tr class="hover:bg-gray-50 transition-colors">
+  <td class="px-6 py-4 whitespace-nowrap">
+    <div class="flex items-center">
+      <div class="flex-shrink-0 h-10 w-10">
+        <div class="h-10 w-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white font-semibold text-sm">
+          <%= user[:avatar] || user[:name].split.map(&:first).join %>
+        </div>
+      </div>
+      <div class="ml-4">
+        <div class="text-sm font-medium text-gray-900"><%= user[:name] %></div>
+      </div>
+    </div>
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= user[:email] %></td>
+  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= user[:role] %></td>
+  <td class="px-6 py-4 whitespace-nowrap">
+    <% badge_class = user[:status] == "Active" ? "bg-green-100 text-green-800" : user[:status] == "Inactive" ? "bg-gray-100 text-gray-800" : "bg-yellow-100 text-yellow-800" %>
+    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full <%= badge_class %>">
+      <%= user[:status] %>
+    </span>
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-3">
+    <%= link_to "Edit", 
+        "#", 
+        data: { 
+          turbo_frame: "user_#{user[:id]}",
+          action: "click->inline-editor#edit"
+        },
+        class: "text-blue-600 hover:text-blue-900" %>
+    <%= button_to "Delete", 
+        tables_delete_row_path(user[:id]), 
+        method: :delete,
+        data: { 
+          turbo_confirm: "Are you sure?",
+          turbo_method: :delete
+        },
+        class: "text-red-600 hover:text-red-900" %>
+  </td>
+</tr>
+

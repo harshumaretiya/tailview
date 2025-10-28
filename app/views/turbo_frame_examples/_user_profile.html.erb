@@ -1,0 +1,39 @@
+<turbo-frame id="user-content">
+  <%= ui_card(header: "User Profile") do %>
+    <div class="space-y-4">
+      <div class="flex items-center space-x-4">
+        <%= ui_avatar alt: "JD", size: :lg %>
+        <div>
+          <h4 class="text-lg font-semibold text-gray-900">John Doe</h4>
+          <p class="text-sm text-gray-500">john.doe@example.com</p>
+          <%= ui_badge "Active", variant: :success %>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <h5 class="text-sm font-medium text-gray-700">Role</h5>
+          <p class="text-sm text-gray-900">Administrator</p>
+        </div>
+        <div>
+          <h5 class="text-sm font-medium text-gray-700">Last Login</h5>
+          <p class="text-sm text-gray-900">2 hours ago</p>
+        </div>
+      </div>
+      
+      <div class="flex gap-2">
+        <%= ui_button "Edit Profile", 
+            href: "/turbo-frame-examples/edit-profile",
+            data: { turbo_frame: "user-content" },
+            variant: :outline,
+            size: :sm %>
+        
+        <%= ui_button "Send Message", 
+            href: "/turbo-frame-examples/send-message",
+            data: { turbo_frame: "user-content" },
+            variant: :primary,
+            size: :sm %>
+      </div>
+    </div>
+  <% end %>
+</turbo-frame>

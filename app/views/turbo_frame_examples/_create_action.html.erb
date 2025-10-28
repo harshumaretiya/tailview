@@ -1,0 +1,48 @@
+<turbo-frame id="action-content">
+  <%= ui_card(header: "Create New Item") do %>
+    <div class="space-y-4">
+      <%= ui_alert message: "Ready to create a new item. Fill out the form below.", variant: :info %>
+      
+      <%= ui_form(action: "/turbo-frame-examples/create-item", 
+          method: :post,
+          data: { turbo_frame: "action-content" }) do |form| %>
+        <div class="space-y-3">
+          <%= form.field(
+            name: "title",
+            type: :text,
+            label: "Item Title",
+            placeholder: "Enter item title",
+            required: true
+          ) %>
+          
+          <%= form.field(
+            name: "description",
+            type: :textarea,
+            label: "Description",
+            placeholder: "Describe the item..."
+          ) %>
+          
+          <%= form.field(
+            name: "category",
+            type: :select,
+            label: "Category",
+            options: [
+              ["Select Category", ""],
+              ["Work", "work"],
+              ["Personal", "personal"],
+              ["Shopping", "shopping"]
+            ]
+          ) %>
+        </div>
+        
+        <div class="flex gap-2 pt-2">
+          <%= form.submit(label: "Create Item", variant: :primary) %>
+          <%= ui_button "Cancel", 
+              href: "/turbo-frame-examples/cancel-create",
+              data: { turbo_frame: "action-content" },
+              variant: :outline %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</turbo-frame>

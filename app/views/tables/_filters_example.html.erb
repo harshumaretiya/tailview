@@ -1,0 +1,190 @@
+<section>
+  <div class="mb-4">
+    <h2 class="text-2xl font-semibold text-gray-900">Advanced Filters with Turbo Frames</h2>
+    <p class="mt-1 text-sm text-gray-600">Multiple filter options • Real-time updates • Powered by Turbo</p>
+  </div>
+
+  <div class="bg-white rounded-lg border border-gray-200 p-6">
+    <div data-controller="table">
+      <!-- Filter Controls -->
+      <div class="mb-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <!-- Search -->
+          <div class="md:col-span-2">
+            <label class="block text-xs font-medium text-gray-700 mb-2">Search</label>
+            <input 
+              type="text" 
+              placeholder="Search users..."
+              data-action="input->table#search"
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+          </div>
+
+          <!-- Role Filter -->
+          <div>
+            <label class="block text-xs font-medium text-gray-700 mb-2">Role</label>
+            <select 
+              data-action="change->table#search"
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="">All Roles</option>
+              <option value="admin">Admin</option>
+              <option value="editor">Editor</option>
+              <option value="viewer">Viewer</option>
+              <option value="manager">Manager</option>
+            </select>
+          </div>
+
+          <!-- Status Filter -->
+          <div>
+            <label class="block text-xs font-medium text-gray-700 mb-2">Status</label>
+            <select 
+              data-action="change->table#search"
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="">All Status</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+              <option value="pending">Pending</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Active Filters & Clear -->
+        <div class="mt-4 flex items-center justify-between">
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs text-gray-600">Active filters:</span>
+            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
+              All Users
+            </span>
+          </div>
+          <button 
+            class="text-xs text-gray-600 hover:text-gray-900 font-medium"
+          >
+            Clear All
+          </button>
+        </div>
+      </div>
+
+      <!-- Results Count -->
+      <div class="mb-4 flex items-center justify-between">
+        <p class="text-sm text-gray-600">
+          Showing <span class="font-medium text-gray-900"><%= @users.length %></span> results
+        </p>
+        <div class="flex items-center space-x-2">
+          <label class="text-xs text-gray-600">Sort by:</label>
+          <select class="px-3 py-1 border border-gray-300 rounded text-xs focus:ring-2 focus:ring-blue-500">
+            <option>Name (A-Z)</option>
+            <option>Name (Z-A)</option>
+            <option>Role</option>
+            <option>Status</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <% @users.each do |user| %>
+              <tr class="hover:bg-gray-50 transition-colors" data-table-target="row">
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0 h-10 w-10">
+                      <div class="h-10 w-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-semibold text-sm">
+                        <%= user[:avatar] %>
+                      </div>
+                    </div>
+                    <div class="ml-4">
+                      <div class="text-sm font-medium text-gray-900"><%= user[:name] %></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= user[:email] %></td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-medium rounded-md bg-gray-100 text-gray-800">
+                    <%= user[:role] %>
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <% badge_class = user[:status] == "Active" ? "bg-green-100 text-green-800" : user[:status] == "Inactive" ? "bg-gray-100 text-gray-800" : "bg-yellow-100 text-yellow-800" %>
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full <%= badge_class %>">
+                    <%= user[:status] %>
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <div class="flex items-center space-x-3">
+                    <a href="#" class="text-blue-600 hover:text-blue-900">View</a>
+                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                    <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <!-- Empty State -->
+        <div data-empty-state class="hidden text-center py-12">
+          <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+          </svg>
+          <h3 class="mt-4 text-sm font-medium text-gray-900">No matching results</h3>
+          <p class="mt-2 text-sm text-gray-500">Try adjusting your filters or search terms.</p>
+          <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-lg transition-colors">
+            Clear Filters
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+    <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+      <span class="text-xs text-gray-400">HTML + Turbo Frame + Stimulus</span>
+      <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+        Copy
+      </button>
+    </div>
+    <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div data-controller="table"&gt;
+  &lt;!-- Filters --&gt;
+  &lt;div class="mb-6 p-4 bg-gray-50 rounded-lg"&gt;
+    &lt;input 
+      type="text" 
+      data-action="input-&gt;table#search"
+      placeholder="Search..."
+    &gt;
+    
+    &lt;select data-action="change-&gt;table#search"&gt;
+      &lt;option value=""&gt;All Roles&lt;/option&gt;
+      &lt;option value="admin"&gt;Admin&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Results --&gt;
+  &lt;table&gt;
+    &lt;tbody&gt;
+      &lt;tr data-table-target="row"&gt;
+        &lt;td&gt;John Doe&lt;/td&gt;
+        &lt;td&gt;Admin&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+
+  &lt;!-- Empty State --&gt;
+  &lt;div data-empty-state class="hidden"&gt;
+    No matching results
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+</section>
+

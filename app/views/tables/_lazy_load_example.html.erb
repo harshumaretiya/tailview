@@ -1,0 +1,90 @@
+<section>
+  <div class="mb-4">
+    <h2 class="text-2xl font-semibold text-gray-900">Lazy Loading Details with Turbo Frames</h2>
+    <p class="mt-1 text-sm text-gray-600">Click to load additional data • On-demand fetching • Loading states</p>
+  </div>
+
+  <div class="bg-white rounded-lg border border-gray-200 p-6 overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Transaction</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+          <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Details</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <% @transactions.each do |transaction| %>
+          <tr class="hover:bg-gray-50 transition-colors">
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="text-sm font-medium text-gray-900"><%= transaction[:description] %></div>
+              <div class="text-sm text-gray-500">ID: <%= transaction[:id] %></div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= transaction[:date] %></td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <% amount_class = transaction[:type] == "credit" ? "text-green-600" : "text-red-600" %>
+              <span class="text-sm font-medium <%= amount_class %>">
+                <%= transaction[:type] == "credit" ? "+" : "" %>$<%= sprintf("%.2f", transaction[:amount].abs) %>
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+              <%= turbo_frame_tag "transaction_details_#{transaction[:id]}" do %>
+                <%= link_to "View Details", 
+                    tables_load_details_path(transaction[:id]),
+                    data: { turbo_frame: "transaction_details_#{transaction[:id]}" },
+                    class: "text-blue-600 hover:text-blue-900" %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4" class="px-6 py-0">
+              <%= turbo_frame_tag "transaction_details_#{transaction[:id]}" do %>
+                <!-- Details will be loaded here -->
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+    <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+      <span class="text-xs text-gray-400">HTML + Turbo Frame</span>
+      <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+        Copy
+      </button>
+    </div>
+    <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Transaction Info&lt;/td&gt;
+      &lt;td&gt;
+        &lt;%= turbo_frame_tag "details_1" do %&gt;
+          &lt;%= link_to "View Details", 
+              details_path(1),
+              data: { turbo_frame: "details_1" } %&gt;
+        &lt;% end %&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td colspan="4"&gt;
+        &lt;%= turbo_frame_tag "details_1" do %&gt;
+          &lt;!-- Details loaded here --&gt;
+        &lt;% end %&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!-- Controller --&gt;
+def load_details
+  @transaction = Transaction.find(params[:id])
+  
+  render partial: "transaction_details",
+         locals: { transaction: @transaction }
+end</code></pre>
+  </div>
+</section>
+

@@ -1,0 +1,554 @@
+<div class="min-h-screen bg-gray-50" data-controller="clipboard">
+  <!-- Header -->
+  <div class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">Cards</h1>
+          <p class="mt-1 text-sm text-gray-500">
+            Copy-paste ready card components for displaying content
+          </p>
+        </div>
+        <%= link_to "/", class: "text-sm text-blue-600 hover:text-blue-700" do %>
+          ← Back to Home
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="space-y-12">
+
+      <!-- Basic Card -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Basic Card</h2>
+          <p class="mt-1 text-sm text-gray-600">Simple card with content</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 max-w-sm">
+            <h3 class="text-lg font-medium text-gray-900 mb-2">Card Title</h3>
+            <p class="text-gray-600">This is a basic card with some content. You can put any content inside.</p>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6"&gt;
+  &lt;h3 class="text-lg font-medium text-gray-900 mb-2"&gt;Card Title&lt;/h3&gt;
+  &lt;p class="text-gray-600"&gt;This is a basic card with some content.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Card with Header -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Card with Header</h2>
+          <p class="mt-1 text-sm text-gray-600">Card with a separate header section</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden max-w-sm">
+            <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+              <h3 class="text-lg font-medium text-gray-900">Card Header</h3>
+            </div>
+            <div class="px-6 py-4">
+              <p class="text-gray-600">This card has a header section with a title.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"&gt;
+  &lt;div class="px-6 py-4 border-b border-gray-200 bg-gray-50"&gt;
+    &lt;h3 class="text-lg font-medium text-gray-900"&gt;Card Header&lt;/h3&gt;
+  &lt;/div&gt;
+  &lt;div class="px-6 py-4"&gt;
+    &lt;p class="text-gray-600"&gt;This card has a header section with a title.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Card with Header and Footer -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Card with Header and Footer</h2>
+          <p class="mt-1 text-sm text-gray-600">Card with header, body, and footer sections</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden max-w-sm">
+            <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+              <h3 class="text-lg font-medium text-gray-900">Card Header</h3>
+            </div>
+            <div class="px-6 py-4">
+              <p class="text-gray-600">This card has both a header and footer section.</p>
+              <p class="text-gray-600 mt-2">You can put any content in the body area.</p>
+            </div>
+            <div class="px-6 py-4 border-t border-gray-200 bg-gray-50">
+              <p class="text-sm text-gray-500">Card footer content</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"&gt;
+  &lt;div class="px-6 py-4 border-b border-gray-200 bg-gray-50"&gt;
+    &lt;h3 class="text-lg font-medium text-gray-900"&gt;Card Header&lt;/h3&gt;
+  &lt;/div&gt;
+  &lt;div class="px-6 py-4"&gt;
+    &lt;p class="text-gray-600"&gt;This card has both a header and footer section.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="px-6 py-4 border-t border-gray-200 bg-gray-50"&gt;
+    &lt;p class="text-sm text-gray-500"&gt;Card footer content&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Card with Image -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Card with Image</h2>
+          <p class="mt-1 text-sm text-gray-600">Card with an image at the top</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden max-w-sm">
+            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=200&fit=crop" alt="Card image" class="w-full h-48 object-cover">
+            <div class="px-6 py-4">
+              <h3 class="text-lg font-medium text-gray-900 mb-2">Card with Image</h3>
+              <p class="text-gray-600">This card includes an image at the top.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"&gt;
+  &lt;img src="image.jpg" alt="Card image" class="w-full h-48 object-cover"&gt;
+  &lt;div class="px-6 py-4"&gt;
+    &lt;h3 class="text-lg font-medium text-gray-900 mb-2"&gt;Card with Image&lt;/h3&gt;
+    &lt;p class="text-gray-600"&gt;This card includes an image at the top.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Card with Actions -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Card with Actions</h2>
+          <p class="mt-1 text-sm text-gray-600">Card with action buttons in the footer</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden max-w-sm">
+            <div class="px-6 py-4">
+              <h3 class="text-lg font-medium text-gray-900 mb-2">Card with Actions</h3>
+              <p class="text-gray-600 mb-4">This card includes action buttons in the footer.</p>
+            </div>
+            <div class="px-6 py-4 border-t border-gray-200 bg-gray-50 flex justify-end space-x-3">
+              <button class="px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                Cancel
+              </button>
+              <button class="px-3 py-2 text-sm text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700">
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"&gt;
+  &lt;div class="px-6 py-4"&gt;
+    &lt;h3 class="text-lg font-medium text-gray-900 mb-2"&gt;Card with Actions&lt;/h3&gt;
+    &lt;p class="text-gray-600"&gt;This card includes action buttons.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="px-6 py-4 border-t border-gray-200 bg-gray-50 flex justify-end space-x-3"&gt;
+    &lt;button class="px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"&gt;
+      Cancel
+    &lt;/button&gt;
+    &lt;button class="px-3 py-2 text-sm text-white bg-blue-600 rounded-md hover:bg-blue-700"&gt;
+      Save
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Card with Badge -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Card with Badge</h2>
+          <p class="mt-1 text-sm text-gray-600">Card with a status badge</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 max-w-sm">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-lg font-medium text-gray-900">Card with Badge</h3>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                New
+              </span>
+            </div>
+            <p class="text-gray-600">This card includes a status badge in the header.</p>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6"&gt;
+  &lt;div class="flex items-center justify-between mb-2"&gt;
+    &lt;h3 class="text-lg font-medium text-gray-900"&gt;Card with Badge&lt;/h3&gt;
+    &lt;span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800"&gt;
+      New
+    &lt;/span&gt;
+  &lt;/div&gt;
+  &lt;p class="text-gray-600"&gt;This card includes a status badge.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Card with Icon -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Card with Icon</h2>
+          <p class="mt-1 text-sm text-gray-600">Card with an icon and stats</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 max-w-sm">
+            <div class="flex items-center">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                  <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-sm font-medium text-gray-500">Total Sales</h3>
+                <p class="text-2xl font-bold text-gray-900">$12,345</p>
+                <p class="text-sm text-green-600">+12% from last month</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6"&gt;
+  &lt;div class="flex items-center"&gt;
+    &lt;div class="flex-shrink-0"&gt;
+      &lt;div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center"&gt;
+        &lt;svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;
+          &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"&gt;&lt;/path&gt;
+        &lt;/svg&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="ml-4"&gt;
+      &lt;h3 class="text-sm font-medium text-gray-500"&gt;Total Sales&lt;/h3&gt;
+      &lt;p class="text-2xl font-bold text-gray-900"&gt;$12,345&lt;/p&gt;
+      &lt;p class="text-sm text-green-600"&gt;+12% from last month&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Card Grid -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Card Grid Layout</h2>
+          <p class="mt-1 text-sm text-gray-600">Multiple cards in a responsive grid</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <h3 class="text-lg font-medium text-gray-900 mb-2">Feature 1</h3>
+              <p class="text-gray-600">Description of the first feature.</p>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <h3 class="text-lg font-medium text-gray-900 mb-2">Feature 2</h3>
+              <p class="text-gray-600">Description of the second feature.</p>
+            </div>
+            
+            <!-- Card 3 -->
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <h3 class="text-lg font-medium text-gray-900 mb-2">Feature 3</h3>
+              <p class="text-gray-600">Description of the third feature.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"&gt;
+  &lt;div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6"&gt;
+    &lt;h3 class="text-lg font-medium text-gray-900 mb-2"&gt;Feature 1&lt;/h3&gt;
+    &lt;p class="text-gray-600"&gt;Description of the first feature.&lt;/p&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6"&gt;
+    &lt;h3 class="text-lg font-medium text-gray-900 mb-2"&gt;Feature 2&lt;/h3&gt;
+    &lt;p class="text-gray-600"&gt;Description of the second feature.&lt;/p&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6"&gt;
+    &lt;h3 class="text-lg font-medium text-gray-900 mb-2"&gt;Feature 3&lt;/h3&gt;
+    &lt;p class="text-gray-600"&gt;Description of the third feature.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Horizontal Card -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Horizontal Card</h2>
+          <p class="mt-1 text-sm text-gray-600">Card with horizontal layout</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden max-w-2xl">
+            <div class="flex">
+              <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=200&h=200&fit=crop" alt="Card image" class="w-48 h-48 object-cover">
+              <div class="p-6 flex-1">
+                <h3 class="text-lg font-medium text-gray-900 mb-2">Horizontal Card</h3>
+                <p class="text-gray-600 mb-4">This card has a horizontal layout with an image on the left.</p>
+                <button class="px-4 py-2 text-sm text-white bg-blue-600 rounded-md hover:bg-blue-700">
+                  Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"&gt;
+  &lt;div class="flex"&gt;
+    &lt;img src="image.jpg" alt="Card image" class="w-48 h-48 object-cover"&gt;
+    &lt;div class="p-6 flex-1"&gt;
+      &lt;h3 class="text-lg font-medium text-gray-900 mb-2"&gt;Horizontal Card&lt;/h3&gt;
+      &lt;p class="text-gray-600 mb-4"&gt;This card has a horizontal layout.&lt;/p&gt;
+      &lt;button class="px-4 py-2 text-sm text-white bg-blue-600 rounded-md hover:bg-blue-700"&gt;
+        Learn More
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Product Card -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Product Card</h2>
+          <p class="mt-1 text-sm text-gray-600">Card designed for product listings</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden max-w-xs">
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop" alt="Product" class="w-full h-48 object-cover">
+              <span class="absolute top-2 right-2 px-2 py-1 text-xs font-semibold text-white bg-red-500 rounded">
+                Sale
+              </span>
+            </div>
+            <div class="p-4">
+              <h3 class="text-lg font-medium text-gray-900 mb-1">Product Name</h3>
+              <p class="text-sm text-gray-500 mb-2">Product Category</p>
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-xl font-bold text-gray-900">$99.99</span>
+                  <span class="text-sm text-gray-500 line-through ml-2">$149.99</span>
+                </div>
+                <button class="px-3 py-2 text-sm text-white bg-blue-600 rounded-md hover:bg-blue-700">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"&gt;
+  &lt;div class="relative"&gt;
+    &lt;img src="product.jpg" alt="Product" class="w-full h-48 object-cover"&gt;
+    &lt;span class="absolute top-2 right-2 px-2 py-1 text-xs font-semibold text-white bg-red-500 rounded"&gt;
+      Sale
+    &lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="p-4"&gt;
+    &lt;h3 class="text-lg font-medium text-gray-900 mb-1"&gt;Product Name&lt;/h3&gt;
+    &lt;p class="text-sm text-gray-500 mb-2"&gt;Product Category&lt;/p&gt;
+    &lt;div class="flex items-center justify-between"&gt;
+      &lt;div&gt;
+        &lt;span class="text-xl font-bold text-gray-900"&gt;$99.99&lt;/span&gt;
+        &lt;span class="text-sm text-gray-500 line-through ml-2"&gt;$149.99&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;button class="px-3 py-2 text-sm text-white bg-blue-600 rounded-md hover:bg-blue-700"&gt;
+        Add to Cart
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- User Profile Card -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">User Profile Card</h2>
+          <p class="mt-1 text-sm text-gray-600">Card for displaying user information</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden max-w-xs">
+            <div class="h-24 bg-gradient-to-r from-blue-500 to-purple-600"></div>
+            <div class="px-6 pb-6">
+              <div class="-mt-12 mb-4">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="User" class="w-24 h-24 rounded-full border-4 border-white">
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900">John Doe</h3>
+              <p class="text-sm text-gray-500 mb-4">Product Designer</p>
+              <div class="flex space-x-2 mb-4">
+                <div class="flex-1 text-center">
+                  <p class="text-lg font-semibold text-gray-900">1.2K</p>
+                  <p class="text-xs text-gray-500">Followers</p>
+                </div>
+                <div class="flex-1 text-center border-l border-r border-gray-200">
+                  <p class="text-lg font-semibold text-gray-900">543</p>
+                  <p class="text-xs text-gray-500">Following</p>
+                </div>
+                <div class="flex-1 text-center">
+                  <p class="text-lg font-semibold text-gray-900">89</p>
+                  <p class="text-xs text-gray-500">Posts</p>
+                </div>
+              </div>
+              <button class="w-full px-4 py-2 text-sm text-white bg-blue-600 rounded-md hover:bg-blue-700">
+                Follow
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"&gt;
+  &lt;div class="h-24 bg-gradient-to-r from-blue-500 to-purple-600"&gt;&lt;/div&gt;
+  &lt;div class="px-6 pb-6"&gt;
+    &lt;div class="-mt-12 mb-4"&gt;
+      &lt;img src="avatar.jpg" alt="User" class="w-24 h-24 rounded-full border-4 border-white"&gt;
+    &lt;/div&gt;
+    &lt;h3 class="text-xl font-semibold text-gray-900"&gt;John Doe&lt;/h3&gt;
+    &lt;p class="text-sm text-gray-500 mb-4"&gt;Product Designer&lt;/p&gt;
+    &lt;div class="flex space-x-2 mb-4"&gt;
+      &lt;div class="flex-1 text-center"&gt;
+        &lt;p class="text-lg font-semibold text-gray-900"&gt;1.2K&lt;/p&gt;
+        &lt;p class="text-xs text-gray-500"&gt;Followers&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;!-- More stats... --&gt;
+    &lt;/div&gt;
+    &lt;button class="w-full px-4 py-2 text-sm text-white bg-blue-600 rounded-md hover:bg-blue-700"&gt;
+      Follow
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>

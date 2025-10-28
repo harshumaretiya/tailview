@@ -1,0 +1,53 @@
+<!-- Turbo Stream Demo for Alert Component -->
+<div class="space-y-6">
+  <!-- Container for dynamic alerts -->
+  <div id="dynamic_alerts" class="space-y-4 min-h-[100px]" data-controller="alert">
+    <!-- Alerts will be dynamically inserted here -->
+  </div>
+
+  <!-- Demo Controls -->
+  <div class="flex gap-3 flex-wrap">
+    <%= form_with url: alerts_add_alert_path(variant: :success, message: "Success! Operation completed."), 
+        method: :post,
+        data: { turbo_stream: true } do %>
+      <%= button_tag "Add Success Alert", 
+          type: "submit",
+          class: "px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 text-sm" %>
+    <% end %>
+
+    <%= form_with url: alerts_add_alert_path(variant: :error, message: "Error! Something went wrong."),
+        method: :post,
+        data: { turbo_stream: true } do %>
+      <%= button_tag "Add Error Alert",
+          type: "submit",
+          class: "px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 text-sm" %>
+    <% end %>
+
+    <%= form_with url: alerts_add_alert_path(variant: :warning, message: "Warning! Please be careful."),
+        method: :post,
+        data: { turbo_stream: true } do %>
+      <%= button_tag "Add Warning Alert",
+          type: "submit",
+          class: "px-4 py-2 bg-yellow-600 text-white rounded-md hover:bg-yellow-700 text-sm" %>
+    <% end %>
+
+    <%= form_with url: alerts_clear_alerts_path,
+        method: :delete,
+        data: { turbo_stream: true } do %>
+      <%= button_tag "Clear All Alerts",
+          type: "submit",
+          class: "px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 text-sm" %>
+    <% end %>
+  </div>
+
+  <div class="mt-6 p-4 bg-gray-100 rounded-md">
+    <h4 class="font-semibold text-sm text-gray-700 mb-2">How it works:</h4>
+    <ul class="text-sm text-gray-600 space-y-1 list-disc list-inside">
+      <li>Click buttons to add alerts dynamically using Turbo Streams</li>
+      <li>No page reload needed - alerts appear instantly</li>
+      <li>All alerts are dismissible with fade animation</li>
+      <li>Uses Stimulus controller for interactions</li>
+    </ul>
+  </div>
+</div>
+

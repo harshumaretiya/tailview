@@ -1,0 +1,35 @@
+<% target = params[:target] || "dynamic_alerts" %>
+<% is_toast = target.start_with?("notifications-") %>
+<% 
+  # Parse list_items if it's a JSON string
+  list_items = if params[:list_items].is_a?(String) && params[:list_items].present?
+    begin
+      JSON.parse(params[:list_items])
+    rescue JSON::ParserError
+      nil
+    end
+  else
+    params[:list_items]
+  end
+  
+  # Handle auto_dismiss parameter properly
+  auto_dismiss = if params[:auto_dismiss].present?
+    params[:auto_dismiss] != 'false'
+  else
+    false # default to false if not specified
+  end
+%>
+<%= turbo_stream.append target do %>
+  <%= render(AlertComponent.new(
+    variant: params[:variant]&.to_sym || :info,
+    title: params[:title],
+    message: params[:message] || "Alert message",
+    list_items: list_items,
+    dismissible: is_toast ? true : (params[:dismissible] != 'false'),
+    compact: params[:compact] == 'true',
+    class: is_toast ? 'shadow-lg' : nil,
+    auto_dismiss: auto_dismiss,
+    dismiss_after: (params[:dismiss_after] || '5000').to_i
+  )) %>
+<% end %>
+

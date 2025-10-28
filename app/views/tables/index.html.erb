@@ -1,0 +1,480 @@
+<div class="min-h-screen bg-gray-50" data-controller="clipboard">
+  <!-- Header -->
+  <div class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">Tables with Hotwire</h1>
+          <p class="mt-1 text-sm text-gray-500">
+            Interactive table components with Turbo Frames & Stimulus
+          </p>
+        </div>
+        <%= link_to "/", class: "text-sm text-blue-600 hover:text-blue-700" do %>
+          ← Back to Home
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="space-y-12">
+
+      <!-- Sortable Table with Stimulus -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Sortable Table</h2>
+          <p class="mt-1 text-sm text-gray-600">Click column headers to sort • Powered by Stimulus</p>
+        </div>
+
+        <div class="bg-white rounded-lg border border-gray-200 p-6 overflow-x-auto">
+          <div data-controller="table" data-table-sort-column-value="name" data-table-sort-direction-value="asc">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th 
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors select-none"
+                    data-action="click->table#sort"
+                    data-column="name"
+                  >
+                    <div class="flex items-center space-x-1">
+                      <span>Name</span>
+                      <svg class="w-4 h-4 text-blue-600" data-table-target="sortIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                      </svg>
+                    </div>
+                  </th>
+                  <th 
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors select-none"
+                    data-action="click->table#sort"
+                    data-column="role"
+                  >
+                    <div class="flex items-center space-x-1">
+                      <span>Role</span>
+                      <svg class="w-4 h-4 text-gray-400" data-table-target="sortIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                      </svg>
+                    </div>
+                  </th>
+                  <th 
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors select-none"
+                    data-action="click->table#sort"
+                    data-column="email"
+                  >
+                    <div class="flex items-center space-x-1">
+                      <span>Email</span>
+                      <svg class="w-4 h-4 text-gray-400" data-table-target="sortIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                      </svg>
+                    </div>
+                  </th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <% @users.first(5).each do |user| %>
+                  <tr class="hover:bg-gray-50 transition-colors" data-table-target="row">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" data-sort-value="<%= user[:name] %>">
+                      <%= user[:name] %>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" data-sort-value="<%= user[:role] %>">
+                      <%= user[:role] %>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" data-sort-value="<%= user[:email] %>">
+                      <%= user[:email] %>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <% badge_class = user[:status] == "Active" ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-800" %>
+                      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full <%= badge_class %>">
+                        <%= user[:status] %>
+                      </span>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML + Stimulus</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div data-controller="table"&gt;
+  &lt;table class="min-w-full divide-y divide-gray-200"&gt;
+    &lt;thead class="bg-gray-50"&gt;
+      &lt;tr&gt;
+        &lt;th 
+          class="px-6 py-3 cursor-pointer"
+          data-action="click-&gt;table#sort"
+          data-column="name"
+        &gt;
+          &lt;div class="flex items-center space-x-1"&gt;
+            &lt;span&gt;Name&lt;/span&gt;
+            &lt;svg data-table-target="sortIcon"&gt;...&lt;/svg&gt;
+          &lt;/div&gt;
+        &lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr data-table-target="row"&gt;
+        &lt;td data-sort-value="John Doe"&gt;John Doe&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Searchable Table with Live Filtering -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Searchable Table with Live Filter</h2>
+          <p class="mt-1 text-sm text-gray-600">Client-side instant search • Powered by Stimulus</p>
+        </div>
+
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div data-controller="table">
+            <!-- Search Input -->
+            <div class="mb-4">
+              <input 
+                type="text" 
+                placeholder="Search by name, email, or role..."
+                data-action="input->table#search"
+                data-table-target="searchInput"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+            </div>
+
+            <!-- Table -->
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <% @users.each do |user| %>
+                    <tr class="hover:bg-gray-50 transition-colors" data-table-target="row">
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><%= user[:name] %></td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= user[:email] %></td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= user[:role] %></td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <% badge_class = user[:status] == "Active" ? "bg-green-100 text-green-800" : user[:status] == "Inactive" ? "bg-gray-100 text-gray-800" : "bg-yellow-100 text-yellow-800" %>
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full <%= badge_class %>">
+                          <%= user[:status] %>
+                        </span>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+
+              <!-- Empty State -->
+              <div data-empty-state class="hidden text-center py-8">
+                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h3 class="mt-2 text-sm font-medium text-gray-900">No results found</h3>
+                <p class="mt-1 text-sm text-gray-500">Try adjusting your search query.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML + Stimulus</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div data-controller="table"&gt;
+  &lt;input 
+    type="text" 
+    placeholder="Search..."
+    data-action="input-&gt;table#search"
+  &gt;
+  
+  &lt;table&gt;
+    &lt;tbody&gt;
+      &lt;tr data-table-target="row"&gt;
+        &lt;td&gt;John Doe&lt;/td&gt;
+        &lt;td&gt;john@example.com&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+  
+  &lt;div data-empty-state class="hidden"&gt;
+    No results found
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Table with Row Selection & Bulk Actions -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Bulk Actions & Row Selection</h2>
+          <p class="mt-1 text-sm text-gray-600">Select rows • Perform bulk operations • Powered by Stimulus</p>
+        </div>
+
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div data-controller="table">
+            <!-- Bulk Actions Bar -->
+            <div data-table-target="bulkActions" class="hidden mb-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-medium text-blue-900">
+                  <span data-count>0</span> items selected
+                </span>
+                <div class="flex space-x-2">
+                  <button 
+                    data-action="click->table#bulkExport"
+                    class="px-3 py-1 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors"
+                  >
+                    Export Selected
+                  </button>
+                  <button 
+                    data-action="click->table#bulkDelete"
+                    class="px-3 py-1 text-sm bg-red-600 hover:bg-red-700 text-white rounded transition-colors"
+                  >
+                    Delete Selected
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Table -->
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left">
+                      <input 
+                        type="checkbox" 
+                        data-table-target="checkbox selectAll"
+                        data-action="change->table#toggleAll"
+                        class="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                      >
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <% @users.first(5).each do |user| %>
+                    <tr class="hover:bg-gray-50 transition-colors" data-id="<%= user[:id] %>">
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <input 
+                          type="checkbox" 
+                          data-table-target="checkbox"
+                          data-action="change->table#toggleRow"
+                          class="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                        >
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                          <div class="flex-shrink-0 h-8 w-8">
+                            <div class="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-xs font-semibold">
+                              <%= user[:avatar] %>
+                            </div>
+                          </div>
+                          <div class="ml-3">
+                            <div class="text-sm font-medium text-gray-900"><%= user[:name] %></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= user[:email] %></td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= user[:role] %></td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <% badge_class = user[:status] == "Active" ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-800" %>
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full <%= badge_class %>">
+                          <%= user[:status] %>
+                        </span>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML + Stimulus</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div data-controller="table"&gt;
+  &lt;!-- Bulk Actions Bar --&gt;
+  &lt;div data-table-target="bulkActions" class="hidden"&gt;
+    &lt;span data-count&gt;0&lt;/span&gt; items selected
+    &lt;button data-action="click-&gt;table#bulkExport"&gt;Export&lt;/button&gt;
+    &lt;button data-action="click-&gt;table#bulkDelete"&gt;Delete&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;table&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;
+          &lt;input 
+            type="checkbox"
+            data-table-target="checkbox selectAll"
+            data-action="change-&gt;table#toggleAll"
+          &gt;
+        &lt;/th&gt;
+        &lt;th&gt;Name&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr data-id="1"&gt;
+        &lt;td&gt;
+          &lt;input 
+            type="checkbox"
+            data-table-target="checkbox"
+            data-action="change-&gt;table#toggleRow"
+          &gt;
+        &lt;/td&gt;
+        &lt;td&gt;John Doe&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Expandable Rows -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Expandable Rows</h2>
+          <p class="mt-1 text-sm text-gray-600">Click to expand & show additional details • Powered by Stimulus</p>
+        </div>
+
+        <div class="bg-white rounded-lg border border-gray-200 p-6 overflow-x-auto">
+          <div data-controller="table">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-12"></th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <% @products.each do |product| %>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <button 
+                        data-action="click->table#toggleExpand"
+                        class="text-gray-400 hover:text-gray-600 transition-colors"
+                      >
+                        <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><%= product[:name] %></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$<%= sprintf("%.2f", product[:price]) %></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= product[:stock] %></td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <% badge_class = product[:status] == "In Stock" ? "bg-green-100 text-green-800" : product[:status] == "Low Stock" ? "bg-yellow-100 text-yellow-800" : "bg-red-100 text-red-800" %>
+                      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full <%= badge_class %>">
+                        <%= product[:status] %>
+                      </span>
+                    </td>
+                  </tr>
+                  <!-- Expandable Content -->
+                  <tr class="expandable-content hidden bg-gray-50">
+                    <td colspan="5" class="px-6 py-4">
+                      <div class="text-sm text-gray-700 space-y-2">
+                        <div class="grid grid-cols-2 gap-4">
+                          <div>
+                            <span class="font-medium">SKU:</span> <%= "SKU-#{rand(10000..99999)}" %>
+                          </div>
+                          <div>
+                            <span class="font-medium">Category:</span> Electronics
+                          </div>
+                          <div>
+                            <span class="font-medium">Supplier:</span> <%= ["TechCorp", "GlobalSupply", "QuickShip"][rand(3)] %>
+                          </div>
+                          <div>
+                            <span class="font-medium">Last Updated:</span> <%= ["1 day ago", "3 days ago", "1 week ago"][rand(3)] %>
+                          </div>
+                        </div>
+                        <div class="mt-3 pt-3 border-t border-gray-200">
+                          <span class="font-medium">Description:</span>
+                          <p class="mt-1 text-gray-600">High-quality <%= product[:name].downcase %> with excellent features and reliability. Perfect for both professional and personal use.</p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML + Stimulus</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div data-controller="table"&gt;
+  &lt;table&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;
+          &lt;button data-action="click-&gt;table#toggleExpand"&gt;
+            &lt;svg class="transition-transform"&gt;...&lt;/svg&gt;
+          &lt;/button&gt;
+        &lt;/td&gt;
+        &lt;td&gt;Product Name&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;!-- Expandable Content --&gt;
+      &lt;tr class="expandable-content hidden"&gt;
+        &lt;td colspan="5"&gt;
+          Additional product details...
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Turbo Frame: Inline Editing -->
+      <%= render partial: "tables/inline_edit_example" %>
+
+      <!-- Turbo Frame: Live Search with Server-Side Filtering -->
+      <%= render partial: "tables/live_search_example" %>
+
+      <!-- Turbo Frame: Pagination -->
+      <%= render partial: "tables/pagination_example" %>
+
+      <!-- Turbo Frame: Lazy Loading Details -->
+      <%= render partial: "tables/lazy_load_example" %>
+
+      <!-- Responsive Mobile-Friendly Table -->
+      <%= render partial: "tables/responsive_table_example" %>
+
+      <!-- Table with Advanced Filters -->
+      <%= render partial: "tables/filters_example" %>
+
+    </div>
+  </div>
+</div>

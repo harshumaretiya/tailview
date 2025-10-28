@@ -1,0 +1,62 @@
+<section>
+  <div class="mb-4">
+    <h2 class="text-2xl font-semibold text-gray-900">Inline Editing with Turbo Frames</h2>
+    <p class="mt-1 text-sm text-gray-600">Edit cells directly • Auto-save • No page reload</p>
+  </div>
+
+  <div class="bg-white rounded-lg border border-gray-200 p-6">
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <% @users.first(4).each do |user| %>
+            <%= turbo_frame_tag "user_#{user[:id]}" do %>
+              <%= render partial: "tables/user_row", locals: { user: user } %>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+    <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+      <span class="text-xs text-gray-400">HTML + Turbo Frame</span>
+      <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+        Copy
+      </button>
+    </div>
+    <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;%= turbo_frame_tag "user_1" do %&gt;
+      &lt;tr&gt;
+        &lt;td&gt;&lt;%= form.text_field :name %&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;%= form.text_field :email %&gt;&lt;/td&gt;
+        &lt;td&gt;
+          &lt;%= form.submit "Save", 
+              data: { turbo_frame: "user_1" } %&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;% end %&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!-- Controller --&gt;
+def inline_edit
+  render turbo_stream: turbo_stream.replace(
+    "user_#{params[:id]}",
+    partial: "user_row",
+    locals: { user: updated_user }
+  )
+end</code></pre>
+  </div>
+</section>
+

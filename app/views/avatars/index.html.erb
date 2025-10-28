@@ -1,0 +1,517 @@
+<div class="min-h-screen bg-gray-50" data-controller="clipboard">
+  <!-- Header -->
+  <div class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">Avatars</h1>
+          <p class="mt-1 text-sm text-gray-500">
+            Copy-paste ready avatar components for user profiles
+          </p>
+        </div>
+        <%= link_to "/", class: "text-sm text-blue-600 hover:text-blue-700" do %>
+          ← Back to Home
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="space-y-12">
+
+      <!-- Avatar Sizes -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Avatar Sizes</h2>
+          <p class="mt-1 text-sm text-gray-600">Different avatar sizes for various use cases</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="flex flex-wrap items-center gap-6">
+            <!-- Extra Small -->
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Avatar" class="w-6 h-6 rounded-full">
+            
+            <!-- Small -->
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Avatar" class="w-8 h-8 rounded-full">
+            
+            <!-- Medium -->
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Avatar" class="w-10 h-10 rounded-full">
+            
+            <!-- Large -->
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Avatar" class="w-12 h-12 rounded-full">
+            
+            <!-- Extra Large -->
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Avatar" class="w-16 h-16 rounded-full">
+            
+            <!-- 2XL -->
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Avatar" class="w-20 h-20 rounded-full">
+            
+            <!-- 3XL -->
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Avatar" class="w-24 h-24 rounded-full">
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;!-- Extra Small (24px) --&gt;
+&lt;img src="avatar.jpg" alt="Avatar" class="w-6 h-6 rounded-full"&gt;
+
+&lt;!-- Small (32px) --&gt;
+&lt;img src="avatar.jpg" alt="Avatar" class="w-8 h-8 rounded-full"&gt;
+
+&lt;!-- Medium (40px) --&gt;
+&lt;img src="avatar.jpg" alt="Avatar" class="w-10 h-10 rounded-full"&gt;
+
+&lt;!-- Large (48px) --&gt;
+&lt;img src="avatar.jpg" alt="Avatar" class="w-12 h-12 rounded-full"&gt;
+
+&lt;!-- Extra Large (64px) --&gt;
+&lt;img src="avatar.jpg" alt="Avatar" class="w-16 h-16 rounded-full"&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Avatar with Initials -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Avatar with Initials</h2>
+          <p class="mt-1 text-sm text-gray-600">Text-based avatars when no image is available</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="flex flex-wrap items-center gap-4">
+            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+              <span class="text-sm font-medium text-blue-600">JD</span>
+            </div>
+            
+            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+              <span class="text-sm font-medium text-green-600">AS</span>
+            </div>
+            
+            <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center">
+              <span class="text-sm font-medium text-purple-600">MK</span>
+            </div>
+            
+            <div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center">
+              <span class="text-sm font-medium text-pink-600">LS</span>
+            </div>
+            
+            <div class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
+              <span class="text-sm font-medium text-yellow-600">RB</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center"&gt;
+  &lt;span class="text-sm font-medium text-blue-600"&gt;JD&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center"&gt;
+  &lt;span class="text-sm font-medium text-green-600"&gt;AS&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Avatar with Status Indicator -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Avatar with Status Indicator</h2>
+          <p class="mt-1 text-sm text-gray-600">Show online/offline status with a badge</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="flex flex-wrap items-center gap-6">
+            <!-- Online -->
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Avatar" class="w-12 h-12 rounded-full">
+              <span class="absolute bottom-0 right-0 block h-3 w-3 rounded-full bg-green-400 ring-2 ring-white"></span>
+            </div>
+            
+            <!-- Offline -->
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Avatar" class="w-12 h-12 rounded-full">
+              <span class="absolute bottom-0 right-0 block h-3 w-3 rounded-full bg-gray-300 ring-2 ring-white"></span>
+            </div>
+            
+            <!-- Away -->
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="Avatar" class="w-12 h-12 rounded-full">
+              <span class="absolute bottom-0 right-0 block h-3 w-3 rounded-full bg-yellow-400 ring-2 ring-white"></span>
+            </div>
+            
+            <!-- Busy -->
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Avatar" class="w-12 h-12 rounded-full">
+              <span class="absolute bottom-0 right-0 block h-3 w-3 rounded-full bg-red-400 ring-2 ring-white"></span>
+            </div>
+
+            <!-- Online with Pulse -->
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Avatar" class="w-12 h-12 rounded-full">
+              <span class="absolute bottom-0 right-0 block h-3 w-3 rounded-full bg-green-400 ring-2 ring-white">
+                <span class="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping"></span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;!-- Online --&gt;
+&lt;div class="relative"&gt;
+  &lt;img src="avatar.jpg" alt="Avatar" class="w-12 h-12 rounded-full"&gt;
+  &lt;span class="absolute bottom-0 right-0 block h-3 w-3 rounded-full bg-green-400 ring-2 ring-white"&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Online with Pulse Animation --&gt;
+&lt;div class="relative"&gt;
+  &lt;img src="avatar.jpg" alt="Avatar" class="w-12 h-12 rounded-full"&gt;
+  &lt;span class="absolute bottom-0 right-0 block h-3 w-3 rounded-full bg-green-400 ring-2 ring-white"&gt;
+    &lt;span class="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping"&gt;&lt;/span&gt;
+  &lt;/span&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Avatar Shapes -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Avatar Shapes</h2>
+          <p class="mt-1 text-sm text-gray-600">Different avatar shapes and styles</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="flex flex-wrap items-center gap-6">
+            <!-- Circular (Default) -->
+            <div>
+              <p class="text-xs text-gray-500 mb-2">Circular</p>
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Avatar" class="w-12 h-12 rounded-full">
+            </div>
+            
+            <!-- Rounded -->
+            <div>
+              <p class="text-xs text-gray-500 mb-2">Rounded</p>
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Avatar" class="w-12 h-12 rounded-lg">
+            </div>
+            
+            <!-- Square -->
+            <div>
+              <p class="text-xs text-gray-500 mb-2">Square</p>
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Avatar" class="w-12 h-12 rounded">
+            </div>
+            
+            <!-- No Rounding -->
+            <div>
+              <p class="text-xs text-gray-500 mb-2">Sharp</p>
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Avatar" class="w-12 h-12">
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;!-- Circular --&gt;
+&lt;img src="avatar.jpg" alt="Avatar" class="w-12 h-12 rounded-full"&gt;
+
+&lt;!-- Rounded --&gt;
+&lt;img src="avatar.jpg" alt="Avatar" class="w-12 h-12 rounded-lg"&gt;
+
+&lt;!-- Square --&gt;
+&lt;img src="avatar.jpg" alt="Avatar" class="w-12 h-12 rounded"&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Avatar with Border -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Avatar with Border</h2>
+          <p class="mt-1 text-sm text-gray-600">Add borders for emphasis</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="flex flex-wrap items-center gap-6">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Avatar" class="w-12 h-12 rounded-full border-2 border-white ring-2 ring-gray-300">
+            
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Avatar" class="w-12 h-12 rounded-full border-2 border-white ring-2 ring-blue-500">
+            
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="Avatar" class="w-12 h-12 rounded-full border-4 border-blue-500">
+            
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Avatar" class="w-12 h-12 rounded-full border-4 border-white shadow-lg">
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;!-- Ring Border --&gt;
+&lt;img src="avatar.jpg" alt="Avatar" class="w-12 h-12 rounded-full border-2 border-white ring-2 ring-gray-300"&gt;
+
+&lt;!-- Colored Border --&gt;
+&lt;img src="avatar.jpg" alt="Avatar" class="w-12 h-12 rounded-full border-4 border-blue-500"&gt;
+
+&lt;!-- White Border with Shadow --&gt;
+&lt;img src="avatar.jpg" alt="Avatar" class="w-12 h-12 rounded-full border-4 border-white shadow-lg"&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Avatar Group -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Avatar Group</h2>
+          <p class="mt-1 text-sm text-gray-600">Multiple overlapping avatars</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-6">
+            <!-- Basic Stack -->
+            <div>
+              <p class="text-sm text-gray-600 mb-3">Basic Stack</p>
+              <div class="flex -space-x-2">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-white">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-white">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-white">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-white">
+              </div>
+            </div>
+
+            <!-- With Counter -->
+            <div>
+              <p class="text-sm text-gray-600 mb-3">With Counter</p>
+              <div class="flex -space-x-2">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-white">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-white">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-white">
+                <div class="w-10 h-10 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center">
+                  <span class="text-xs font-medium text-gray-600">+5</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Larger Stack -->
+            <div>
+              <p class="text-sm text-gray-600 mb-3">Larger Size</p>
+              <div class="flex -space-x-3">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Avatar" class="w-12 h-12 rounded-full border-2 border-white">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Avatar" class="w-12 h-12 rounded-full border-2 border-white">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="Avatar" class="w-12 h-12 rounded-full border-2 border-white">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Avatar" class="w-12 h-12 rounded-full border-2 border-white">
+                <div class="w-12 h-12 rounded-full border-2 border-white bg-gray-700 flex items-center justify-center">
+                  <span class="text-xs font-medium text-white">+12</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;!-- Basic Stack --&gt;
+&lt;div class="flex -space-x-2"&gt;
+  &lt;img src="avatar1.jpg" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-white"&gt;
+  &lt;img src="avatar2.jpg" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-white"&gt;
+  &lt;img src="avatar3.jpg" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-white"&gt;
+&lt;/div&gt;
+
+&lt;!-- With Counter --&gt;
+&lt;div class="flex -space-x-2"&gt;
+  &lt;img src="avatar1.jpg" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-white"&gt;
+  &lt;img src="avatar2.jpg" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-white"&gt;
+  &lt;img src="avatar3.jpg" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-white"&gt;
+  &lt;div class="w-10 h-10 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center"&gt;
+    &lt;span class="text-xs font-medium text-gray-600"&gt;+5&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Avatar with Text -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Avatar with Text</h2>
+          <p class="mt-1 text-sm text-gray-600">Avatar combined with user information</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-4">
+            <!-- Horizontal Layout -->
+            <div class="flex items-center">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Avatar" class="w-10 h-10 rounded-full">
+              <div class="ml-3">
+                <p class="text-sm font-medium text-gray-900">John Doe</p>
+                <p class="text-sm text-gray-500">john@example.com</p>
+              </div>
+            </div>
+
+            <!-- With Status -->
+            <div class="flex items-center">
+              <div class="relative">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Avatar" class="w-10 h-10 rounded-full">
+                <span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-green-400 ring-2 ring-white"></span>
+              </div>
+              <div class="ml-3">
+                <p class="text-sm font-medium text-gray-900">Jane Smith</p>
+                <p class="text-xs text-green-600">Online</p>
+              </div>
+            </div>
+
+            <!-- With Badge -->
+            <div class="flex items-center">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="Avatar" class="w-10 h-10 rounded-full">
+              <div class="ml-3">
+                <div class="flex items-center">
+                  <p class="text-sm font-medium text-gray-900">Mike Johnson</p>
+                  <span class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">
+                    Pro
+                  </span>
+                </div>
+                <p class="text-sm text-gray-500">Designer</p>
+              </div>
+            </div>
+
+            <!-- Larger with More Info -->
+            <div class="flex items-center">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Avatar" class="w-12 h-12 rounded-full">
+              <div class="ml-4">
+                <p class="text-base font-medium text-gray-900">Sarah Williams</p>
+                <p class="text-sm text-gray-500">Product Manager</p>
+                <p class="text-xs text-gray-400">Last seen 2 hours ago</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;!-- Basic --&gt;
+&lt;div class="flex items-center"&gt;
+  &lt;img src="avatar.jpg" alt="Avatar" class="w-10 h-10 rounded-full"&gt;
+  &lt;div class="ml-3"&gt;
+    &lt;p class="text-sm font-medium text-gray-900"&gt;John Doe&lt;/p&gt;
+    &lt;p class="text-sm text-gray-500"&gt;john@example.com&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- With Status --&gt;
+&lt;div class="flex items-center"&gt;
+  &lt;div class="relative"&gt;
+    &lt;img src="avatar.jpg" alt="Avatar" class="w-10 h-10 rounded-full"&gt;
+    &lt;span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-green-400 ring-2 ring-white"&gt;&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="ml-3"&gt;
+    &lt;p class="text-sm font-medium text-gray-900"&gt;Jane Smith&lt;/p&gt;
+    &lt;p class="text-xs text-green-600"&gt;Online&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Avatar Placeholder -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Avatar Placeholders</h2>
+          <p class="mt-1 text-sm text-gray-600">Placeholder avatars with icons</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="flex flex-wrap items-center gap-4">
+            <!-- User Icon -->
+            <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
+              <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+              </svg>
+            </div>
+
+            <!-- Camera Icon -->
+            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+              <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+            </div>
+
+            <!-- Building Icon -->
+            <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center">
+              <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+              </svg>
+            </div>
+
+            <!-- Group Icon -->
+            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+              <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center"&gt;
+  &lt;svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;
+    &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"&gt;&lt;/path&gt;
+  &lt;/svg&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>

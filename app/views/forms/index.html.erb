@@ -1,0 +1,572 @@
+<div class="min-h-screen bg-gray-50" data-controller="clipboard">
+  <!-- Header -->
+  <div class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">Forms</h1>
+          <p class="mt-1 text-sm text-gray-500">
+            Copy-paste ready form components and input fields
+          </p>
+        </div>
+        <%= link_to "/", class: "text-sm text-blue-600 hover:text-blue-700" do %>
+          ← Back to Home
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="space-y-12">
+
+      <!-- Basic Input Fields -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Basic Input Fields</h2>
+          <p class="mt-1 text-sm text-gray-600">Standard text inputs with labels</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <form class="space-y-4 max-w-md">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+              <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="John Doe">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+              <input type="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="john@example.com">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+              <input type="password" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="••••••••">
+            </div>
+          </form>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div&gt;
+  &lt;label class="block text-sm font-medium text-gray-700 mb-1"&gt;Full Name&lt;/label&gt;
+  &lt;input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="John Doe"&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+  &lt;label class="block text-sm font-medium text-gray-700 mb-1"&gt;Email Address&lt;/label&gt;
+  &lt;input type="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="john@example.com"&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Input with Help Text -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Input with Help Text</h2>
+          <p class="mt-1 text-sm text-gray-600">Inputs with helper text and descriptions</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <form class="space-y-4 max-w-md">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+              <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="johndoe">
+              <p class="mt-1 text-xs text-gray-500">This will be your public display name.</p>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Bio</label>
+              <textarea rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Tell us about yourself..."></textarea>
+              <p class="mt-1 text-xs text-gray-500">Brief description for your profile. Max 160 characters.</p>
+            </div>
+          </form>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div&gt;
+  &lt;label class="block text-sm font-medium text-gray-700 mb-1"&gt;Username&lt;/label&gt;
+  &lt;input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="johndoe"&gt;
+  &lt;p class="mt-1 text-xs text-gray-500"&gt;This will be your public display name.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Input with Icon -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Input with Icon</h2>
+          <p class="mt-1 text-sm text-gray-600">Inputs with leading or trailing icons</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <form class="space-y-4 max-w-md">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Search</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                  </svg>
+                </div>
+                <input type="text" class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Search...">
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Website URL</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <span class="text-gray-500 text-sm">https://</span>
+                </div>
+                <input type="text" class="w-full pl-20 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="www.example.com">
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Price</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <span class="text-gray-500 text-sm">$</span>
+                </div>
+                <input type="text" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="0.00">
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div&gt;
+  &lt;label class="block text-sm font-medium text-gray-700 mb-1"&gt;Search&lt;/label&gt;
+  &lt;div class="relative"&gt;
+    &lt;div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"&gt;
+      &lt;svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;
+        &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"&gt;&lt;/path&gt;
+      &lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;input type="text" class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Search..."&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Input Validation States -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Input Validation States</h2>
+          <p class="mt-1 text-sm text-gray-600">Success, error, and disabled states</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <form class="space-y-4 max-w-md">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Valid Input</label>
+              <input type="text" value="john@example.com" class="w-full px-3 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent bg-green-50">
+              <p class="mt-1 text-xs text-green-600">✓ Email is valid</p>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Invalid Input</label>
+              <input type="text" value="invalid-email" class="w-full px-3 py-2 border border-red-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent bg-red-50">
+              <p class="mt-1 text-xs text-red-600">✗ Please enter a valid email address</p>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-400 mb-1">Disabled Input</label>
+              <input type="text" value="This field is disabled" disabled class="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-500 cursor-not-allowed">
+            </div>
+          </form>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;!-- Valid Input --&gt;
+&lt;div&gt;
+  &lt;label class="block text-sm font-medium text-gray-700 mb-1"&gt;Valid Input&lt;/label&gt;
+  &lt;input type="text" class="w-full px-3 py-2 border border-green-300 rounded-md focus:ring-2 focus:ring-green-500 bg-green-50"&gt;
+  &lt;p class="mt-1 text-xs text-green-600"&gt;✓ Email is valid&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- Invalid Input --&gt;
+&lt;div&gt;
+  &lt;label class="block text-sm font-medium text-gray-700 mb-1"&gt;Invalid Input&lt;/label&gt;
+  &lt;input type="text" class="w-full px-3 py-2 border border-red-300 rounded-md focus:ring-2 focus:ring-red-500 bg-red-50"&gt;
+  &lt;p class="mt-1 text-xs text-red-600"&gt;✗ Please enter a valid email&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- Disabled Input --&gt;
+&lt;input type="text" disabled class="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-500 cursor-not-allowed"&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Select Dropdown -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Select Dropdown</h2>
+          <p class="mt-1 text-sm text-gray-600">Dropdown select menus</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <form class="space-y-4 max-w-md">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Country</label>
+              <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <option>United States</option>
+                <option>Canada</option>
+                <option>United Kingdom</option>
+                <option>Australia</option>
+                <option>Germany</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Account Type</label>
+              <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <option value="">Select an option...</option>
+                <option>Personal</option>
+                <option>Business</option>
+                <option>Enterprise</option>
+              </select>
+            </div>
+          </form>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div&gt;
+  &lt;label class="block text-sm font-medium text-gray-700 mb-1"&gt;Country&lt;/label&gt;
+  &lt;select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"&gt;
+    &lt;option&gt;United States&lt;/option&gt;
+    &lt;option&gt;Canada&lt;/option&gt;
+    &lt;option&gt;United Kingdom&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Checkbox and Radio -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Checkbox and Radio Buttons</h2>
+          <p class="mt-1 text-sm text-gray-600">Selection controls</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <form class="space-y-6 max-w-md">
+            <!-- Checkboxes -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-3">Interests</label>
+              <div class="space-y-2">
+                <div class="flex items-center">
+                  <input type="checkbox" id="design" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                  <label for="design" class="ml-2 text-sm text-gray-700">Design</label>
+                </div>
+                <div class="flex items-center">
+                  <input type="checkbox" id="development" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                  <label for="development" class="ml-2 text-sm text-gray-700">Development</label>
+                </div>
+                <div class="flex items-center">
+                  <input type="checkbox" id="marketing" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                  <label for="marketing" class="ml-2 text-sm text-gray-700">Marketing</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Radio Buttons -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-3">Subscription Plan</label>
+              <div class="space-y-2">
+                <div class="flex items-center">
+                  <input type="radio" id="free" name="plan" class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                  <label for="free" class="ml-2 text-sm text-gray-700">Free - $0/month</label>
+                </div>
+                <div class="flex items-center">
+                  <input type="radio" id="pro" name="plan" class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                  <label for="pro" class="ml-2 text-sm text-gray-700">Pro - $29/month</label>
+                </div>
+                <div class="flex items-center">
+                  <input type="radio" id="enterprise" name="plan" class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                  <label for="enterprise" class="ml-2 text-sm text-gray-700">Enterprise - $99/month</label>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;!-- Checkbox --&gt;
+&lt;div class="flex items-center"&gt;
+  &lt;input type="checkbox" id="design" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"&gt;
+  &lt;label for="design" class="ml-2 text-sm text-gray-700"&gt;Design&lt;/label&gt;
+&lt;/div&gt;
+
+&lt;!-- Radio Button --&gt;
+&lt;div class="flex items-center"&gt;
+  &lt;input type="radio" id="pro" name="plan" class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"&gt;
+  &lt;label for="pro" class="ml-2 text-sm text-gray-700"&gt;Pro - $29/month&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Toggle Switch -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Toggle Switch</h2>
+          <p class="mt-1 text-sm text-gray-600">On/off toggle switches</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <form class="space-y-4 max-w-md">
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-medium text-gray-700">Enable notifications</span>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" class="sr-only peer">
+                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+              </label>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-medium text-gray-700">Email marketing</span>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" class="sr-only peer" checked>
+                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+              </label>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-medium text-gray-400">Disabled option</span>
+              <label class="relative inline-flex items-center cursor-not-allowed">
+                <input type="checkbox" class="sr-only peer" disabled>
+                <div class="w-11 h-6 bg-gray-200 rounded-full peer after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5"></div>
+              </label>
+            </div>
+          </form>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div class="flex items-center justify-between"&gt;
+  &lt;span class="text-sm font-medium text-gray-700"&gt;Enable notifications&lt;/span&gt;
+  &lt;label class="relative inline-flex items-center cursor-pointer"&gt;
+    &lt;input type="checkbox" class="sr-only peer"&gt;
+    &lt;div class="w-11 h-6 bg-gray-200 peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"&gt;&lt;/div&gt;
+  &lt;/label&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- File Upload -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">File Upload</h2>
+          <p class="mt-1 text-sm text-gray-600">File input with drag and drop</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <form class="max-w-md">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Upload File</label>
+              <div class="flex items-center justify-center w-full">
+                <label class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                  <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                    <svg class="w-8 h-8 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                    </svg>
+                    <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                    <p class="text-xs text-gray-500">PNG, JPG or PDF (MAX. 10MB)</p>
+                  </div>
+                  <input type="file" class="hidden">
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;div class="flex items-center justify-center w-full"&gt;
+  &lt;label class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"&gt;
+    &lt;div class="flex flex-col items-center justify-center pt-5 pb-6"&gt;
+      &lt;svg class="w-8 h-8 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;
+        &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"&gt;&lt;/path&gt;
+      &lt;/svg&gt;
+      &lt;p class="mb-2 text-sm text-gray-500"&gt;&lt;span class="font-semibold"&gt;Click to upload&lt;/span&gt; or drag and drop&lt;/p&gt;
+      &lt;p class="text-xs text-gray-500"&gt;PNG, JPG or PDF (MAX. 10MB)&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;input type="file" class="hidden"&gt;
+  &lt;/label&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Complete Form Example -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Complete Form Example</h2>
+          <p class="mt-1 text-sm text-gray-600">Full registration form with all elements</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <form class="max-w-2xl space-y-6">
+            <div class="border-b border-gray-200 pb-4">
+              <h3 class="text-lg font-medium text-gray-900">Account Information</h3>
+              <p class="mt-1 text-sm text-gray-500">Create your account and get started</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="John">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Doe">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+              <input type="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="john.doe@example.com">
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+              <input type="password" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="••••••••">
+              <p class="mt-1 text-xs text-gray-500">Must be at least 8 characters</p>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Company</label>
+              <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Acme Inc.">
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Role</label>
+              <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="">Select your role...</option>
+                <option>Developer</option>
+                <option>Designer</option>
+                <option>Manager</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-3">Notifications</label>
+              <div class="space-y-2">
+                <div class="flex items-center">
+                  <input type="checkbox" id="email-notif" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                  <label for="email-notif" class="ml-2 text-sm text-gray-700">Email notifications</label>
+                </div>
+                <div class="flex items-center">
+                  <input type="checkbox" id="sms-notif" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                  <label for="sms-notif" class="ml-2 text-sm text-gray-700">SMS notifications</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <input type="checkbox" id="terms" class="w-4 h-4 mt-1 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+              <label for="terms" class="ml-2 text-sm text-gray-700">
+                I agree to the <a href="#" class="text-blue-600 hover:underline">Terms and Conditions</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
+              </label>
+            </div>
+
+            <div class="flex gap-3 pt-4">
+              <button type="button" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">
+                Cancel
+              </button>
+              <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                Create Account
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;form class="max-w-2xl space-y-6"&gt;
+  &lt;div class="border-b border-gray-200 pb-4"&gt;
+    &lt;h3 class="text-lg font-medium text-gray-900"&gt;Account Information&lt;/h3&gt;
+    &lt;p class="mt-1 text-sm text-gray-500"&gt;Create your account and get started&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class="grid grid-cols-1 md:grid-cols-2 gap-4"&gt;
+    &lt;div&gt;
+      &lt;label class="block text-sm font-medium text-gray-700 mb-1"&gt;First Name&lt;/label&gt;
+      &lt;input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md"&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;label class="block text-sm font-medium text-gray-700 mb-1"&gt;Last Name&lt;/label&gt;
+      &lt;input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="flex gap-3 pt-4"&gt;
+    &lt;button type="button" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-md"&gt;Cancel&lt;/button&gt;
+    &lt;button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-md"&gt;Create Account&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+

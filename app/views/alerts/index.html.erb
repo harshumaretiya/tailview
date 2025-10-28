@@ -1,0 +1,568 @@
+<div class="min-h-screen bg-gray-50">
+  <!-- Header -->
+  <div class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">Alerts - ViewComponent Edition</h1>
+          <p class="mt-1 text-sm text-gray-500">
+            Reusable alert components with Stimulus, Hotwire & Turbo Frame support
+          </p>
+        </div>
+        <%= link_to "/", class: "text-sm text-blue-600 hover:text-blue-700" do %>
+          ← Back to Home
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="space-y-12">
+
+      <!-- Toast Notification Positions -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">🔔 Toast Notification Positions</h2>
+          <p class="mt-1 text-sm text-gray-600">Alerts can appear in different positions - all auto-dismiss after 5 seconds</p>
+        </div>
+
+        <!-- Top Right -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">📍 Top Right (Default)</h3>
+          <p class="text-sm text-gray-600 mb-4">Classic notification position - appears at top-right corner</p>
+          <div class="flex gap-2 flex-wrap">
+            <%= form_with url: alerts_add_alert_path(target: "notifications-top-right", variant: :success, message: "Success! Top-right notification.", auto_dismiss: true, dismiss_after: 5000), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Success", type: "submit", class: "px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 shadow-sm" %>
+            <% end %>
+            <%= form_with url: alerts_add_alert_path(target: "notifications-top-right", variant: :error, message: "Error! Check top-right.", auto_dismiss: true, dismiss_after: 5000), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Error", type: "submit", class: "px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 shadow-sm" %>
+            <% end %>
+            <%= form_with url: alerts_add_alert_path(target: "notifications-top-right", variant: :info, title: "New Message", message: "You have 3 new notifications.", auto_dismiss: true, dismiss_after: 5000), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Info", type: "submit", class: "px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 shadow-sm" %>
+            <% end %>
+              </div>
+            </div>
+
+        <!-- Top Left -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">📍 Top Left</h3>
+          <p class="text-sm text-gray-600 mb-4">Alternative position - appears at top-left corner</p>
+          <div class="flex gap-2 flex-wrap">
+            <%= form_with url: alerts_add_alert_path(target: "notifications-top-left", variant: :success, message: "Success! Top-left notification.", auto_dismiss: true, dismiss_after: 5000), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Success", type: "submit", class: "px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 shadow-sm" %>
+            <% end %>
+            <%= form_with url: alerts_add_alert_path(target: "notifications-top-left", variant: :warning, message: "Warning! Check top-left.", auto_dismiss: true, dismiss_after: 5000), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Warning", type: "submit", class: "px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700 shadow-sm" %>
+            <% end %>
+            <%= form_with url: alerts_add_alert_path(target: "notifications-top-left", variant: :info, message: "Info! Look top-left.", auto_dismiss: true, dismiss_after: 5000), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Info", type: "submit", class: "px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 shadow-sm" %>
+            <% end %>
+              </div>
+            </div>
+
+        <!-- Top Center -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">📍 Top Center</h3>
+          <p class="text-sm text-gray-600 mb-4">Centered position - appears at top-center (great for important messages)</p>
+          <div class="flex gap-2 flex-wrap">
+            <%= form_with url: alerts_add_alert_path(target: "notifications-top-center", variant: :success, title: "Success!", message: "Check the top-center of your screen.", auto_dismiss: true, dismiss_after: 5000), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Success", type: "submit", class: "px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 shadow-sm" %>
+            <% end %>
+            <%= form_with url: alerts_add_alert_path(target: "notifications-top-center", variant: :error, title: "Error!", message: "Something went wrong.", auto_dismiss: true, dismiss_after: 5000), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Error", type: "submit", class: "px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 shadow-sm" %>
+            <% end %>
+            <%= form_with url: alerts_add_alert_path(target: "notifications-top-center", variant: :warning, title: "Important!", message: "Please review this.", auto_dismiss: true, dismiss_after: 5000), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Warning", type: "submit", class: "px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700 shadow-sm" %>
+            <% end %>
+              </div>
+            </div>
+
+        <!-- Bottom Right -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">📍 Bottom Right</h3>
+          <p class="text-sm text-gray-600 mb-4">Bottom position - appears at bottom-right (like chat notifications)</p>
+          <div class="flex gap-2 flex-wrap">
+            <%= form_with url: alerts_add_alert_path(target: "notifications-bottom-right", variant: :success, message: "Success! Bottom-right notification.", auto_dismiss: true, dismiss_after: 5000), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Success", type: "submit", class: "px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 shadow-sm" %>
+            <% end %>
+            <%= form_with url: alerts_add_alert_path(target: "notifications-bottom-right", variant: :info, title: "New Message", message: "You have a new message.", auto_dismiss: true, dismiss_after: 5000), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Info", type: "submit", class: "px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 shadow-sm" %>
+            <% end %>
+            <%= form_with url: alerts_add_alert_path(target: "notifications-bottom-right", variant: :warning, message: "Warning! Check bottom-right.", auto_dismiss: true, dismiss_after: 5000), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Warning", type: "submit", class: "px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700 shadow-sm" %>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">ERB (Layout + Turbo Stream)</span>
+          </div>
+          <pre class="p-4 overflow-x-auto"><code class="text-sm text-gray-100">&lt;!-- In app/views/layouts/application.html.erb --&gt;
+&lt;div id="notifications-top-right" class="fixed top-4 right-4 ..."&gt;&lt;/div&gt;
+&lt;div id="notifications-top-left" class="fixed top-4 left-4 ..."&gt;&lt;/div&gt;
+&lt;div id="notifications-top-center" class="fixed top-4 left-1/2 -translate-x-1/2 ..."&gt;&lt;/div&gt;
+&lt;div id="notifications-bottom-right" class="fixed bottom-4 right-4 ..."&gt;&lt;/div&gt;
+
+&lt;!-- Usage --&gt;
+render turbo_stream: turbo_stream.append("notifications-top-right", alert_html)</code></pre>
+        </div>
+      </section>
+
+      <!-- Basic Alerts -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Basic Alerts</h2>
+          <p class="mt-1 text-sm text-gray-600">Simple alert messages - appears at top-right</p>
+        </div>
+
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <p class="text-sm text-gray-600 mb-4">Click buttons to see basic alerts at the top-right corner:</p>
+          <div class="flex gap-2 flex-wrap">
+            <%= form_with url: alerts_add_alert_path(target: "notifications-top-right", variant: :success, message: "Success! Your changes have been saved."), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Success", type: "submit", class: "px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 shadow-sm" %>
+            <% end %>
+            <%= form_with url: alerts_add_alert_path(target: "notifications-top-right", variant: :error, message: "Error! There was a problem with your request."), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Error", type: "submit", class: "px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 shadow-sm" %>
+            <% end %>
+            <%= form_with url: alerts_add_alert_path(target: "notifications-top-right", variant: :warning, message: "Warning! Please review before proceeding."), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Warning", type: "submit", class: "px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700 shadow-sm" %>
+            <% end %>
+            <%= form_with url: alerts_add_alert_path(target: "notifications-top-right", variant: :info, message: "Info: Here's some helpful information."), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Info", type: "submit", class: "px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 shadow-sm" %>
+            <% end %>
+              </div>
+            </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">ERB (ViewComponent)</span>
+                </div>
+          <pre class="p-4 overflow-x-auto"><code class="text-sm text-gray-100">&lt;%= render(AlertComponent.new(variant: :success, message: "Success! Your changes have been saved.")) %&gt;
+&lt;%= render(AlertComponent.new(variant: :error, message: "Error! There was a problem with your request.")) %&gt;
+&lt;%= render(AlertComponent.new(variant: :warning, message: "Warning! Please review before proceeding.")) %&gt;
+&lt;%= render(AlertComponent.new(variant: :info, message: "Info: Here's some helpful information.")) %&gt;</code></pre>
+                  </div>
+      </section>
+
+      <!-- Alerts with Title -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Alerts with Title</h2>
+          <p class="mt-1 text-sm text-gray-600">Detailed alerts with title - appears at top-left</p>
+                </div>
+
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <p class="text-sm text-gray-600 mb-4">Click buttons to see alerts with titles at the top-left corner:</p>
+          <div class="flex gap-2 flex-wrap">
+            <%= form_with url: alerts_add_alert_path(target: "notifications-top-left", variant: :success, title: "Order completed", message: "Your order has been successfully processed and will be shipped within 2-3 business days."), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Success", type: "submit", class: "px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 shadow-sm" %>
+            <% end %>
+            <%= form_with url: alerts_add_alert_path(target: "notifications-top-left", variant: :error, title: "Payment failed", message: "Your payment could not be processed. Please check your card details and try again."), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Error", type: "submit", class: "px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 shadow-sm" %>
+            <% end %>
+            <%= form_with url: alerts_add_alert_path(target: "notifications-top-left", variant: :warning, title: "Update available", message: "A new version is available. Please update your app."), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Warning", type: "submit", class: "px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700 shadow-sm" %>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">ERB (ViewComponent)</span>
+          </div>
+          <pre class="p-4 overflow-x-auto"><code class="text-sm text-gray-100">&lt;%= render(AlertComponent.new(
+  variant: :success,
+  title: "Order completed",
+  message: "Your order has been successfully processed and will be shipped within 2-3 business days."
+)) %&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Important Alerts -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Important Alerts</h2>
+          <p class="mt-1 text-sm text-gray-600">Critical messages - appears at top-center (with auto-dismiss)</p>
+        </div>
+
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <p class="text-sm text-gray-600 mb-4">Click buttons to see important alerts at the top-center (dismissible & auto-dismiss):</p>
+          <div class="flex gap-2 flex-wrap">
+            <%= form_with url: alerts_add_alert_path(target: "notifications-top-center", variant: :success, title: "Success!", message: "Action completed successfully.", auto_dismiss: true, dismiss_after: 7000), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Success", type: "submit", class: "px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 shadow-sm" %>
+            <% end %>
+            <%= form_with url: alerts_add_alert_path(target: "notifications-top-center", variant: :error, title: "Error!", message: "Something went wrong. Please try again.", auto_dismiss: true, dismiss_after: 7000), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Error", type: "submit", class: "px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 shadow-sm" %>
+            <% end %>
+            <%= form_with url: alerts_add_alert_path(target: "notifications-top-center", variant: :warning, title: "Important!", message: "Please review this carefully.", auto_dismiss: true, dismiss_after: 7000), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Warning", type: "submit", class: "px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700 shadow-sm" %>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">ERB (ViewComponent + Stimulus)</span>
+          </div>
+          <pre class="p-4 overflow-x-auto"><code class="text-sm text-gray-100">&lt;%= render(AlertComponent.new(
+  variant: :info,
+  message: "This alert can be dismissed",
+  dismissible: true
+)) %&gt;
+
+&lt;!-- With auto-dismiss --&gt;
+&lt;%= render(AlertComponent.new(
+  variant: :success,
+  message: "This will auto-dismiss in 5 seconds",
+  dismissible: true,
+  auto_dismiss: true,
+  dismiss_after: 5000
+)) %&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Chat/Message Notifications -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Chat/Message Notifications</h2>
+          <p class="mt-1 text-sm text-gray-600">Message-style alerts - appears at bottom-right</p>
+        </div>
+
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <p class="text-sm text-gray-600 mb-4">Click buttons to see notifications at the bottom-right (like chat messages):</p>
+          <div class="flex gap-2 flex-wrap">
+            <%= form_with url: alerts_add_alert_path(target: "notifications-bottom-right", variant: :info, title: "New Message", message: "You have a new message from John."), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show New Message", type: "submit", class: "px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 shadow-sm" %>
+            <% end %>
+            <%= form_with url: alerts_add_alert_path(target: "notifications-bottom-right", variant: :success, title: "Message Sent", message: "Your message was delivered successfully."), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Success", type: "submit", class: "px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 shadow-sm" %>
+            <% end %>
+            <%= form_with url: alerts_add_alert_path(target: "notifications-bottom-right", variant: :warning, message: "Connecting to server..."), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Status", type: "submit", class: "px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700 shadow-sm" %>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">ERB (ViewComponent)</span>
+          </div>
+          <pre class="p-4 overflow-x-auto"><code class="text-sm text-gray-100">&lt;%= render(AlertComponent.new(
+  variant: :error,
+  title: "Please fix the following errors:",
+  list_items: [
+    "Email address is required",
+    "Password must be at least 8 characters",
+    "Phone number format is invalid"
+  ]
+)) %&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Real-World Use Cases -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">🌍 Real-World Use Cases</h2>
+          <p class="mt-1 text-sm text-gray-600">Practical examples you'll actually use in your applications</p>
+        </div>
+
+        <div class="space-y-6">
+          
+          <!-- Form Validation Errors -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-3">📝 Form Validation Errors</h3>
+            <p class="text-sm text-gray-600 mb-4">Display validation errors with a list - appears at top-center for visibility</p>
+
+        <!-- Preview -->
+            <div class="bg-gray-50 rounded-md p-4 mb-4">
+              <%= render(AlertComponent.new(
+                variant: :error,
+                title: "3 errors prevented this form from being saved:",
+                list_items: [
+                  "Email can't be blank",
+                  "Password is too short (minimum is 8 characters)",
+                  "Password confirmation doesn't match"
+                ],
+                dismissible: true
+              )) %>
+            </div>
+
+            <div class="flex gap-2 flex-wrap">
+              <%= form_with url: alerts_add_alert_path(
+                target: "notifications-top-center",
+                variant: :error,
+                title: "3 errors prevented this form from being saved:",
+                list_items: ["Email can't be blank", "Password is too short", "Password confirmation doesn't match"].to_json,
+                auto_dismiss: false
+              ), method: :post, data: { turbo_stream: true } do %>
+                <%= button_tag "Trigger Form Errors", type: "submit", class: "px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 shadow-sm" %>
+              <% end %>
+            </div>
+
+            <div class="mt-4 bg-gray-900 rounded-md overflow-hidden">
+              <pre class="p-4 overflow-x-auto text-xs"><code class="text-gray-100">&lt;% if @user.errors.any? %&gt;
+  &lt;%= render(AlertComponent.new(
+    variant: :error,
+    title: "#{pluralize(@user.errors.count, 'error')} prevented this form from being saved:",
+    list_items: @user.errors.full_messages
+  )) %&gt;
+&lt;% end %&gt;</code></pre>
+              </div>
+                </div>
+
+          <!-- Alerts with Action Buttons -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-3">🎯 Alerts with Action Buttons (Block Content)</h3>
+            <p class="text-sm text-gray-600 mb-4">Add custom buttons and content using block syntax - perfect for upgrade prompts</p>
+            
+            <!-- Preview -->
+            <div class="bg-gray-50 rounded-md p-4 mb-4">
+              <%= render(AlertComponent.new(variant: :warning, title: "Storage Almost Full", dismissible: true)) do %>
+                <p class="text-sm mt-2">You've used 9.2 GB of your 10 GB storage limit. Upgrade your plan to continue uploading files.</p>
+                <div class="mt-4 flex gap-3">
+                  <button class="bg-yellow-100 px-4 py-2 text-sm font-medium text-yellow-900 border border-yellow-300 rounded-md hover:bg-yellow-200 transition-colors">
+                      Upgrade Now
+                    </button>
+                  <button class="px-4 py-2 text-sm font-medium text-yellow-800 hover:text-yellow-900 transition-colors">
+                      Remind me later
+                    </button>
+                </div>
+              <% end %>
+            </div>
+
+            <p class="text-xs text-gray-500 mb-3">Note: To trigger this via Turbo Stream, you'd need to create a custom partial or use inline HTML. Click below for a simulated top-right notification:</p>
+            
+            <%= form_with url: alerts_add_alert_path(
+              target: "notifications-top-right",
+              variant: :warning,
+              title: "Storage Almost Full",
+              message: "You've used 9.2 GB of 10 GB. Click to upgrade your plan.",
+              auto_dismiss: false
+            ), method: :post, data: { turbo_stream: true } do %>
+              <%= button_tag "Show Storage Warning", type: "submit", class: "px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700 shadow-sm" %>
+            <% end %>
+
+            <div class="mt-4 bg-gray-900 rounded-md overflow-hidden">
+              <pre class="p-4 overflow-x-auto text-xs"><code class="text-gray-100">&lt;%= render(AlertComponent.new(variant: :warning, title: "Storage Almost Full")) do %&gt;
+  &lt;p&gt;You've used 9.2 GB of your 10 GB storage limit.&lt;/p&gt;
+  &lt;div class="mt-4 flex gap-3"&gt;
+    &lt;button class="bg-yellow-100 ..."&gt;Upgrade Now&lt;/button&gt;
+    &lt;button&gt;Remind me later&lt;/button&gt;
+  &lt;/div&gt;
+&lt;% end %&gt;</code></pre>
+            </div>
+          </div>
+
+          <!-- Session Timeout Warning -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-3">⏰ Session Timeout Warning</h3>
+            <p class="text-sm text-gray-600 mb-4">Warn users about session expiry - appears at top-center with extended auto-dismiss</p>
+            
+            <div class="flex gap-2 flex-wrap">
+              <%= form_with url: alerts_add_alert_path(
+                target: "notifications-top-center",
+                variant: :warning,
+                title: "Session Expiring Soon",
+                message: "Your session will expire in 2 minutes due to inactivity. Click anywhere to stay logged in.",
+                auto_dismiss: true,
+                dismiss_after: 10000
+              ), method: :post, data: { turbo_stream: true } do %>
+                <%= button_tag "Trigger Session Warning", type: "submit", class: "px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700 shadow-sm" %>
+              <% end %>
+            </div>
+          </div>
+
+          <!-- E-commerce: Cart Updates -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-3">🛒 Shopping Cart Updates</h3>
+            <p class="text-sm text-gray-600 mb-4">Notify users about cart changes - appears at bottom-right (non-intrusive)</p>
+            
+            <div class="flex gap-2 flex-wrap">
+              <%= form_with url: alerts_add_alert_path(
+                target: "notifications-bottom-right",
+                variant: :success,
+                title: "Added to Cart",
+                message: "iPhone 15 Pro Max has been added to your shopping cart.",
+                auto_dismiss: true,
+                dismiss_after: 4000
+              ), method: :post, data: { turbo_stream: true } do %>
+                <%= button_tag "Add to Cart", type: "submit", class: "px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 shadow-sm" %>
+              <% end %>
+              
+              <%= form_with url: alerts_add_alert_path(
+                target: "notifications-bottom-right",
+                variant: :info,
+                title: "Price Drop!",
+                message: "An item in your cart is now 20% off. Check out now to save $199.",
+                auto_dismiss: true,
+                dismiss_after: 8000
+              ), method: :post, data: { turbo_stream: true } do %>
+                <%= button_tag "Price Drop Alert", type: "submit", class: "px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 shadow-sm" %>
+              <% end %>
+            </div>
+          </div>
+
+          <!-- Email Verification Reminder -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-3">✉️ Email Verification Reminder</h3>
+            <p class="text-sm text-gray-600 mb-4">Persistent reminder for unverified users - appears at top-center (important action)</p>
+            
+            <div class="flex gap-2 flex-wrap">
+              <%= form_with url: alerts_add_alert_path(
+                target: "notifications-top-center",
+                variant: :warning,
+                title: "Verify Your Email",
+                message: "Please verify your email address to unlock all features. Check your inbox for the verification link.",
+                auto_dismiss: false
+              ), method: :post, data: { turbo_stream: true } do %>
+                <%= button_tag "Show Verification Reminder", type: "submit", class: "px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700 shadow-sm" %>
+              <% end %>
+                </div>
+              </div>
+
+          <!-- File Upload Status -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-3">📤 File Upload Notifications</h3>
+            <p class="text-sm text-gray-600 mb-4">Keep users informed about uploads - appears at bottom-right</p>
+            
+            <div class="flex gap-2 flex-wrap">
+              <%= form_with url: alerts_add_alert_path(
+                target: "notifications-bottom-right",
+                variant: :info,
+                title: "Uploading...",
+                message: "Your file is being uploaded. This may take a moment.",
+                auto_dismiss: true,
+                dismiss_after: 3000
+              ), method: :post, data: { turbo_stream: true } do %>
+                <%= button_tag "Start Upload", type: "submit", class: "px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 shadow-sm" %>
+              <% end %>
+              
+              <%= form_with url: alerts_add_alert_path(
+                target: "notifications-bottom-right",
+                variant: :success,
+                title: "Upload Complete",
+                message: "document.pdf has been uploaded successfully.",
+                auto_dismiss: true,
+                dismiss_after: 4000
+              ), method: :post, data: { turbo_stream: true } do %>
+                <%= button_tag "Complete Upload", type: "submit", class: "px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 shadow-sm" %>
+              <% end %>
+              
+              <%= form_with url: alerts_add_alert_path(
+                target: "notifications-bottom-right",
+                variant: :error,
+                title: "Upload Failed",
+                message: "Could not upload file. File size exceeds 10MB limit.",
+                auto_dismiss: false
+              ), method: :post, data: { turbo_stream: true } do %>
+                <%= button_tag "Failed Upload", type: "submit", class: "px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 shadow-sm" %>
+              <% end %>
+            </div>
+          </div>
+
+          <!-- Network Status -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-3">📡 Network Status Updates</h3>
+            <p class="text-sm text-gray-600 mb-4">Connection status alerts - appears at top-left (system-level info)</p>
+            
+            <div class="flex gap-2 flex-wrap">
+              <%= form_with url: alerts_add_alert_path(
+                target: "notifications-top-left",
+                variant: :error,
+                title: "Connection Lost",
+                message: "You're offline. Changes will be saved when connection is restored.",
+                auto_dismiss: false
+              ), method: :post, data: { turbo_stream: true } do %>
+                <%= button_tag "Go Offline", type: "submit", class: "px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 shadow-sm" %>
+              <% end %>
+              
+              <%= form_with url: alerts_add_alert_path(
+                target: "notifications-top-left",
+                variant: :success,
+                title: "Back Online",
+                message: "Connection restored. All changes have been synced.",
+                auto_dismiss: true,
+                dismiss_after: 5000
+              ), method: :post, data: { turbo_stream: true } do %>
+                <%= button_tag "Go Online", type: "submit", class: "px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 shadow-sm" %>
+              <% end %>
+          </div>
+        </div>
+
+          <!-- Achievement/Gamification -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-3">🏆 Achievement Unlocked</h3>
+            <p class="text-sm text-gray-600 mb-4">Gamification alerts - appears at top-right (celebratory)</p>
+            
+            <div class="flex gap-2 flex-wrap">
+              <%= form_with url: alerts_add_alert_path(
+                target: "notifications-top-right",
+                variant: :success,
+                title: "🎉 Achievement Unlocked!",
+                message: "You've completed 10 projects. Keep up the great work!",
+                auto_dismiss: true,
+                dismiss_after: 6000
+              ), method: :post, data: { turbo_stream: true } do %>
+                <%= button_tag "Unlock Achievement", type: "submit", class: "px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 shadow-sm" %>
+              <% end %>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Component API Documentation -->
+      <section class="mt-12">
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">💡 Usage Guide</h2>
+          <p class="mt-1 text-sm text-gray-600">All alerts are rendered using the AlertComponent and appear in positioned notification containers</p>
+        </div>
+
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-6">
+            <!-- Quick Reference -->
+            <div>
+              <h3 class="text-lg font-semibold text-gray-800 mb-3">Quick Reference</h3>
+              <div class="bg-gray-50 rounded-md p-4">
+                <ul class="space-y-2 text-sm text-gray-700">
+                  <li><strong>Variants:</strong> <code class="bg-gray-200 px-2 py-1 rounded">:success</code>, <code class="bg-gray-200 px-2 py-1 rounded">:error</code>, <code class="bg-gray-200 px-2 py-1 rounded">:warning</code>, <code class="bg-gray-200 px-2 py-1 rounded">:info</code></li>
+                  <li><strong>Positions:</strong> <code class="bg-gray-200 px-2 py-1 rounded">top-right</code>, <code class="bg-gray-200 px-2 py-1 rounded">top-left</code>, <code class="bg-gray-200 px-2 py-1 rounded">top-center</code>, <code class="bg-gray-200 px-2 py-1 rounded">bottom-right</code></li>
+                  <li><strong>Auto-dismiss:</strong> Add <code class="bg-gray-200 px-2 py-1 rounded">auto_dismiss: true, dismiss_after: 5000</code> (milliseconds)</li>
+                  <li><strong>Dismissible:</strong> All positioned alerts have X button by default</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Code Example -->
+            <div>
+              <h3 class="text-lg font-semibold text-gray-800 mb-3">Controller Example</h3>
+              <div class="bg-gray-900 rounded-md overflow-hidden">
+                <pre class="p-4 overflow-x-auto"><code class="text-sm text-gray-100"># In your controller action
+respond_to do |format|
+  format.turbo_stream do
+    render turbo_stream: turbo_stream.append(
+      "notifications-top-right",
+      render(AlertComponent.new(
+        variant: :success,
+        title: "Success!",
+        message: "Operation completed successfully."
+      ))
+    )
+  end
+end</code></pre>
+            </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>

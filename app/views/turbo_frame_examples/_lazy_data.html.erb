@@ -1,0 +1,35 @@
+<turbo-frame id="lazy-content">
+  <%= ui_card(header: "Lazy Loaded Data") do %>
+    <div class="space-y-3">
+      <%= ui_alert message: "Data loaded successfully!", variant: :success %>
+      
+      <div class="space-y-2">
+        <% @items.each do |item| %>
+          <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+            <div>
+              <h5 class="text-sm font-medium text-gray-900"><%= item[:name] %></h5>
+              <p class="text-xs text-gray-500">Status: <%= item[:status] %></p>
+            </div>
+            <%= ui_badge item[:status], 
+                variant: item[:status] == "Active" ? :success : 
+                         item[:status] == "Pending" ? :warning : :info %>
+          </div>
+        <% end %>
+      </div>
+      
+      <div class="flex gap-2">
+        <%= ui_button "Refresh Data", 
+            href: "/turbo-frame-examples/lazy-data",
+            data: { turbo_frame: "lazy-content" },
+            variant: :primary,
+            size: :sm %>
+        
+        <%= ui_button "Add New Item", 
+            href: "/turbo-frame-examples/add-item",
+            data: { turbo_frame: "lazy-content" },
+            variant: :outline,
+            size: :sm %>
+      </div>
+    </div>
+  <% end %>
+</turbo-frame>

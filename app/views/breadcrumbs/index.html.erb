@@ -1,0 +1,414 @@
+<div class="min-h-screen bg-gray-50" data-controller="clipboard">
+  <!-- Header -->
+  <div class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">Breadcrumbs</h1>
+          <p class="mt-1 text-sm text-gray-500">
+            Copy-paste ready breadcrumb navigation components
+          </p>
+        </div>
+        <%= link_to "/", class: "text-sm text-blue-600 hover:text-blue-700" do %>
+          ← Back to Home
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="space-y-12">
+
+      <!-- Basic Breadcrumb -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Basic Breadcrumb</h2>
+          <p class="mt-1 text-sm text-gray-600">Simple breadcrumb navigation with links</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <nav class="flex" aria-label="Breadcrumb">
+            <ol class="flex items-center space-x-2">
+              <li>
+                <a href="/" class="text-gray-500 hover:text-gray-700">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <a href="#" class="ml-2 text-sm font-medium text-gray-500 hover:text-gray-700">Products</a>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <a href="#" class="ml-2 text-sm font-medium text-gray-500 hover:text-gray-700">Electronics</a>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="ml-2 text-sm font-medium text-gray-900" aria-current="page">Smartphones</span>
+              </li>
+            </ol>
+          </nav>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;nav class="flex" aria-label="Breadcrumb"&gt;
+  &lt;ol class="flex items-center space-x-2"&gt;
+    &lt;li&gt;
+      &lt;a href="/" class="text-gray-500 hover:text-gray-700"&gt;
+        &lt;svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"&gt;
+          &lt;path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"&gt;&lt;/path&gt;
+        &lt;/svg&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="flex items-center"&gt;
+      &lt;svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20"&gt;...&lt;/svg&gt;
+      &lt;a href="#" class="ml-2 text-sm font-medium text-gray-500 hover:text-gray-700"&gt;Products&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="flex items-center"&gt;
+      &lt;svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20"&gt;...&lt;/svg&gt;
+      &lt;span class="ml-2 text-sm font-medium text-gray-900" aria-current="page"&gt;Smartphones&lt;/span&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Breadcrumb with Slash Separator -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Breadcrumb with Slash Separator</h2>
+          <p class="mt-1 text-sm text-gray-600">Using slash "/" as separator</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <nav class="flex" aria-label="Breadcrumb">
+            <ol class="flex items-center space-x-2">
+              <li>
+                <a href="/" class="text-sm font-medium text-blue-600 hover:text-blue-800">Home</a>
+              </li>
+              <li class="flex items-center">
+                <span class="mx-2 text-gray-400">/</span>
+                <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-800">Dashboard</a>
+              </li>
+              <li class="flex items-center">
+                <span class="mx-2 text-gray-400">/</span>
+                <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-800">Settings</a>
+              </li>
+              <li class="flex items-center">
+                <span class="mx-2 text-gray-400">/</span>
+                <span class="text-sm font-medium text-gray-900" aria-current="page">Account</span>
+              </li>
+            </ol>
+          </nav>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;nav class="flex" aria-label="Breadcrumb"&gt;
+  &lt;ol class="flex items-center space-x-2"&gt;
+    &lt;li&gt;
+      &lt;a href="/" class="text-sm font-medium text-blue-600 hover:text-blue-800"&gt;Home&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="flex items-center"&gt;
+      &lt;span class="mx-2 text-gray-400"&gt;/&lt;/span&gt;
+      &lt;a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-800"&gt;Dashboard&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="flex items-center"&gt;
+      &lt;span class="mx-2 text-gray-400"&gt;/&lt;/span&gt;
+      &lt;span class="text-sm font-medium text-gray-900" aria-current="page"&gt;Account&lt;/span&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Breadcrumb with Background -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Breadcrumb with Background</h2>
+          <p class="mt-1 text-sm text-gray-600">Breadcrumb with subtle background</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <nav class="bg-gray-100 px-4 py-3 rounded-lg" aria-label="Breadcrumb">
+            <ol class="flex items-center space-x-2">
+              <li>
+                <a href="/" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-900">
+                  <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                  </svg>
+                  Home
+                </a>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <a href="#" class="ml-2 text-sm font-medium text-gray-700 hover:text-gray-900">Projects</a>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="ml-2 text-sm font-medium text-gray-900" aria-current="page">Project Alpha</span>
+              </li>
+            </ol>
+          </nav>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;nav class="bg-gray-100 px-4 py-3 rounded-lg" aria-label="Breadcrumb"&gt;
+  &lt;ol class="flex items-center space-x-2"&gt;
+    &lt;li&gt;
+      &lt;a href="/" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-900"&gt;
+        &lt;svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"&gt;...&lt;/svg&gt;
+        Home
+      &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="flex items-center"&gt;
+      &lt;svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20"&gt;...&lt;/svg&gt;
+      &lt;a href="#" class="ml-2 text-sm font-medium text-gray-700 hover:text-gray-900"&gt;Projects&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="flex items-center"&gt;
+      &lt;svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20"&gt;...&lt;/svg&gt;
+      &lt;span class="ml-2 text-sm font-medium text-gray-900" aria-current="page"&gt;Project Alpha&lt;/span&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Compact Breadcrumb -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Compact Breadcrumb</h2>
+          <p class="mt-1 text-sm text-gray-600">Smaller breadcrumb for tight spaces</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <nav class="flex" aria-label="Breadcrumb">
+            <ol class="flex items-center space-x-1">
+              <li>
+                <a href="/" class="text-xs text-gray-500 hover:text-gray-700">Home</a>
+              </li>
+              <li class="flex items-center">
+                <span class="mx-1 text-xs text-gray-400">›</span>
+                <a href="#" class="text-xs text-gray-500 hover:text-gray-700">Blog</a>
+              </li>
+              <li class="flex items-center">
+                <span class="mx-1 text-xs text-gray-400">›</span>
+                <a href="#" class="text-xs text-gray-500 hover:text-gray-700">Tech</a>
+              </li>
+              <li class="flex items-center">
+                <span class="mx-1 text-xs text-gray-400">›</span>
+                <span class="text-xs text-gray-900" aria-current="page">Article Title</span>
+              </li>
+            </ol>
+          </nav>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;nav class="flex" aria-label="Breadcrumb"&gt;
+  &lt;ol class="flex items-center space-x-1"&gt;
+    &lt;li&gt;
+      &lt;a href="/" class="text-xs text-gray-500 hover:text-gray-700"&gt;Home&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="flex items-center"&gt;
+      &lt;span class="mx-1 text-xs text-gray-400"&gt;›&lt;/span&gt;
+      &lt;a href="#" class="text-xs text-gray-500 hover:text-gray-700"&gt;Blog&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="flex items-center"&gt;
+      &lt;span class="mx-1 text-xs text-gray-400"&gt;›&lt;/span&gt;
+      &lt;span class="text-xs text-gray-900" aria-current="page"&gt;Article Title&lt;/span&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Breadcrumb with Badges -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Breadcrumb with Badges</h2>
+          <p class="mt-1 text-sm text-gray-600">Breadcrumb with status badges</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <nav class="flex" aria-label="Breadcrumb">
+            <ol class="flex items-center space-x-2">
+              <li>
+                <a href="/" class="flex items-center text-sm font-medium text-gray-600 hover:text-gray-900">
+                  Dashboard
+                </a>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <a href="#" class="ml-2 flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900">
+                  Orders
+                  <span class="px-2 py-0.5 text-xs bg-blue-100 text-blue-800 rounded-full">24</span>
+                </a>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="ml-2 flex items-center gap-2 text-sm font-medium text-gray-900" aria-current="page">
+                  Order #12345
+                  <span class="px-2 py-0.5 text-xs bg-green-100 text-green-800 rounded-full">Delivered</span>
+                </span>
+              </li>
+            </ol>
+          </nav>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;nav class="flex" aria-label="Breadcrumb"&gt;
+  &lt;ol class="flex items-center space-x-2"&gt;
+    &lt;li&gt;
+      &lt;a href="/" class="flex items-center text-sm font-medium text-gray-600"&gt;Dashboard&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="flex items-center"&gt;
+      &lt;svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20"&gt;...&lt;/svg&gt;
+      &lt;a href="#" class="ml-2 flex items-center gap-2 text-sm font-medium text-gray-600"&gt;
+        Orders
+        &lt;span class="px-2 py-0.5 text-xs bg-blue-100 text-blue-800 rounded-full"&gt;24&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="flex items-center"&gt;
+      &lt;svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20"&gt;...&lt;/svg&gt;
+      &lt;span class="ml-2 flex items-center gap-2 text-sm font-medium text-gray-900" aria-current="page"&gt;
+        Order #12345
+        &lt;span class="px-2 py-0.5 text-xs bg-green-100 text-green-800 rounded-full"&gt;Delivered&lt;/span&gt;
+      &lt;/span&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Breadcrumb with Ellipsis -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Breadcrumb with Ellipsis</h2>
+          <p class="mt-1 text-sm text-gray-600">Collapsed breadcrumb for long paths</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <nav class="flex" aria-label="Breadcrumb">
+            <ol class="flex items-center space-x-2">
+              <li>
+                <a href="/" class="text-gray-500 hover:text-gray-700">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                  </svg>
+                </a>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <button class="ml-2 text-sm font-medium text-gray-500 hover:text-gray-700">...</button>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <a href="#" class="ml-2 text-sm font-medium text-gray-500 hover:text-gray-700">Category</a>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="ml-2 text-sm font-medium text-gray-900" aria-current="page">Current Page</span>
+              </li>
+            </ol>
+          </nav>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-4 bg-gray-900 rounded-lg overflow-hidden" data-clipboard-target="container">
+          <div class="flex items-center justify-between px-4 py-2 bg-gray-800">
+            <span class="text-xs text-gray-400">HTML</span>
+            <button data-action="click->clipboard#copy" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 text-gray-200 rounded transition-colors">
+              Copy
+            </button>
+          </div>
+          <pre class="p-4 overflow-x-auto" data-clipboard-target="source"><code class="text-sm text-gray-100">&lt;nav class="flex" aria-label="Breadcrumb"&gt;
+  &lt;ol class="flex items-center space-x-2"&gt;
+    &lt;li&gt;
+      &lt;a href="/" class="text-gray-500 hover:text-gray-700"&gt;
+        &lt;svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"&gt;...&lt;/svg&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="flex items-center"&gt;
+      &lt;svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20"&gt;...&lt;/svg&gt;
+      &lt;button class="ml-2 text-sm font-medium text-gray-500 hover:text-gray-700"&gt;...&lt;/button&gt;
+    &lt;/li&gt;
+    &lt;li class="flex items-center"&gt;
+      &lt;svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20"&gt;...&lt;/svg&gt;
+      &lt;a href="#" class="ml-2 text-sm font-medium text-gray-500 hover:text-gray-700"&gt;Category&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class="flex items-center"&gt;
+      &lt;svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20"&gt;...&lt;/svg&gt;
+      &lt;span class="ml-2 text-sm font-medium text-gray-900" aria-current="page"&gt;Current Page&lt;/span&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+

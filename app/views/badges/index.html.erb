@@ -1,0 +1,518 @@
+<div class="min-h-screen bg-gray-50">
+  <!-- Header -->
+  <div class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">Badges - ViewComponent Edition</h1>
+          <p class="mt-1 text-sm text-gray-500">
+            Status indicators, labels, and tags using ViewComponent
+          </p>
+        </div>
+        <%= link_to "/", class: "text-sm text-blue-600 hover:text-blue-700" do %>
+          ← Back to Home
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="space-y-12">
+
+      <!-- Real-World Use Cases -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">🌍 Real-World Use Cases</h2>
+          <p class="mt-1 text-sm text-gray-600">Practical badge implementations you'll actually use</p>
+        </div>
+
+        <div class="space-y-6">
+          
+          <!-- E-commerce Order Status -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">📦 E-commerce Order Status</h3>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between p-4 bg-gray-50 rounded-md">
+                <div>
+                  <p class="font-medium text-gray-900">Order #1234</p>
+                  <p class="text-sm text-gray-600">iPhone 15 Pro Max</p>
+                </div>
+                <%= render BadgeComponent.new("Pending", variant: :yellow, dot: true) %>
+              </div>
+
+              <div class="flex items-center justify-between p-4 bg-gray-50 rounded-md">
+                <div>
+                  <p class="font-medium text-gray-900">Order #1235</p>
+                  <p class="text-sm text-gray-600">MacBook Pro 14"</p>
+                </div>
+                <%= render BadgeComponent.new("Processing", variant: :blue, dot: true) %>
+              </div>
+
+              <div class="flex items-center justify-between p-4 bg-gray-50 rounded-md">
+                <div>
+                  <p class="font-medium text-gray-900">Order #1236</p>
+                  <p class="text-sm text-gray-600">AirPods Pro</p>
+                </div>
+                <%= render BadgeComponent.new("Shipped", variant: :purple) %>
+              </div>
+
+              <div class="flex items-center justify-between p-4 bg-gray-50 rounded-md">
+                <div>
+                  <p class="font-medium text-gray-900">Order #1237</p>
+                  <p class="text-sm text-gray-600">Magic Keyboard</p>
+                </div>
+                <%= render BadgeComponent.new("Delivered", variant: :green) %>
+              </div>
+
+              <div class="flex items-center justify-between p-4 bg-gray-50 rounded-md">
+                <div>
+                  <p class="font-medium text-gray-900">Order #1238</p>
+                  <p class="text-sm text-gray-600">iPad Pro</p>
+                </div>
+                <%= render BadgeComponent.new("Cancelled", variant: :red) %>
+              </div>
+            </div>
+
+            <div class="mt-4 bg-gray-900 rounded-md overflow-hidden">
+              <pre class="p-4 overflow-x-auto text-xs"><code class="text-gray-100">&lt;%= render BadgeComponent.new("Pending", variant: :yellow, dot: true) %&gt;
+&lt;%= status_badge(:pending) %&gt;  &lt;!-- Helper method --&gt;</code></pre>
+            </div>
+          </div>
+
+          <!-- User Status & Roles -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">👥 User Status & Roles</h3>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between p-3 bg-gray-50 rounded-md">
+                <div class="flex items-center gap-3">
+                  <div class="h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">JD</div>
+                  <div>
+                    <p class="font-medium text-gray-900">John Doe</p>
+                    <p class="text-sm text-gray-600">john@example.com</p>
+                  </div>
+                </div>
+                <div class="flex gap-2">
+                  <%= render BadgeComponent.new("Online", variant: :green, dot: true, size: :xs) %>
+                  <%= render BadgeComponent.new("Admin", variant: :purple, size: :xs, style: :solid) %>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between p-3 bg-gray-50 rounded-md">
+                <div class="flex items-center gap-3">
+                  <div class="h-10 w-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold">JS</div>
+                  <div>
+                    <p class="font-medium text-gray-900">Jane Smith</p>
+                    <p class="text-sm text-gray-600">jane@example.com</p>
+                  </div>
+                </div>
+                <div class="flex gap-2">
+                  <%= render BadgeComponent.new("Away", variant: :yellow, dot: true, size: :xs) %>
+                  <%= render BadgeComponent.new("Editor", variant: :blue, size: :xs) %>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between p-3 bg-gray-50 rounded-md">
+                <div class="flex items-center gap-3">
+                  <div class="h-10 w-10 rounded-full bg-gray-500 flex items-center justify-center text-white font-bold">MB</div>
+                  <div>
+                    <p class="font-medium text-gray-900">Mike Brown</p>
+                    <p class="text-sm text-gray-600">mike@example.com</p>
+                  </div>
+                </div>
+                <div class="flex gap-2">
+                  <%= render BadgeComponent.new("Offline", variant: :gray, dot: true, size: :xs) %>
+                  <%= render BadgeComponent.new("Viewer", variant: :gray, size: :xs) %>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 bg-gray-900 rounded-md overflow-hidden">
+              <pre class="p-4 overflow-x-auto text-xs"><code class="text-gray-100">&lt;%= render BadgeComponent.new("Online", variant: :green, dot: true, size: :xs) %&gt;
+&lt;%= render BadgeComponent.new("Admin", variant: :purple, size: :xs, style: :solid) %&gt;</code></pre>
+            </div>
+          </div>
+
+          <!-- Content Tags (Removable) -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">🏷️ Content Tags (Removable)</h3>
+            <div class="flex flex-wrap gap-2">
+              <%= render BadgeComponent.new("Ruby on Rails", variant: :red, removable: true) %>
+              <%= render BadgeComponent.new("ViewComponent", variant: :blue, removable: true) %>
+              <%= render BadgeComponent.new("Stimulus", variant: :green, removable: true) %>
+              <%= render BadgeComponent.new("Hotwire", variant: :purple, removable: true) %>
+              <%= render BadgeComponent.new("Turbo", variant: :indigo, removable: true) %>
+              <%= render BadgeComponent.new("Tailwind CSS", variant: :blue, removable: true) %>
+              <%= render BadgeComponent.new("JavaScript", variant: :yellow, removable: true) %>
+              <%= render BadgeComponent.new("PostgreSQL", variant: :blue, removable: true) %>
+            </div>
+            <p class="mt-3 text-sm text-gray-600">Click X to remove tags (each badge has its own controller)</p>
+
+            <div class="mt-4 bg-gray-900 rounded-md overflow-hidden">
+              <pre class="p-4 overflow-x-auto text-xs"><code class="text-gray-100">&lt;!-- Controller is automatically added to each removable badge --&gt;
+&lt;%= render BadgeComponent.new("Ruby on Rails", variant: :red, removable: true) %&gt;</code></pre>
+            </div>
+          </div>
+
+          <!-- Task Priority Levels -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">📋 Task Priority Levels</h3>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between p-3 border border-gray-200 rounded-md">
+                <div>
+                  <p class="font-medium text-gray-900">Fix critical security bug</p>
+                  <p class="text-sm text-gray-600">Due: Today</p>
+                </div>
+                <%= render BadgeComponent.new("Urgent", variant: :red, size: :sm, style: :solid) %>
+              </div>
+
+              <div class="flex items-center justify-between p-3 border border-gray-200 rounded-md">
+                <div>
+                  <p class="font-medium text-gray-900">Deploy new feature</p>
+                  <p class="text-sm text-gray-600">Due: This week</p>
+                </div>
+                <%= render BadgeComponent.new("High", variant: :orange, size: :sm) %>
+              </div>
+
+              <div class="flex items-center justify-between p-3 border border-gray-200 rounded-md">
+                <div>
+                  <p class="font-medium text-gray-900">Update documentation</p>
+                  <p class="text-sm text-gray-600">Due: Next week</p>
+                </div>
+                <%= render BadgeComponent.new("Medium", variant: :blue, size: :sm) %>
+              </div>
+
+              <div class="flex items-center justify-between p-3 border border-gray-200 rounded-md">
+                <div>
+                  <p class="font-medium text-gray-900">Refactor old code</p>
+                  <p class="text-sm text-gray-600">Due: No deadline</p>
+                </div>
+                <%= render BadgeComponent.new("Low", variant: :gray, size: :sm) %>
+              </div>
+            </div>
+
+            <div class="mt-4 bg-gray-900 rounded-md overflow-hidden">
+              <pre class="p-4 overflow-x-auto text-xs"><code class="text-gray-100">&lt;%= render BadgeComponent.new("Urgent", variant: :red, size: :sm, style: :solid) %&gt;</code></pre>
+            </div>
+          </div>
+
+          <!-- Subscription Plans -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">💳 Subscription Plans</h3>
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="border border-gray-200 rounded-lg p-6">
+                <div class="flex items-center justify-between mb-4">
+                  <h4 class="text-lg font-bold text-gray-900">Basic</h4>
+                  <%= render BadgeComponent.new("Free", variant: :gray, size: :sm) %>
+                </div>
+                <p class="text-3xl font-bold text-gray-900 mb-4">$0<span class="text-base font-normal text-gray-600">/month</span></p>
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li>✓ 5 projects</li>
+                  <li>✓ Basic support</li>
+                  <li>✓ 1 GB storage</li>
+                </ul>
+              </div>
+
+              <div class="border-2 border-blue-500 rounded-lg p-6 relative">
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <%= render BadgeComponent.new("Most Popular", variant: :blue, size: :sm, style: :solid) %>
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                  <h4 class="text-lg font-bold text-gray-900">Pro</h4>
+                  <%= render BadgeComponent.new("$29", variant: :blue, size: :sm, style: :solid) %>
+                </div>
+                <p class="text-3xl font-bold text-gray-900 mb-4">$29<span class="text-base font-normal text-gray-600">/month</span></p>
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li>✓ Unlimited projects</li>
+                  <li>✓ Priority support</li>
+                  <li>✓ 100 GB storage</li>
+                </ul>
+              </div>
+
+              <div class="border border-gray-200 rounded-lg p-6">
+                <div class="flex items-center justify-between mb-4">
+                  <h4 class="text-lg font-bold text-gray-900">Enterprise</h4>
+                  <%= render BadgeComponent.new("Custom", variant: :purple, size: :sm) %>
+                </div>
+                <p class="text-3xl font-bold text-gray-900 mb-4">Custom</p>
+                <ul class="space-y-2 text-sm text-gray-600">
+                  <li>✓ Everything in Pro</li>
+                  <li>✓ Dedicated support</li>
+                  <li>✓ Unlimited storage</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-4 bg-gray-900 rounded-md overflow-hidden">
+              <pre class="p-4 overflow-x-auto text-xs"><code class="text-gray-100">&lt;%= render BadgeComponent.new("Most Popular", variant: :blue, style: :solid) %&gt;</code></pre>
+            </div>
+          </div>
+
+          <!-- Notification Counts -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">🔔 Notification Badges</h3>
+            <div class="flex gap-6 flex-wrap">
+              <button class="relative inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50">
+                <svg class="h-5 w-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                Inbox
+                <%= render BadgeComponent.new("12", variant: :red, size: :xs, style: :solid, class: "ml-2") %>
+              </button>
+
+              <button class="relative inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50">
+                <svg class="h-5 w-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+                Notifications
+                <%= render BadgeComponent.new("3", variant: :blue, size: :xs, style: :solid, class: "ml-2") %>
+              </button>
+
+              <button class="relative inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50">
+                <svg class="h-5 w-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+                Messages
+                <%= render BadgeComponent.new("99+", variant: :green, size: :xs, style: :solid, class: "ml-2") %>
+              </button>
+            </div>
+
+            <div class="mt-4 bg-gray-900 rounded-md overflow-hidden">
+              <pre class="p-4 overflow-x-auto text-xs"><code class="text-gray-100">&lt;button class="..."&gt;
+  Messages
+  &lt;%= render BadgeComponent.new("99+", variant: :green, size: :xs, style: :solid) %&gt;
+&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+
+          <!-- Product Badges -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">🛍️ Product Labels</h3>
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <div class="relative">
+                  <div class="h-48 bg-gray-200 flex items-center justify-center">
+                    <span class="text-gray-400">Product Image</span>
+                  </div>
+                  <div class="absolute top-2 left-2">
+                    <%= render BadgeComponent.new("New", variant: :blue, size: :sm, style: :solid) %>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h4 class="font-medium text-gray-900">Premium Headphones</h4>
+                  <p class="text-lg font-bold text-gray-900 mt-2">$299</p>
+                </div>
+              </div>
+
+              <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <div class="relative">
+                  <div class="h-48 bg-gray-200 flex items-center justify-center">
+                    <span class="text-gray-400">Product Image</span>
+                  </div>
+                  <div class="absolute top-2 left-2">
+                    <%= render BadgeComponent.new("50% OFF", variant: :red, size: :sm, style: :solid) %>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h4 class="font-medium text-gray-900">Wireless Mouse</h4>
+                  <p class="text-lg font-bold text-gray-900 mt-2">
+                    <span class="line-through text-gray-400">$80</span> $40
+                  </p>
+                </div>
+              </div>
+
+              <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <div class="relative">
+                  <div class="h-48 bg-gray-200 flex items-center justify-center">
+                    <span class="text-gray-400">Product Image</span>
+                  </div>
+                  <div class="absolute top-2 left-2 flex flex-col gap-2">
+                    <%= render BadgeComponent.new("Bestseller", variant: :yellow, size: :sm, style: :solid) %>
+                    <%= render BadgeComponent.new("Limited", variant: :purple, size: :sm) %>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h4 class="font-medium text-gray-900">Mechanical Keyboard</h4>
+                  <p class="text-lg font-bold text-gray-900 mt-2">$199</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 bg-gray-900 rounded-md overflow-hidden">
+              <pre class="p-4 overflow-x-auto text-xs"><code class="text-gray-100">&lt;%= render BadgeComponent.new("50% OFF", variant: :red, style: :solid) %&gt;</code></pre>
+            </div>
+          </div>
+
+          <!-- File Type Badges -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">📁 File Type Indicators</h3>
+            <div class="space-y-2">
+              <div class="flex items-center justify-between p-3 border border-gray-200 rounded-md">
+                <div class="flex items-center gap-3">
+                  <svg class="h-8 w-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
+                  <div>
+                    <p class="font-medium text-gray-900">presentation.pdf</p>
+                    <p class="text-sm text-gray-600">2.4 MB</p>
+                  </div>
+                </div>
+                <%= render BadgeComponent.new("PDF", variant: :red, size: :xs, shape: :pill) %>
+              </div>
+
+              <div class="flex items-center justify-between p-3 border border-gray-200 rounded-md">
+                <div class="flex items-center gap-3">
+                  <svg class="h-8 w-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
+                  <div>
+                    <p class="font-medium text-gray-900">report.docx</p>
+                    <p class="text-sm text-gray-600">1.8 MB</p>
+                  </div>
+                </div>
+                <%= render BadgeComponent.new("DOC", variant: :blue, size: :xs, shape: :pill) %>
+              </div>
+
+              <div class="flex items-center justify-between p-3 border border-gray-200 rounded-md">
+                <div class="flex items-center gap-3">
+                  <svg class="h-8 w-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
+                  <div>
+                    <p class="font-medium text-gray-900">data.xlsx</p>
+                    <p class="text-sm text-gray-600">3.2 MB</p>
+                  </div>
+                </div>
+                <%= render BadgeComponent.new("XLS", variant: :green, size: :xs, shape: :pill) %>
+              </div>
+
+              <div class="flex items-center justify-between p-3 border border-gray-200 rounded-md">
+                <div class="flex items-center gap-3">
+                  <svg class="h-8 w-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
+                  <div>
+                    <p class="font-medium text-gray-900">archive.zip</p>
+                    <p class="text-sm text-gray-600">15.7 MB</p>
+                  </div>
+                </div>
+                <%= render BadgeComponent.new("ZIP", variant: :purple, size: :xs, shape: :pill) %>
+              </div>
+            </div>
+
+            <div class="mt-4 bg-gray-900 rounded-md overflow-hidden">
+              <pre class="p-4 overflow-x-auto text-xs"><code class="text-gray-100">&lt;%= render BadgeComponent.new("PDF", variant: :red, size: :xs, shape: :pill) %&gt;</code></pre>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Component Variants -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">🎨 Component Variants</h2>
+          <p class="mt-1 text-sm text-gray-600">All available badge styles and options</p>
+        </div>
+
+        <div class="space-y-6">
+          
+          <!-- Colors -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-3">Colors (Light Style)</h3>
+            <div class="flex flex-wrap gap-2">
+              <%= render BadgeComponent.new("Gray", variant: :gray) %>
+              <%= render BadgeComponent.new("Blue", variant: :blue) %>
+              <%= render BadgeComponent.new("Green", variant: :green) %>
+              <%= render BadgeComponent.new("Yellow", variant: :yellow) %>
+              <%= render BadgeComponent.new("Red", variant: :red) %>
+              <%= render BadgeComponent.new("Purple", variant: :purple) %>
+              <%= render BadgeComponent.new("Pink", variant: :pink) %>
+              <%= render BadgeComponent.new("Indigo", variant: :indigo) %>
+              <%= render BadgeComponent.new("Orange", variant: :orange) %>
+            </div>
+
+            <h3 class="text-lg font-semibold text-gray-800 mb-3 mt-6">Colors (Solid Style)</h3>
+            <div class="flex flex-wrap gap-2">
+              <%= render BadgeComponent.new("Gray", variant: :gray, style: :solid) %>
+              <%= render BadgeComponent.new("Blue", variant: :blue, style: :solid) %>
+              <%= render BadgeComponent.new("Green", variant: :green, style: :solid) %>
+              <%= render BadgeComponent.new("Yellow", variant: :yellow, style: :solid) %>
+              <%= render BadgeComponent.new("Red", variant: :red, style: :solid) %>
+              <%= render BadgeComponent.new("Purple", variant: :purple, style: :solid) %>
+              <%= render BadgeComponent.new("Pink", variant: :pink, style: :solid) %>
+              <%= render BadgeComponent.new("Indigo", variant: :indigo, style: :solid) %>
+              <%= render BadgeComponent.new("Orange", variant: :orange, style: :solid) %>
+            </div>
+          </div>
+
+          <!-- Sizes -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-3">Sizes</h3>
+            <div class="flex flex-wrap items-center gap-3">
+              <%= render BadgeComponent.new("Extra Small", variant: :blue, size: :xs) %>
+              <%= render BadgeComponent.new("Small", variant: :blue, size: :sm) %>
+              <%= render BadgeComponent.new("Medium", variant: :blue, size: :md) %>
+              <%= render BadgeComponent.new("Large", variant: :blue, size: :lg) %>
+            </div>
+          </div>
+
+          <!-- Shapes -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-3">Shapes</h3>
+            <div class="flex flex-wrap gap-3">
+              <%= render BadgeComponent.new("Rounded (Default)", variant: :blue, shape: :rounded) %>
+              <%= render BadgeComponent.new("Pill", variant: :blue, shape: :pill) %>
+              <%= render BadgeComponent.new("Square", variant: :blue, shape: :square) %>
+            </div>
+          </div>
+
+          <!-- With Dots -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-3">With Status Dots</h3>
+            <div class="flex flex-wrap gap-3">
+              <%= render BadgeComponent.new("Active", variant: :green, dot: true) %>
+              <%= render BadgeComponent.new("Pending", variant: :yellow, dot: true) %>
+              <%= render BadgeComponent.new("Error", variant: :red, dot: true) %>
+              <%= render BadgeComponent.new("Info", variant: :blue, dot: true) %>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- API Reference -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">💡 API Reference</h2>
+          <p class="mt-1 text-sm text-gray-600">Component parameters and usage</p>
+        </div>
+
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="bg-gray-900 rounded-md overflow-hidden">
+            <pre class="p-4 overflow-x-auto text-xs"><code class="text-gray-100"># Basic usage
+&lt;%= render BadgeComponent.new("Text", variant: :blue) %&gt;
+
+# With all options
+&lt;%= render BadgeComponent.new(
+  "Premium",
+  variant: :blue,      # :gray, :blue, :green, :yellow, :red, :purple, :pink, :indigo, :orange
+  size: :sm,           # :xs, :sm, :md, :lg
+  shape: :rounded,     # :rounded, :pill, :square
+  style: :light,       # :light, :solid
+  dot: false,          # true/false - adds status dot
+  removable: false     # true/false - adds remove button
+) %&gt;
+
+# Helper method
+&lt;%= badge_component("Text", variant: :green) %&gt;
+
+# Status helper
+&lt;%= status_badge(:pending) %&gt;  # Auto-configures color and dot</code></pre>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,303 @@
+<% content_for :title, "TailView UI - Home" %>
+
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header Section -->
+    <div class="text-center mb-16">
+      <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+        TailView UI
+      </h1>
+      <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+        A comprehensive collection of modern UI components built with Rails, Tailwind CSS, and Stimulus. 
+        Explore interactive examples and learn how to implement beautiful, responsive components in your applications.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#components" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200">
+          Explore Components
+        </a>
+        <a href="/guidelines" class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200">
+          How to Use
+        </a>
+        <a href="https://github.com/yourusername/tailview-ui" target="_blank" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-8 py-3 rounded-lg font-semibold transition-colors duration-200">
+          View Source
+        </a>
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="grid md:grid-cols-3 gap-8 mb-16">
+      <div class="bg-white rounded-xl p-6 shadow-lg">
+        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">Modern Components</h3>
+        <p class="text-gray-600">Beautiful, accessible UI components built with Tailwind CSS and following modern design principles.</p>
+      </div>
+      
+      <div class="bg-white rounded-xl p-6 shadow-lg">
+        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">Interactive Examples</h3>
+        <p class="text-gray-600">Live, interactive examples powered by Stimulus controllers for dynamic user experiences.</p>
+      </div>
+      
+      <div class="bg-white rounded-xl p-6 shadow-lg">
+        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">Easy Integration</h3>
+        <p class="text-gray-600">Simple to integrate into your Rails applications with clear documentation and examples.</p>
+      </div>
+    </div>
+
+    <!-- Components Section -->
+    <div id="components" class="bg-white rounded-2xl shadow-xl p-8">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Available Components</h2>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Basic Components -->
+        <div class="group">
+          <h3 class="text-lg font-semibold text-gray-800 mb-4 border-b border-gray-200 pb-2">Basic Components</h3>
+          <div class="space-y-3">
+            <a href="/buttons" class="block p-4 bg-gray-50 hover:bg-blue-50 rounded-lg transition-colors duration-200 group-hover:shadow-md">
+              <div class="flex items-center justify-between">
+                <span class="font-medium text-gray-700">Buttons</span>
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Various button styles and states</p>
+            </a>
+            
+            <a href="/badges" class="block p-4 bg-gray-50 hover:bg-blue-50 rounded-lg transition-colors duration-200 group-hover:shadow-md">
+              <div class="flex items-center justify-between">
+                <span class="font-medium text-gray-700">Badges</span>
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Status indicators and labels</p>
+            </a>
+            
+            <a href="/avatars" class="block p-4 bg-gray-50 hover:bg-blue-50 rounded-lg transition-colors duration-200 group-hover:shadow-md">
+              <div class="flex items-center justify-between">
+                <span class="font-medium text-gray-700">Avatars</span>
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">User profile images and initials</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- Layout Components -->
+        <div class="group">
+          <h3 class="text-lg font-semibold text-gray-800 mb-4 border-b border-gray-200 pb-2">Layout Components</h3>
+          <div class="space-y-3">
+            <a href="/cards" class="block p-4 bg-gray-50 hover:bg-green-50 rounded-lg transition-colors duration-200 group-hover:shadow-md">
+              <div class="flex items-center justify-between">
+                <span class="font-medium text-gray-700">Cards</span>
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Content containers and layouts</p>
+            </a>
+            
+            <a href="/breadcrumbs" class="block p-4 bg-gray-50 hover:bg-green-50 rounded-lg transition-colors duration-200 group-hover:shadow-md">
+              <div class="flex items-center justify-between">
+                <span class="font-medium text-gray-700">Breadcrumbs</span>
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Navigation breadcrumb trails</p>
+            </a>
+            
+            <a href="/tabs" class="block p-4 bg-gray-50 hover:bg-green-50 rounded-lg transition-colors duration-200 group-hover:shadow-md">
+              <div class="flex items-center justify-between">
+                <span class="font-medium text-gray-700">Tabs</span>
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Tabbed content organization</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- Interactive Components -->
+        <div class="group">
+          <h3 class="text-lg font-semibold text-gray-800 mb-4 border-b border-gray-200 pb-2">Interactive Components</h3>
+          <div class="space-y-3">
+            <a href="/alerts" class="block p-4 bg-gray-50 hover:bg-purple-50 rounded-lg transition-colors duration-200 group-hover:shadow-md">
+              <div class="flex items-center justify-between">
+                <span class="font-medium text-gray-700">Alerts</span>
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Notifications and messages</p>
+            </a>
+            
+            <a href="/modals" class="block p-4 bg-gray-50 hover:bg-purple-50 rounded-lg transition-colors duration-200 group-hover:shadow-md">
+              <div class="flex items-center justify-between">
+                <span class="font-medium text-gray-700">Modals</span>
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Overlay dialogs and popups</p>
+            </a>
+            
+            <a href="/popovers" class="block p-4 bg-gray-50 hover:bg-purple-50 rounded-lg transition-colors duration-200 group-hover:shadow-md">
+              <div class="flex items-center justify-between">
+                <span class="font-medium text-gray-700">Popovers</span>
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Contextual tooltips and hints</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- Data Components -->
+        <div class="group">
+          <h3 class="text-lg font-semibold text-gray-800 mb-4 border-b border-gray-200 pb-2">Data Components</h3>
+          <div class="space-y-3">
+            <a href="/tables" class="block p-4 bg-gray-50 hover:bg-orange-50 rounded-lg transition-colors duration-200 group-hover:shadow-md">
+              <div class="flex items-center justify-between">
+                <span class="font-medium text-gray-700">Tables</span>
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Data tables with sorting and filtering</p>
+            </a>
+            
+            <a href="/accordions" class="block p-4 bg-gray-50 hover:bg-orange-50 rounded-lg transition-colors duration-200 group-hover:shadow-md">
+              <div class="flex items-center justify-between">
+                <span class="font-medium text-gray-700">Accordions</span>
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Collapsible content sections</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- Form Components -->
+        <div class="group">
+          <h3 class="text-lg font-semibold text-gray-800 mb-4 border-b border-gray-200 pb-2">Form Components</h3>
+          <div class="space-y-3">
+            <a href="/forms" class="block p-4 bg-gray-50 hover:bg-teal-50 rounded-lg transition-colors duration-200 group-hover:shadow-md">
+              <div class="flex items-center justify-between">
+                <span class="font-medium text-gray-700">Forms</span>
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Input fields and form controls</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- Feedback Components -->
+        <div class="group">
+          <h3 class="text-lg font-semibold text-gray-800 mb-4 border-b border-gray-200 pb-2">Feedback Components</h3>
+          <div class="space-y-3">
+            <a href="/toasts" class="block p-4 bg-gray-50 hover:bg-pink-50 rounded-lg transition-colors duration-200 group-hover:shadow-md">
+              <div class="flex items-center justify-between">
+                <span class="font-medium text-gray-700">Toasts</span>
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Toast notifications and messages</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Getting Started Section -->
+    <div class="mt-16 bg-white rounded-2xl shadow-xl p-8">
+      <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Getting Started</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-xl font-semibold text-gray-800 mb-4">How to Use This App</h3>
+          <ol class="space-y-3 text-gray-600">
+            <li class="flex items-start">
+              <span class="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">1</span>
+              <span>Browse through the component examples above to see different UI patterns in action</span>
+            </li>
+            <li class="flex items-start">
+              <span class="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">2</span>
+              <span>Click on any component link to view interactive examples and code snippets</span>
+            </li>
+            <li class="flex items-start">
+              <span class="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">3</span>
+              <span>Explore the Turbo Frame examples to see advanced Rails patterns</span>
+            </li>
+            <li class="flex items-start">
+              <span class="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">4</span>
+              <span>Use the source code as a reference for your own projects</span>
+            </li>
+          </ol>
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-semibold text-gray-800 mb-4">Technologies Used</h3>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+              <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center mr-3">
+                <span class="text-red-600 font-bold text-sm">R</span>
+              </div>
+              <span class="text-sm font-medium text-gray-700">Rails 8</span>
+            </div>
+            <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+              <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                <span class="text-blue-600 font-bold text-sm">T</span>
+              </div>
+              <span class="text-sm font-medium text-gray-700">Tailwind CSS</span>
+            </div>
+            <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+              <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                <span class="text-green-600 font-bold text-sm">S</span>
+              </div>
+              <span class="text-sm font-medium text-gray-700">Stimulus</span>
+            </div>
+            <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+              <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                <span class="text-purple-600 font-bold text-sm">T</span>
+              </div>
+              <span class="text-sm font-medium text-gray-700">Turbo</span>
+            </div>
+          </div>
+          <div class="mt-4 text-center">
+            <a href="/guidelines" class="text-blue-600 hover:text-blue-800 font-medium text-sm">
+              Learn How to Use →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center mt-16 py-8">
+      <p class="text-gray-500">
+        Built with ❤️ using Rails, Tailwind CSS, and Stimulus
+      </p>
+    </div>
+  </div>
+</div>
