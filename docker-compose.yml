@@ -1,0 +1,64 @@
+services:
+  tailview_web:
+    image: tailview_web:${IMAGE_TAG:-latest}
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        RAILS_ENV: production
+    restart: always
+    command: >
+      bash -c "rm -f /rails/tmp/pids/server.pid && 
+      bundle exec rails server -b 0.0.0.0 -p 3001 -e production"
+    env_file: .env.production
+    volumes:
+      - ./storage:/rails/storage
+      - ./public:/rails/public
+      - ./log:/rails/log
+      - tailview_tmp_data:/rails/tmp
+    ports:
+      - "3001:3001"
+    depends_on:
+      - tailview_postgres
+    stdin_open: true
+    tty: true
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/up"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    networks:
+      - tailview_frontend
+      - tailview_backend
+
+  tailview_postgres:
+    image: postgres:15
+    restart: unless-stopped
+    env_file: .env.production
+    environment:
+      - POSTGRES_DB=${TAILVIEW_POSTGRES_DB:-tailview_production}
+      - POSTGRES_USER=${TAILVIEW_POSTGRES_USER:-tailview_user}
+      - POSTGRES_PASSWORD=${TAILVIEW_POSTGRES_PASSWORD}
+    volumes:
+      - tailview_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${TAILVIEW_POSTGRES_USER:-tailview_user}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - tailview_backend
+
+networks:
+  tailview_frontend:
+    name: frontend
+    external: true
+  tailview_backend:
+    name: tailview_backend
+    internal: true
+
+volumes:
+  tailview_pg_data:
+  tailview_tmp_data:
+
