@@ -11,9 +11,10 @@ services:
       bash -c "rm -f /rails/tmp/pids/server.pid && 
       bundle exec rails server -b 0.0.0.0 -p 3001 -e production"
     env_file: .env.production
+    environment:
+      - RAILS_SERVE_STATIC_FILES=true
     volumes:
       - ./storage:/rails/storage
-      - ./public:/rails/public
       - ./log:/rails/log
       - tailview_tmp_data:/rails/tmp
     ports:
