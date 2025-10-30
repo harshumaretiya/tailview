@@ -12,10 +12,12 @@ services:
       bundle exec rails server -b 0.0.0.0 -p 3001 -e production"
     env_file: .env.production
     environment:
+      - RAILS_ENV=production
       - RAILS_SERVE_STATIC_FILES=true
     volumes:
       - ./storage:/rails/storage
       - ./log:/rails/log
+      - ./public:/rails/public
       - tailview_tmp_data:/rails/tmp
     ports:
       - "3001:3001"
