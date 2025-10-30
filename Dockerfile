@@ -49,6 +49,9 @@ RUN bundle exec rails tailwindcss:build
 # Precompile assets
 RUN bundle exec rails assets:precompile
 
+# Verify assets were created
+RUN ls -la public/assets/ && echo "✅ Assets compiled successfully"
+
 # Final stage for app image
 FROM base AS production
 
@@ -59,6 +62,9 @@ RUN groupadd --system --gid 1000 rails && \
 # Copy built artifacts: gems, application
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails
+
+# Verify assets were copied to production stage
+RUN ls -la /rails/public/assets/ && echo "✅ Assets present in production image"
 
 # Set proper ownership for all necessary directories
 RUN chown -R rails:rails /rails && \

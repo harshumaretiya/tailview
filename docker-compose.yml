@@ -17,7 +17,6 @@ services:
     volumes:
       - ./storage:/rails/storage
       - ./log:/rails/log
-      - ./public:/rails/public
       - tailview_tmp_data:/rails/tmp
     ports:
       - "3001:3001"
