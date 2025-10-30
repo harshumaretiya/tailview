@@ -60,7 +60,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Set host to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: ENV.fetch("RAILS_HOST", "tailview.botsyncai.com"), protocol: "https" }
+  config.action_mailer.default_url_options = { host: ENV.fetch("RAILS_HOST", "tailview.work"), protocol: "https" }
 
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
   # config.action_mailer.smtp_settings = {
@@ -83,9 +83,10 @@ Rails.application.configure do
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   config.hosts = [
-    "tailview.botsyncai.com",
+    "tailview.work",
+    "www.tailview.work",
     "localhost",
-    /.*\.botsyncai\.com/ # Allow requests from subdomains
+    /.*\.tailview\.work/ # Allow requests from subdomains
   ]
   
   # Skip DNS rebinding protection for the default health check endpoint.
