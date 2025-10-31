@@ -1,0 +1,81 @@
+<%# Shopping Cart Drawer with Turbo Frame %>
+<div class="relative" data-controller="drawer" data-action="keydown@window->drawer#onKeydown">
+  <!-- Open button with cart count -->
+  <button type="button"
+          class="relative inline-flex items-center gap-2 rounded-md bg-indigo-600 px-4 py-2 text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          aria-controls="cart-drawer"
+          data-action="click->drawer#open">
+    <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+    </svg>
+    Shopping Cart
+    <span id="cart-count" class="absolute -top-1 -right-1 flex size-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">
+      <%= cart_items&.length || 0 %>
+    </span>
+  </button>
+
+  <!-- Backdrop -->
+  <div class="fixed inset-0 z-40 bg-gray-500/75 transition-opacity duration-500 ease-in-out opacity-0 pointer-events-none hidden"
+       data-drawer-target="overlay"
+       data-action="click->drawer#backdrop">
+  </div>
+
+  <!-- Dialog container -->
+  <div tabindex="0" class="fixed inset-0 z-50 overflow-hidden focus:outline-none hidden pl-10 sm:pl-16"
+       data-drawer-target="dialogContainer">
+    <!-- Panel -->
+    <div class="relative ml-auto block h-full max-w-md w-full transform transition duration-500 ease-in-out translate-x-full sm:duration-700 bg-white hidden"
+         id="cart-drawer"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="cart-drawer-title"
+         data-drawer-target="panel"
+         data-drawer-open-class="translate-x-0"
+         data-drawer-closed-class="translate-x-full"
+         aria-hidden="true">
+      
+      <!-- Close button -->
+      <div class="absolute top-0 left-0 -ml-8 flex pt-4 pr-2 duration-500 ease-in-out opacity-0 sm:-ml-10 sm:pr-4"
+           data-drawer-target="closeButtonContainer">
+        <button type="button"
+                class="relative rounded-md text-gray-300 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                aria-label="Close panel"
+                data-action="click->drawer#close">
+          <span class="absolute -inset-2.5"></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" class="size-6">
+            <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Panel content -->
+      <div class="relative h-full overflow-y-auto bg-white p-6">
+        <div class="flex flex-col h-full">
+          <header class="border-b pb-4 mb-4">
+            <h2 id="cart-drawer-title" class="text-xl font-semibold text-gray-900">Shopping Cart</h2>
+            <p class="text-sm text-gray-500 mt-1">
+              <span id="cart-item-count"><%= cart_items&.length || 0 %></span> items
+            </p>
+          </header>
+
+          <!-- Turbo Frame for cart items -->
+          <turbo-frame id="cart-items-frame" class="flex-1 overflow-y-auto">
+            <%= render partial: 'cart_items', locals: { cart_items: cart_items || [] } %>
+          </turbo-frame>
+
+          <!-- Footer with total and checkout -->
+          <footer class="border-t pt-4 mt-4 space-y-4">
+            <div class="flex justify-between text-lg font-semibold">
+              <span>Total:</span>
+              <span id="cart-total">$<%= (cart_items || []).sum { |item| (item['price'] || 0) * (item['quantity'] || 1) }.round(2) %></span>
+            </div>
+            <button type="button" class="w-full rounded-md bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              Checkout
+            </button>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

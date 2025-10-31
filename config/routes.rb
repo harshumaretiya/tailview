@@ -33,6 +33,18 @@ Rails.application.routes.draw do
   get '/popovers', to: 'popovers#index'
   get '/breadcrumbs', to: 'breadcrumbs#index'
   get '/modals', to: 'modals#index'
+  get '/drawers', to: 'drawers#index'
+  # Interactive Drawer Examples
+  get '/drawers/cart', to: 'drawers#cart', as: :drawers_cart
+  get '/drawers/cart_items', to: 'drawers#cart_items', as: :drawers_cart_items
+  post '/drawers/add_to_cart', to: 'drawers#add_to_cart', as: :drawers_add_to_cart
+  delete '/drawers/remove_from_cart/:id', to: 'drawers#remove_from_cart', as: :drawers_remove_from_cart
+  get '/drawers/notifications', to: 'drawers#notifications', as: :drawers_notifications
+  get '/drawers/notifications_list', to: 'drawers#notifications_list', as: :drawers_notifications_list
+  post '/drawers/mark_read/:id', to: 'drawers#mark_read', as: :drawers_mark_read
+  post '/drawers/add_notification', to: 'drawers#add_notification', as: :drawers_add_notification
+  get '/drawers/user_form', to: 'drawers#user_form', as: :drawers_user_form
+  post '/drawers/submit_form', to: 'drawers#submit_form', as: :drawers_submit_form
   get '/forms', to: 'forms#index'
   get '/workspace', to: 'workspaces#index'
   get '/dashboard', to: 'dashboards#index'

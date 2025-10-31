@@ -1,0 +1,87 @@
+<%# Minimal shadcn-style drawer with searchable role combobox %>
+<div class="relative" data-controller="drawer" data-action="keydown@window->drawer#onKeydown">
+  <button type="button"
+          class="inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium text-gray-900 bg-white hover:bg-gray-50"
+          aria-controls="minimal-user-form"
+          data-action="click->drawer#open">
+    Open Minimal Form
+  </button>
+
+  <div class="fixed inset-0 z-40 bg-black/30 opacity-0 pointer-events-none transition-opacity duration-200 hidden"
+       data-drawer-target="overlay"
+       data-action="click->drawer#backdrop"></div>
+
+  <div tabindex="0" class="fixed inset-0 z-50 overflow-hidden focus:outline-none hidden"
+       data-drawer-target="dialogContainer">
+    <section id="minimal-user-form"
+             role="dialog" aria-modal="true" aria-labelledby="minimal-user-form-title"
+             class="relative ml-auto h-full w-full max-w-md translate-x-full bg-white shadow-xl transition-transform duration-300 hidden"
+             data-drawer-target="panel"
+             data-drawer-open-class="translate-x-0"
+             data-drawer-closed-class="translate-x-full"
+             aria-hidden="true">
+
+      <header class="flex items-center justify-between border-b px-4 py-3">
+        <h2 id="minimal-user-form-title" class="text-sm font-semibold text-gray-900">Quick Edit</h2>
+        <button type="button" class="rounded-md p-2 text-gray-500 hover:bg-gray-100" data-action="click->drawer#close" aria-label="Close">
+          ✕
+        </button>
+      </header>
+
+      <div class="p-4">
+        <%= form_with url: drawers_submit_form_path, method: :post,
+                      data: { turbo_frame: "_top" },
+                      class: "space-y-4" do |f| %>
+
+          <div>
+            <%= f.label :name, "Name", class: "mb-1 block text-xs font-medium text-gray-700" %>
+            <%= f.text_field :name, value: user['name'],
+                             class: "w-full rounded-md border px-3 py-2 text-sm",
+                             placeholder: "Jane Doe" %>
+          </div>
+
+          <div>
+            <%= f.label :email, "Email", class: "mb-1 block text-xs font-medium text-gray-700" %>
+            <%= f.email_field :email, value: user['email'],
+                               class: "w-full rounded-md border px-3 py-2 text-sm",
+                               placeholder: "jane@example.com" %>
+          </div>
+
+          <div>
+            <label class="mb-1 block text-xs font-medium text-gray-700">Role</label>
+            <div class="relative" data-controller="combobox" data-combobox-open-value="false">
+              <input type="text" autocomplete="off"
+                     class="w-full rounded-md border px-3 py-2 text-sm"
+                     placeholder="Search role..."
+                     data-combobox-target="input"
+                     data-action="input->combobox#filter keydown->combobox#onKeydown focus->combobox#open">
+              <%= f.hidden_field :role, value: (user['role'] || 'user'), data: { combobox_target: 'hidden' } %>
+
+              <div class="absolute z-10 mt-1 w-full rounded-md border bg-white shadow-lg max-h-48 overflow-auto" data-combobox-target="list" hidden>
+                <% [['User','user'],['Admin','admin'],['Moderator','moderator'],['Editor','editor'],['Viewer','viewer']].each do |(label,val)| %>
+                  <button type="button"
+                          class="block w-full cursor-pointer px-3 py-2 text-left text-sm hover:bg-gray-100"
+                          data-combobox-target="option"
+                          data-action="click->combobox#clickOption"
+                          data-value="<%= val %>"
+                          aria-selected="<%= (user['role']||'user')==val %>">
+                    <%= label %>
+                  </button>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 pt-2">
+            <%= f.submit "Save", class: "inline-flex items-center rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:bg-black/90" %>
+            <button type="button" class="rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100" data-action="click->drawer#close">Cancel</button>
+          </div>
+
+        <% end %>
+      </div>
+
+    </section>
+  </div>
+</div>
+
+

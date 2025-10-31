@@ -1,0 +1,92 @@
+<div class="space-y-12">
+  <div>
+    <h1 class="mb-2 text-2xl font-bold text-gray-900">Drawers</h1>
+    <p class="text-gray-600">Examples of slide-over drawers with Hotwire, Turbo Frames, Turbo Streams, and Stimulus.</p>
+  </div>
+
+  <!-- Interactive Examples Section -->
+  <div class="rounded-lg border bg-gradient-to-br from-blue-50 to-indigo-50 p-6">
+    <h2 class="mb-4 text-xl font-semibold text-gray-900">Interactive Examples with Hotwire & Turbo</h2>
+    <p class="mb-6 text-sm text-gray-600">These examples demonstrate real-time updates using Turbo Frames and Turbo Streams.</p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <a href="<%= drawers_cart_path %>" class="block p-6 bg-white rounded-lg border hover:shadow-lg transition-shadow">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="flex-shrink-0 w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
+            <svg class="size-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </div>
+          <h3 class="font-semibold text-gray-900">Shopping Cart</h3>
+        </div>
+        <p class="text-sm text-gray-600">Add/remove items with Turbo Frames & Streams</p>
+      </a>
+
+      <a href="<%= drawers_notifications_path %>" class="block p-6 bg-white rounded-lg border hover:shadow-lg transition-shadow">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="flex-shrink-0 w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+            <svg class="size-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            </svg>
+          </div>
+          <h3 class="font-semibold text-gray-900">Notifications</h3>
+        </div>
+        <p class="text-sm text-gray-600">Real-time notifications with Turbo Streams</p>
+      </a>
+
+      <a href="<%= drawers_user_form_path %>" class="block p-6 bg-white rounded-lg border hover:shadow-lg transition-shadow">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="flex-shrink-0 w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+            <svg class="size-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+          </div>
+          <h3 class="font-semibold text-gray-900">Edit Form</h3>
+        </div>
+        <p class="text-sm text-gray-600">Form submission with Turbo Frames</p>
+      </a>
+    </div>
+  </div>
+
+  <!-- Image Details Drawer Example -->
+  <div class="rounded-lg border bg-white p-6">
+    <h2 class="mb-4 text-lg font-semibold">Image Details Drawer</h2>
+    <p class="mb-4 text-sm text-gray-600">A rich drawer example with image, metadata, description, and sharing features. Converted from Tailwind Plus Elements web components to Rails/Stimulus.</p>
+    <%= render partial: "image_details_drawer", locals: { id: "image-details-drawer", open_button_text: "Open drawer" } %>
+  </div>
+
+  <div class="grid grid-cols-1 gap-8 xl:grid-cols-2">
+    <div class="rounded-lg border bg-white p-6">
+      <h2 class="mb-4 text-lg font-semibold">Right Drawer (default)</h2>
+      <% content_right = capture do %>
+        <p class="text-sm text-gray-600">This drawer slides in from the right and traps focus.</p>
+        <div class="mt-4 space-y-3">
+          <label class="block text-sm font-medium text-gray-700">Name</label>
+          <input type="text" class="w-full rounded-md border px-3 py-2" placeholder="Jane Doe" />
+          <label class="block text-sm font-medium text-gray-700">Email</label>
+          <input type="email" class="w-full rounded-md border px-3 py-2" placeholder="jane@example.com" />
+        </div>
+      <% end %>
+      <%= render partial: "drawer", locals: { id: "drawer-right", side: "right", title: "Account Settings", open_button_text: "Open Right Drawer", content: content_right } %>
+    </div>
+
+    <div class="rounded-lg border bg-white p-6">
+      <h2 class="mb-4 text-lg font-semibold">Left Drawer</h2>
+      <% content_left = capture do %>
+        <p class="text-sm text-gray-600">Great for filter panels.</p>
+        <div class="mt-4 space-y-2">
+          <label class="flex items-center gap-2 text-sm">
+            <input type="checkbox" class="rounded" /> In stock only
+          </label>
+          <label class="flex items-center gap-2 text-sm">
+            <input type="checkbox" class="rounded" /> Free shipping
+          </label>
+        </div>
+      <% end %>
+      <%= render partial: "drawer", locals: { id: "drawer-left", side: "left", title: "Filters", open_button_text: "Open Left Drawer", content: content_left } %>
+    </div>
+
+  </div>
+</div>
+
+

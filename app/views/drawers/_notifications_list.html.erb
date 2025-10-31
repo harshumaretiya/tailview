@@ -1,0 +1,43 @@
+<%# Notifications list partial for Turbo Frame %>
+<% if notifications.empty? %>
+  <div class="flex flex-col items-center justify-center h-full text-center py-12">
+    <svg class="size-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+    </svg>
+    <p class="text-gray-500 text-lg font-medium">No notifications</p>
+    <p class="text-gray-400 text-sm mt-1">You're all caught up!</p>
+  </div>
+<% else %>
+  <div class="space-y-2">
+    <% notifications.each do |notification| %>
+      <div class="p-4 border rounded-lg <%= 'bg-indigo-50 border-indigo-200' unless notification['read'] %> hover:bg-gray-50 transition-colors"
+           id="notification-<%= notification['id'] %>">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2">
+              <h3 class="text-sm font-medium text-gray-900"><%= notification['title'] %></h3>
+              <% unless notification['read'] %>
+                <span class="flex size-2 rounded-full bg-indigo-600"></span>
+              <% end %>
+            </div>
+            <p class="text-sm text-gray-600 mt-1"><%= notification['message'] %></p>
+            <p class="text-xs text-gray-400 mt-2">
+              <%= time_ago_in_words(notification['created_at'] || Time.current) %> ago
+            </p>
+          </div>
+          <% unless notification['read'] %>
+            <%= form_with url: drawers_mark_read_path(notification['id']), method: :post,
+                        data: { turbo_frame: "_top" },
+                        class: "flex-shrink-0" do |f| %>
+              <%= f.button type: "submit", 
+                          class: "text-xs text-indigo-600 hover:text-indigo-700 font-medium" do %>
+                Mark read
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+

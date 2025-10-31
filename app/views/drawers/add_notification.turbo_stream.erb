@@ -1,0 +1,33 @@
+<% notification = session[:notifications]&.first %>
+<% unread_count = (session[:notifications] || []).count { |n| !n['read'] } %>
+
+<%= turbo_stream.update "unread-count" do %>
+  <%= unread_count %>
+<% end %>
+
+<%= turbo_stream.prepend "notifications-frame" do %>
+  <div class="p-4 border rounded-lg bg-indigo-50 border-indigo-200 hover:bg-gray-50 transition-colors"
+       id="notification-<%= notification['id'] %>">
+    <div class="flex items-start justify-between gap-3">
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center gap-2">
+          <h3 class="text-sm font-medium text-gray-900"><%= notification['title'] %></h3>
+          <span class="flex size-2 rounded-full bg-indigo-600"></span>
+        </div>
+        <p class="text-sm text-gray-600 mt-1"><%= notification['message'] %></p>
+        <p class="text-xs text-gray-400 mt-2">
+          just now
+        </p>
+      </div>
+      <%= form_with url: drawers_mark_read_path(notification['id']), method: :post,
+                  data: { turbo_frame: "_top" },
+                  class: "flex-shrink-0" do |f| %>
+        <%= f.button type: "submit", 
+                    class: "text-xs text-indigo-600 hover:text-indigo-700 font-medium" do %>
+          Mark read
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+

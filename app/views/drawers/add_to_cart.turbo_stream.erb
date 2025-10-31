@@ -1,0 +1,68 @@
+<% cart_items = session[:cart_items] || [] %>
+<% item = cart_items.first %>
+<% was_empty = cart_items.length == 1 %>
+
+<%= turbo_stream.update "cart-count" do %>
+  <%= cart_items.length %>
+<% end %>
+
+<%= turbo_stream.update "cart-item-count" do %>
+  <%= cart_items.length %> items
+<% end %>
+
+<%= turbo_stream.update "cart-total" do %>
+  $<%= cart_items.sum { |item| (item['price'] || 0) * (item['quantity'] || 1) }.round(2) %>
+<% end %>
+
+<% if was_empty %>
+  <%= turbo_stream.update "cart-items-frame" do %>
+    <div id="cart-items-list" class="space-y-4">
+      <div class="flex items-start gap-4 p-4 border rounded-lg hover:bg-gray-50 transition-colors"
+           id="cart-item-<%= item['id'] %>">
+        <div class="flex-shrink-0 w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
+          <svg class="size-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h3 class="text-sm font-medium text-gray-900"><%= item['name'] %></h3>
+          <p class="text-sm text-gray-500 mt-1">Quantity: <%= item['quantity'] || 1 %></p>
+          <p class="text-sm font-semibold text-gray-900 mt-2">$<%= item['price'] || 0 %></p>
+        </div>
+        <%= button_to drawers_remove_from_cart_path(item['id']), 
+                    method: :delete,
+                    class: "flex-shrink-0 p-2 text-gray-400 hover:text-red-600 transition-colors",
+                    data: { turbo_frame: "_top" } do %>
+          <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <%= turbo_stream.prepend "cart-items-list" do %>
+  <div class="flex items-start gap-4 p-4 border rounded-lg hover:bg-gray-50 transition-colors"
+       id="cart-item-<%= item['id'] %>">
+    <div class="flex-shrink-0 w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
+      <svg class="size-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+      </svg>
+    </div>
+    <div class="flex-1 min-w-0">
+      <h3 class="text-sm font-medium text-gray-900"><%= item['name'] %></h3>
+      <p class="text-sm text-gray-500 mt-1">Quantity: <%= item['quantity'] || 1 %></p>
+      <p class="text-sm font-semibold text-gray-900 mt-2">$<%= item['price'] || 0 %></p>
+    </div>
+    <%= button_to drawers_remove_from_cart_path(item['id']), 
+                  method: :delete,
+                  class: "flex-shrink-0 p-2 text-gray-400 hover:text-red-600 transition-colors",
+                  data: { turbo_frame: "_top" } do %>
+      <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    <% end %>
+  </div>
+  <% end %>
+<% end %>
+

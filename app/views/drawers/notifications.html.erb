@@ -1,0 +1,28 @@
+<div class="max-w-4xl mx-auto p-6">
+  <h1 class="text-2xl font-bold text-gray-900 mb-6">Notifications Drawer Example</h1>
+  
+  <div class="bg-white rounded-lg border p-6 mb-6">
+    <p class="text-gray-600 mb-4">
+      This drawer uses Turbo Streams to add notifications in real-time and update the list
+      without page reloads. Mark notifications as read to see the unread count update instantly.
+    </p>
+    <%= render partial: 'notifications_drawer', locals: { notifications: @notifications } %>
+  </div>
+
+  <div class="bg-gray-50 rounded-lg border p-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Test Notifications</h2>
+    <div class="space-y-2">
+      <% ['New Message', 'Order Shipped', 'Payment Received', 'Friend Request'].each do |title| %>
+        <%= form_with url: drawers_add_notification_path, method: :post,
+                    data: { turbo_frame: "_top" },
+                    class: "inline-block" do |f| %>
+          <%= f.hidden_field :title, value: title %>
+          <%= f.hidden_field :message, value: "You have a new #{title.downcase}" %>
+          <%= f.submit "Send: #{title}",
+                      class: "mr-2 mb-2 rounded-md bg-gray-600 px-3 py-2 text-sm text-white hover:bg-gray-700" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+

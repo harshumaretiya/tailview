@@ -1,0 +1,26 @@
+<%= turbo_stream.remove "cart-item-#{params[:id]}" %>
+
+<%= turbo_stream.update "cart-count" do %>
+  <%= (session[:cart_items] || []).length %>
+<% end %>
+
+<%= turbo_stream.update "cart-item-count" do %>
+  <%= (session[:cart_items] || []).length %> items
+<% end %>
+
+<%= turbo_stream.update "cart-total" do %>
+  $<%= (session[:cart_items] || []).sum { |item| (item['price'] || 0) * (item['quantity'] || 1) }.round(2) %>
+<% end %>
+
+<% if (session[:cart_items] || []).empty? %>
+  <%= turbo_stream.update "cart-items-frame" do %>
+    <div class="flex flex-col items-center justify-center h-full text-center py-12">
+      <svg class="size-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+      </svg>
+      <p class="text-gray-500 text-lg font-medium">Your cart is empty</p>
+      <p class="text-gray-400 text-sm mt-1">Add some products to get started</p>
+    </div>
+  <% end %>
+<% end %>
+

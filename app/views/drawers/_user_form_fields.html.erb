@@ -1,0 +1,124 @@
+<%# User form fields partial for Turbo Frame with enhanced UX %>
+<%= form_with url: drawers_submit_form_path, method: :post,
+              data: { 
+                controller: "form-validation",
+                form_validation_validate_on_blur_value: true,
+                action: "submit->form-validation#validate turbo:submit-end->form-validation#reset"
+              },
+              class: "space-y-6" do |f| %>
+
+  <!-- Avatar Section -->
+  <div class="flex flex-col items-center pb-6 border-b">
+    <div class="relative">
+      <div class="size-24 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white text-3xl font-bold shadow-lg">
+        <%= (user['name']&.first&.upcase || 'U') %>
+      </div>
+      <button type="button" class="absolute bottom-0 right-0 p-2 bg-white rounded-full shadow-md border-2 border-gray-200 hover:border-blue-400 transition-colors">
+        <svg class="size-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      </button>
+    </div>
+    <p class="mt-3 text-sm text-gray-600">Profile Photo</p>
+  </div>
+
+  <!-- Name Field -->
+  <div>
+    <div class="flex items-center justify-between mb-2">
+      <%= f.label :name, "Full Name", class: "block text-sm font-medium text-gray-700" %>
+      <span class="text-xs text-gray-400" data-form-validation-target="charCount" data-field="name"><%= (user['name'] || '').length %>/50</span>
+    </div>
+    <div class="relative">
+      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+        <svg class="size-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+      </div>
+      <%= f.text_field :name, 
+                       value: user['name'],
+                       maxlength: 50,
+                       data: { form_validation_target: "field" },
+                       class: "w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all",
+                       placeholder: "Enter your full name" %>
+    </div>
+    <p class="mt-1 text-xs text-red-600 hidden" data-form-validation-target="error" data-field="name"></p>
+    <p class="mt-1 text-xs text-gray-500">This is how your name will appear to others</p>
+  </div>
+
+  <!-- Email Field -->
+  <div>
+    <%= f.label :email, "Email Address", class: "block text-sm font-medium text-gray-700 mb-2" %>
+    <div class="relative">
+      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+        <svg class="size-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+      </div>
+      <%= f.email_field :email,
+                        value: user['email'],
+                        data: { form_validation_target: "field" },
+                        class: "w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all",
+                        placeholder: "your.email@example.com" %>
+    </div>
+    <p class="mt-1 text-xs text-red-600 hidden" data-form-validation-target="error" data-field="email"></p>
+    <p class="mt-1 text-xs text-gray-500">We'll never share your email with anyone else</p>
+  </div>
+
+  <!-- Role Field (searchable combobox) -->
+  <div>
+    <%= f.label :role, "Role", class: "block text-sm font-medium text-gray-700 mb-2" %>
+    <div class="relative" data-controller="combobox" data-combobox-open-value="false">
+      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
+        <svg class="size-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+      </div>
+      <input type="text"
+             autocomplete="off"
+             class="w-full pl-10 pr-10 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+             placeholder="Search role..."
+             value="<%= (user['role'] || 'user').to_s.capitalize %>"
+             data-combobox-target="input"
+             data-action="input->combobox#filter keydown->combobox#onKeydown focus->combobox#open">
+      <%= f.hidden_field :role, value: (user['role'] || 'user'), data: { combobox_target: 'hidden' } %>
+      <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+        <svg class="size-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+
+      <div class="absolute z-10 mt-1 w-full rounded-md border bg-white shadow-lg max-h-56 overflow-auto" data-combobox-target="list" hidden>
+        <% [['User','user'],['Admin','admin'],['Moderator','moderator'],['Editor','editor'],['Viewer','viewer']].each do |(label,val)| %>
+          <button type="button"
+                  class="block w-full cursor-pointer px-3 py-2 text-left text-sm hover:bg-gray-100"
+                  data-combobox-target="option"
+                  data-action="click->combobox#clickOption"
+                  data-value="<%= val %>"
+                  aria-selected="<%= (user['role']||'user')==val %>">
+            <%= label %>
+          </button>
+        <% end %>
+      </div>
+    </div>
+    <p class="mt-1 text-xs text-gray-500">Your role determines what actions you can perform</p>
+  </div>
+
+  <!-- Status Indicator -->
+  <div id="form-status" class="hidden">
+    <!-- Status messages will appear here -->
+  </div>
+
+  <!-- Form Actions -->
+  <div class="flex items-center gap-3 pt-6 border-t">
+    <%= f.submit "Save Changes",
+                data: { form_validation_target: "submit" },
+                class: "flex-1 inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-3 text-white font-medium hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all shadow-sm hover:shadow-md" %>
+    <button type="button"
+            data-action="click->drawer#close"
+            class="rounded-lg px-6 py-3 text-gray-700 font-medium hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all">
+      Cancel
+    </button>
+  </div>
+<% end %>
+

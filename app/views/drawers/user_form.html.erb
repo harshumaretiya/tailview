@@ -1,0 +1,36 @@
+<div class="max-w-4xl mx-auto p-6">
+  <h1 class="text-2xl font-bold text-gray-900 mb-6">User Form Drawer Example</h1>
+  
+  <div class="bg-white rounded-lg border p-6 mb-6">
+    <p class="text-gray-600 mb-4">
+      This enhanced form drawer features real-time validation, character counters, loading states,
+      and beautiful UX improvements. All updates happen instantly without page reloads using Turbo Frames.
+    </p>
+    <%= render partial: 'user_form_drawer', locals: { user: @user } %>
+  </div>
+
+  <div class="bg-white rounded-lg border p-6 mb-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-3">Minimal Form (shadcn-style)</h2>
+    <p class="text-gray-600 mb-4">A compact drawer with a searchable role dropdown.</p>
+    <%= render partial: 'minimal_user_form_drawer', locals: { user: @user } %>
+  </div>
+
+  <div class="bg-gray-50 rounded-lg border p-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Current Profile</h2>
+    <dl class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <dt class="text-sm font-medium text-gray-500">Name</dt>
+        <dd class="mt-1 text-sm text-gray-900"><%= @user['name'].presence || 'Not set' %></dd>
+      </div>
+      <div>
+        <dt class="text-sm font-medium text-gray-500">Email</dt>
+        <dd class="mt-1 text-sm text-gray-900"><%= @user['email'].presence || 'Not set' %></dd>
+      </div>
+      <div>
+        <dt class="text-sm font-medium text-gray-500">Role</dt>
+        <dd class="mt-1 text-sm text-gray-900 capitalize"><%= @user['role'] || 'user' %></dd>
+      </div>
+    </dl>
+  </div>
+</div>
+

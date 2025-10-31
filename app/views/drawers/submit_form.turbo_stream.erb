@@ -1,0 +1,33 @@
+<%= turbo_stream.update "user-form-frame" do %>
+  <%= render partial: 'user_form_fields', locals: { user: session[:user] || { 'name' => '', 'email' => '', 'role' => 'user' } } %>
+<% end %>
+
+<%= turbo_stream.update "form-status" do %>
+  <div class="rounded-lg bg-green-50 p-4 border border-green-200 animate-slide-down" style="display: block !important;">
+    <div class="flex items-start">
+      <div class="flex-shrink-0">
+        <div class="flex items-center justify-center size-8 rounded-full bg-green-100">
+          <svg class="size-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </div>
+      </div>
+      <div class="ml-3 flex-1">
+        <h3 class="text-sm font-semibold text-green-800">Profile Updated!</h3>
+        <p class="mt-1 text-sm text-green-700">Your changes have been saved successfully.</p>
+      </div>
+      <button type="button" 
+              onclick="this.closest('[id=\"form-status\"]').classList.add('hidden')"
+              class="ml-4 flex-shrink-0 text-green-600 hover:text-green-800">
+        <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+<% end %>
+
+<%= turbo_stream.after "user-form-drawer-title" do %>
+  <div id="form-status" class="mt-4 hidden"></div>
+<% end %>
+

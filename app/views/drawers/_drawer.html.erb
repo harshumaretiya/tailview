@@ -1,0 +1,68 @@
+<%#
+  Locals:
+  - id: unique id for the drawer (String)
+  - side: one of "right", "left", "top", "bottom" (String)
+  - title: header text (String, optional)
+  - overlay: whether to show overlay/backdrop (Boolean, default true)
+  - open_button_text: label for the trigger button (String)
+  - content: block content to render in the drawer body (String, optional)
+%>
+
+<% side ||= "right" %>
+<% overlay = true if overlay.nil? %>
+<% content ||= "" %>
+
+<div class="relative" data-controller="drawer" data-action="keydown@window->drawer#onKeydown">
+  <button type="button"
+          class="inline-flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-white shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          aria-controls="<%= id %>"
+          data-action="click->drawer#open">
+    <%= open_button_text || "Open Drawer" %>
+  </button>
+
+  <% if overlay %>
+    <div class="fixed inset-0 z-40 bg-black/40 opacity-0 pointer-events-none transition-opacity duration-200"
+         data-drawer-target="overlay"
+         data-action="click->drawer#backdrop"
+         hidden>
+    </div>
+  <% end %>
+
+  <%# Panel positioning and transitions by side %>
+  <% panel_base = "fixed z-50 bg-white shadow-xl transition-transform duration-300 will-change-transform" %>
+  <% panel_pos = case side
+      when "left" then "inset-y-0 left-0 w-80 -translate-x-full"
+      when "right" then "inset-y-0 right-0 w-80 translate-x-full"
+      when "top" then "inset-x-0 top-0 h-80 -translate-y-full"
+      when "bottom" then "inset-x-0 bottom-0 h-80 translate-y-full"
+      else "inset-y-0 right-0 w-80 translate-x-full"
+    end %>
+
+  <section id="<%= id %>"
+           role="dialog"
+           aria-modal="true"
+           aria-labelledby="<%= id %>-title"
+           class="<%= [panel_base, panel_pos].join(' ') %>"
+           data-drawer-target="panel"
+           data-drawer-open-class="<%= %w[left right].include?(side) ? 'translate-x-0' : 'translate-y-0' %>"
+           data-drawer-closed-class="<%= %w[left].include?(side) ? '-translate-x-full' : %w[right].include?(side) ? 'translate-x-full' : %w[top].include?(side) ? '-translate-y-full' : 'translate-y-full' %>">
+    <header class="flex items-center justify-between border-b px-4 py-3">
+      <h2 id="<%= id %>-title" class="text-base font-semibold text-gray-900"><%= title || 'Drawer' %></h2>
+      <button type="button"
+              class="rounded-md p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              aria-label="Close drawer"
+              data-action="click->drawer#close">
+        ✕
+      </button>
+    </header>
+    <div class="p-4">
+      <%= content.html_safe %>
+    </div>
+    <footer class="border-t px-4 py-3 flex justify-end gap-2">
+      <button type="button" class="rounded-md px-3 py-2 text-gray-700 hover:bg-gray-100" data-action="click->drawer#close">Cancel</button>
+      <button type="button" class="rounded-md bg-blue-600 px-3 py-2 text-white hover:bg-blue-700">Confirm</button>
+    </footer>
+  </section>
+</div>
+
+

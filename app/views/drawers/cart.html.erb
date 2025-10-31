@@ -1,0 +1,30 @@
+<div class="max-w-4xl mx-auto p-6">
+  <h1 class="text-2xl font-bold text-gray-900 mb-6">Shopping Cart Drawer Example</h1>
+  
+  <div class="bg-white rounded-lg border p-6 mb-6">
+    <p class="text-gray-600 mb-4">
+      This drawer demonstrates Turbo Frames and Turbo Streams for real-time cart updates.
+      Add products to the cart and watch it update instantly without page reloads.
+    </p>
+    <%= render partial: 'cart_drawer', locals: { cart_items: @cart_items } %>
+  </div>
+
+  <div class="bg-gray-50 rounded-lg border p-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Add Products to Cart</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <% ['Wireless Headphones', 'Smart Watch', 'Laptop Stand'].each_with_index do |product, index| %>
+        <%= form_with url: drawers_add_to_cart_path, method: :post,
+                    data: { turbo_frame: "_top" },
+                    class: "bg-white p-4 rounded-lg border" do |f| %>
+          <%= f.hidden_field :name, value: product %>
+          <%= f.hidden_field :price, value: rand(20..150) %>
+          <h3 class="font-medium text-gray-900 mb-2"><%= product %></h3>
+          <p class="text-sm text-gray-500 mb-3">Click to add to cart</p>
+          <%= f.submit "Add to Cart",
+                      class: "w-full rounded-md bg-indigo-600 px-3 py-2 text-sm text-white hover:bg-indigo-700" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+

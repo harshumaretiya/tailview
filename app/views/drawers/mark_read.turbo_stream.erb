@@ -1,0 +1,26 @@
+<% notification = session[:notifications]&.find { |n| n['id'] == params[:id] } %>
+<% unread_count = (session[:notifications] || []).count { |n| !n['read'] } %>
+
+<%= turbo_stream.update "unread-count" do %>
+  <%= unread_count %>
+<% end %>
+
+<% if notification %>
+  <%= turbo_stream.replace "notification-#{params[:id]}" do %>
+    <div class="p-4 border rounded-lg hover:bg-gray-50 transition-colors"
+         id="notification-<%= notification['id'] %>">
+      <div class="flex items-start justify-between gap-3">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2">
+            <h3 class="text-sm font-medium text-gray-900"><%= notification['title'] %></h3>
+          </div>
+          <p class="text-sm text-gray-600 mt-1"><%= notification['message'] %></p>
+          <p class="text-xs text-gray-400 mt-2">
+            <%= time_ago_in_words(notification['created_at'] || Time.current) %> ago
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+

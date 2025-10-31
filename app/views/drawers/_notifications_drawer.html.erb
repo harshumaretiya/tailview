@@ -1,0 +1,84 @@
+<%# Notifications Drawer with Turbo Frame %>
+<div class="relative" data-controller="drawer" data-action="keydown@window->drawer#onKeydown">
+  <!-- Open button with notification badge -->
+  <% unread_count = notifications.count { |n| !n['read'] } %>
+  <button type="button"
+          class="relative inline-flex items-center gap-2 rounded-md bg-gray-100 px-4 py-2 text-gray-900 shadow hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500"
+          aria-controls="notifications-drawer"
+          data-action="click->drawer#open">
+    <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+    </svg>
+    Notifications
+    <% if unread_count > 0 %>
+      <span class="absolute -top-1 -right-1 flex size-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">
+        <%= unread_count %>
+      </span>
+    <% end %>
+  </button>
+
+  <!-- Backdrop -->
+  <div class="fixed inset-0 z-40 bg-gray-500/75 transition-opacity duration-500 ease-in-out opacity-0 pointer-events-none hidden"
+       data-drawer-target="overlay"
+       data-action="click->drawer#backdrop">
+  </div>
+
+  <!-- Dialog container -->
+  <div tabindex="0" class="fixed inset-0 z-50 overflow-hidden focus:outline-none hidden pl-10 sm:pl-16"
+       data-drawer-target="dialogContainer">
+    <!-- Panel -->
+    <div class="relative ml-auto block h-full max-w-md w-full transform transition duration-500 ease-in-out translate-x-full sm:duration-700 bg-white hidden"
+         id="notifications-drawer"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="notifications-drawer-title"
+         data-drawer-target="panel"
+         data-drawer-open-class="translate-x-0"
+         data-drawer-closed-class="translate-x-full"
+         aria-hidden="true">
+      
+      <!-- Close button -->
+      <div class="absolute top-0 left-0 -ml-8 flex pt-4 pr-2 duration-500 ease-in-out opacity-0 sm:-ml-10 sm:pr-4"
+           data-drawer-target="closeButtonContainer">
+        <button type="button"
+                class="relative rounded-md text-gray-300 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                aria-label="Close panel"
+                data-action="click->drawer#close">
+          <span class="absolute -inset-2.5"></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" class="size-6">
+            <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Panel content -->
+      <div class="relative h-full overflow-y-auto bg-white p-6">
+        <div class="flex flex-col h-full">
+          <header class="border-b pb-4 mb-4 flex items-center justify-between">
+            <div>
+              <h2 id="notifications-drawer-title" class="text-xl font-semibold text-gray-900">Notifications</h2>
+              <p class="text-sm text-gray-500 mt-1">
+                <span id="unread-count"><%= unread_count %></span> unread
+              </p>
+            </div>
+            <%= form_with url: drawers_add_notification_path, method: :post, 
+                        class: "inline-block",
+                        data: { turbo_frame: "_top" } do |f| %>
+              <%= f.hidden_field :title, value: "Test Notification" %>
+              <%= f.hidden_field :message, value: "This is a test notification" %>
+              <%= f.button type: "submit", class: "text-sm text-indigo-600 hover:text-indigo-700 font-medium" do %>
+                + Add Test
+              <% end %>
+            <% end %>
+          </header>
+
+          <!-- Turbo Frame for notifications list -->
+          <turbo-frame id="notifications-frame" class="flex-1 overflow-y-auto">
+            <%= render partial: 'notifications_list', locals: { notifications: notifications || [] } %>
+          </turbo-frame>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

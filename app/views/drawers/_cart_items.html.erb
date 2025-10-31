@@ -1,0 +1,37 @@
+<%# Cart items partial for Turbo Frame %>
+<% if cart_items.empty? %>
+  <div class="flex flex-col items-center justify-center h-full text-center py-12">
+    <svg class="size-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+    </svg>
+    <p class="text-gray-500 text-lg font-medium">Your cart is empty</p>
+    <p class="text-gray-400 text-sm mt-1">Add some products to get started</p>
+  </div>
+<% else %>
+  <div id="cart-items-list" class="space-y-4">
+    <% cart_items.each do |item| %>
+      <div class="flex items-start gap-4 p-4 border rounded-lg hover:bg-gray-50 transition-colors"
+           id="cart-item-<%= item['id'] %>">
+        <div class="flex-shrink-0 w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
+          <svg class="size-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h3 class="text-sm font-medium text-gray-900"><%= item['name'] %></h3>
+          <p class="text-sm text-gray-500 mt-1">Quantity: <%= item['quantity'] || 1 %></p>
+          <p class="text-sm font-semibold text-gray-900 mt-2">$<%= item['price'] || 0 %></p>
+        </div>
+        <%= button_to drawers_remove_from_cart_path(item['id']), 
+                      method: :delete,
+                      class: "flex-shrink-0 p-2 text-gray-400 hover:text-red-600 transition-colors",
+                      data: { turbo_frame: "_top" } do %>
+          <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
