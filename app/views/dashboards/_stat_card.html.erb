@@ -1,0 +1,15 @@
+<%# Reusable stat card component %>
+<%# Usage: render partial: 'dashboards/stat_card', locals: { title: 'Total Revenue', value: '$50,000', subtitle: '+10% from last month', color: 'green', icon: '...' } %>
+<div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
+  <div class="flex items-center justify-between">
+    <div>
+      <p class="text-sm font-medium text-gray-500"><%= title %></p>
+      <p class="mt-2 text-3xl font-semibold text-gray-900"><%= value %></p>
+      <p class="mt-1 text-sm text-<%= color %>-600"><%= subtitle %></p>
+    </div>
+    <div class="rounded-full bg-<%= color %>-100 p-3">
+      <%= raw icon %>
+    </div>
+  </div>
+</div>
+

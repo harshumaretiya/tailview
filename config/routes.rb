@@ -36,6 +36,10 @@ Rails.application.routes.draw do
   get '/forms', to: 'forms#index'
   get '/workspace', to: 'workspaces#index'
   get '/dashboard', to: 'dashboards#index'
+  get '/dashboard/stats', to: 'dashboards#stats'
+  get '/dashboard/activity', to: 'dashboards#activity'
+  get '/dashboard/revenue_chart', to: 'dashboards#revenue_chart', as: :dashboard_revenue_chart
+  get '/dashboard/user_growth', to: 'dashboards#user_growth', as: :dashboard_user_growth
   get '/products', to: 'products#index'
   get '/team', to: 'teams#index'
   

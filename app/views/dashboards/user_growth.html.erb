@@ -1,0 +1,70 @@
+<%# User growth chart with interactive filtering via Stimulus %>
+<%= turbo_frame_tag 'user_growth_chart' do %>
+  <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm" data-controller="user-filter">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-lg font-semibold text-gray-900">User Growth</h3>
+      
+      <%# Filter buttons - handled by user-filter Stimulus controller %>
+      <div class="inline-flex rounded-lg border border-gray-200 p-1 bg-gray-50">
+        <button type="button" 
+                data-action="click->user-filter#showAll"
+                data-user-filter-target="allButton"
+                class="px-3 py-1 text-sm font-medium rounded transition-colors bg-white text-blue-600 shadow-sm">
+          All
+        </button>
+        <button type="button" 
+                data-action="click->user-filter#filterNew"
+                data-user-filter-target="newButton"
+                class="px-3 py-1 text-sm font-medium rounded transition-colors text-gray-600 hover:text-gray-900">
+          New
+        </button>
+        <button type="button" 
+                data-action="click->user-filter#filterReturning"
+                data-user-filter-target="returningButton"
+                class="px-3 py-1 text-sm font-medium rounded transition-colors text-gray-600 hover:text-gray-900">
+          Returning
+        </button>
+        <button type="button" 
+                data-action="click->user-filter#filterChurned"
+                data-user-filter-target="churnedButton"
+                class="px-3 py-1 text-sm font-medium rounded transition-colors text-gray-600 hover:text-gray-900">
+          Churned
+        </button>
+      </div>
+    </div>
+    
+    <!-- Total Users Display -->
+    <div class="mb-4">
+      <p class="text-sm text-gray-500">Total Users</p>
+      <p class="text-2xl font-bold text-gray-900" data-user-filter-target="total"><%= @total %></p>
+    </div>
+    
+    <!-- Progress Bars -->
+    <div class="space-y-4">
+      <%= render partial: 'dashboards/progress_bar', locals: { 
+        type: 'new', 
+        label: 'New Users', 
+        value: @user_data[:new], 
+        total: @total, 
+        color: 'blue' 
+      } %>
+      
+      <%= render partial: 'dashboards/progress_bar', locals: { 
+        type: 'returning', 
+        label: 'Returning Users', 
+        value: @user_data[:returning], 
+        total: @total, 
+        color: 'green' 
+      } %>
+      
+      <%= render partial: 'dashboards/progress_bar', locals: { 
+        type: 'churned', 
+        label: 'Churned Users', 
+        value: @user_data[:churned], 
+        total: @total, 
+        color: 'red' 
+      } %>
+    </div>
+  </div>
+<% end %>
+

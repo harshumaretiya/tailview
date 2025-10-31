@@ -1,0 +1,26 @@
+<%# Reusable progress bar for user growth chart %>
+<%# Usage: render partial: 'dashboards/progress_bar', locals: { type: 'new', label: 'New Users', value: 1000, total: 2000, color: 'blue' } %>
+<div data-user-filter-target="<%= type %>Bar" class="user-bar transition-opacity duration-300">
+  <div class="flex justify-between text-sm mb-1">
+    <span class="text-gray-600"><%= label %></span>
+    <span class="font-medium text-gray-900">
+      <span data-user-filter-target="<%= type %>Value"><%= value %></span>
+      <span class="text-gray-500 text-xs ml-1">(<%= sprintf('%.1f', (value.to_f / total * 100)) %>%)</span>
+    </span>
+  </div>
+  <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+    <div class="bg-<%= color %>-600 h-3 rounded-full transition-all duration-500 relative group cursor-pointer hover:bg-<%= color %>-700"
+         style="width: <%= value.to_f / total * 100 %>%"
+         data-user-filter-target="<%= type %>Progress"
+         data-action="mouseenter->user-filter#showTooltip mouseleave->user-filter#hideTooltip"
+         data-value="<%= value %>"
+         data-percentage="<%= sprintf('%.1f', (value.to_f / total * 100)) %>%">
+      <div class="hidden absolute -top-8 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap z-10"
+           data-user-filter-target="tooltip">
+        <%= value %> users (<%= sprintf('%.1f', (value.to_f / total * 100)) %>%)
+        <div class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
+      </div>
+    </div>
+  </div>
+</div>
+

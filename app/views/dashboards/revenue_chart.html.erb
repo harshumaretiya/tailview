@@ -1,0 +1,38 @@
+<%# Revenue chart with period filtering via Turbo Frame %>
+<%= turbo_frame_tag 'revenue_chart' do %>
+  <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm" data-controller="chart-tooltip">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-lg font-semibold text-gray-900">Revenue Overview</h3>
+      
+      <%# Period selector buttons - update Turbo Frame on click %>
+      <div class="inline-flex rounded-lg border border-gray-200 p-1 bg-gray-50">
+        <% ['week', 'month', 'year'].each do |period| %>
+          <%= link_to period.capitalize, dashboard_revenue_chart_path(period: period), 
+              class: "px-3 py-1 text-sm font-medium rounded transition-colors #{@period == period || (@period.blank? && period == 'week') ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-600 hover:text-gray-900'}",
+              data: { turbo_frame: 'revenue_chart' } %>
+        <% end %>
+      </div>
+    </div>
+    
+    <!-- Total Revenue Display -->
+    <div class="mb-4">
+      <p class="text-sm text-gray-500">Total Revenue</p>
+      <p class="text-2xl font-bold text-gray-900"><%= number_to_currency(@total) %></p>
+    </div>
+    
+    <!-- Chart Container -->
+    <div class="h-64 flex items-end justify-between gap-1 relative">
+      <% @data.each do |bar| %>
+        <%= render partial: 'dashboards/chart_bar', locals: { bar: bar } %>
+      <% end %>
+    </div>
+    
+    <!-- Labels -->
+    <div class="mt-4 flex justify-between text-xs text-gray-500">
+      <% @data.each do |bar| %>
+        <span class="flex-1 text-center"><%= bar[:label] %></span>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+

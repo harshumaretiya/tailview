@@ -1,0 +1,22 @@
+<%# Reusable chart bar with tooltip %>
+<%# Usage: render partial: 'dashboards/chart_bar', locals: { bar: { label: 'Mon', value: 1000, height: 60 } } %>
+<div class="flex-1 flex flex-col justify-end items-center group relative h-full" 
+     data-action="mouseenter->chart-tooltip#show mouseleave->chart-tooltip#hide"
+     data-chart-tooltip-target="bar"
+     data-label-value="<%= bar[:label] %>"
+     data-value-value="<%= number_to_currency(bar[:value]) %>">
+  <!-- Tooltip -->
+  <div class="hidden absolute bottom-full mb-2 px-3 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap z-10 group-hover:block" 
+       data-chart-tooltip-target="tooltip">
+    <div class="font-semibold"><%= bar[:label] %></div>
+    <div><%= number_to_currency(bar[:value]) %></div>
+    <div class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
+  </div>
+  
+  <!-- Bar -->
+  <div class="w-full bg-blue-500 rounded-t transition-all duration-500 hover:bg-blue-600 cursor-pointer group-hover:opacity-90"
+       style="height: <%= bar[:height] %>%"
+       data-chart-tooltip-target="barElement">
+  </div>
+</div>
+
