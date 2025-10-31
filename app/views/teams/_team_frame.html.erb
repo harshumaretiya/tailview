@@ -1,4 +1,14 @@
 <%= turbo_frame_tag 'team' do %>
+  <div class="mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2">
+      <%= link_to "All Departments", team_path(q: @q), data: { turbo_frame: 'team' }, class: ( @department.present? ? "rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50" : "rounded-md px-4 py-2 text-sm font-medium text-white bg-blue-600" ) %>
+      <% TeamsController::DEPARTMENTS.each do |dept| %>
+        <% active = (@department == dept) %>
+        <%= link_to dept, team_path(q: @q, department: dept), data: { turbo_frame: 'team' }, class: ( active ? "rounded-md px-4 py-2 text-sm font-medium text-white bg-blue-600" : "rounded-md bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700" ) %>
+      <% end %>
+    </div>
+  </div>
+
   <%= render partial: 'list', locals: { members: members } %>
 <% end %>
 
