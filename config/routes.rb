@@ -35,6 +35,9 @@ Rails.application.routes.draw do
   get '/modals', to: 'modals#index'
   get '/forms', to: 'forms#index'
   get '/workspace', to: 'workspaces#index'
+  get '/dashboard', to: 'dashboards#index'
+  get '/products', to: 'products#index'
+  get '/team', to: 'teams#index'
   
   # Test route for debugging
   get '/test-turbo-frame', to: 'turbo_frame_examples#settings'

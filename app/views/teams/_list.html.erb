@@ -1,0 +1,25 @@
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  <% members.each do |m| %>
+    <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm hover:shadow-md transition-shadow">
+      <div class="flex items-center space-x-4">
+        <div class="h-16 w-16 rounded-full bg-gradient-to-br from-indigo-400 to-indigo-600 flex items-center justify-center">
+          <span class="text-white text-xl font-bold"><%= m[:initials] %></span>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h3 class="text-lg font-semibold text-gray-900"><%= m[:name] %></h3>
+          <p class="text-sm text-gray-500"><%= m[:role] %></p>
+          <div class="mt-2 flex items-center gap-2">
+            <span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800"><%= m[:department] %></span>
+          </div>
+        </div>
+      </div>
+      <p class="mt-4 text-sm text-gray-600">Collaborates across teams and delivers high-quality outcomes.</p>
+      <div class="mt-4 flex items-center gap-3">
+        <button class="text-sm font-medium text-indigo-600 hover:text-indigo-500">View Profile</button>
+        <button class="text-sm font-medium text-gray-600 hover:text-gray-500">Message</button>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
