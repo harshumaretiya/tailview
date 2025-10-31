@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   get '/breadcrumbs', to: 'breadcrumbs#index'
   get '/modals', to: 'modals#index'
   get '/forms', to: 'forms#index'
+  get '/workspace', to: 'workspaces#index'
   
   # Test route for debugging
   get '/test-turbo-frame', to: 'turbo_frame_examples#settings'

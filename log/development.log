@@ -26,3 +26,774 @@ Processing by ButtonsController#index as HTML
 Completed 200 OK in 25ms (Views: 1.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+Started GET "/" for ::1 at 2025-10-30 21:23:56 +0530
+  
+ActiveRecord::NoDatabaseError (We could not find your database: tailview_development. Available database configurations can be found in config/database.yml.
+
+To resolve this error:
+
+- Did you not create the database, or did you delete it? To create the database, run:
+
+    bin/rails db:create
+
+- Has the database name changed? Verify that config/database.yml contains the correct database name.
+)
+Caused by: PG::ConnectionBad (connection to server at "::1", port 5432 failed: FATAL:  database "tailview_development" does not exist
+)
+
+Information for: ActiveRecord::NoDatabaseError (We could not find your database: tailview_development. Available database configurations can be found in config/database.yml.
+
+To resolve this error:
+
+- Did you not create the database, or did you delete it? To create the database, run:
+
+    bin/rails db:create
+
+- Has the database name changed? Verify that config/database.yml contains the correct database name.
+):
+  
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql_adapter.rb:63:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter.new_client'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql_adapter.rb:939:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#connect'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql_adapter.rb:951:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#reconnect'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:669:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activesupport (8.0.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:668:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:773:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activesupport (8.0.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:763:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:781:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#connect!'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:987:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activesupport (8.0.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:986:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql/quoting.rb:128:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote_string'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract/quoting.rb:76:in 'ActiveRecord::ConnectionAdapters::Quoting#quote'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql/quoting.rb:122:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1142:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#quoted_scope'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1119:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#data_source_sql'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract/schema_statements.rb:60:in 'ActiveRecord::ConnectionAdapters::SchemaStatements#table_exists?'
+activerecord (8.0.3) lib/active_record/schema_migration.rb:55:in 'block in ActiveRecord::SchemaMigration#create_table'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:422:in 'ActiveRecord::ConnectionAdapters::ConnectionPool#with_connection'
+activerecord (8.0.3) lib/active_record/schema_migration.rb:54:in 'ActiveRecord::SchemaMigration#create_table'
+activerecord (8.0.3) lib/active_record/migration.rb:1430:in 'ActiveRecord::Migrator#initialize'
+activerecord (8.0.3) lib/active_record/migration.rb:1278:in 'Class#new'
+activerecord (8.0.3) lib/active_record/migration.rb:1278:in 'ActiveRecord::MigrationContext#open'
+activerecord (8.0.3) lib/active_record/migration.rb:762:in 'block (2 levels) in ActiveRecord::Migration.pending_migrations'
+activerecord (8.0.3) lib/active_record/migration/pending_migration_connection.rb:8:in 'ActiveRecord::PendingMigrationConnection.with_temporary_pool'
+activerecord (8.0.3) lib/active_record/migration.rb:761:in 'block in ActiveRecord::Migration.pending_migrations'
+activerecord (8.0.3) lib/active_record/migration.rb:760:in 'Array#each'
+activerecord (8.0.3) lib/active_record/migration.rb:760:in 'ActiveRecord::Migration.pending_migrations'
+activerecord (8.0.3) lib/active_record/migration.rb:739:in 'ActiveRecord::Migration.check_pending_migrations'
+activerecord (8.0.3) lib/active_record/migration.rb:659:in 'block (2 levels) in ActiveRecord::Migration::CheckPending#call'
+activesupport (8.0.3) lib/active_support/file_update_checker.rb:85:in 'ActiveSupport::FileUpdateChecker#execute'
+activerecord (8.0.3) lib/active_record/migration.rb:664:in 'block in ActiveRecord::Migration::CheckPending#call'
+activerecord (8.0.3) lib/active_record/migration.rb:656:in 'Thread::Mutex#synchronize'
+activerecord (8.0.3) lib/active_record/migration.rb:656:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.3) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.3) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.3) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.3) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.3) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.3) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.3) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+propshaft (1.3.1) lib/propshaft/server.rb:37:in 'Propshaft::Server#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.3) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.3) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (7.1.0) lib/puma/configuration.rb:300:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (7.1.0) lib/puma/request.rb:101:in 'block in Puma::Request#handle_request'
+puma (7.1.0) lib/puma/thread_pool.rb:355:in 'Puma::ThreadPool#with_force_shutdown'
+puma (7.1.0) lib/puma/request.rb:100:in 'Puma::Request#handle_request'
+puma (7.1.0) lib/puma/server.rb:503:in 'Puma::Server#process_client'
+puma (7.1.0) lib/puma/server.rb:262:in 'block in Puma::Server#run'
+puma (7.1.0) lib/puma/thread_pool.rb:182:in 'block in Puma::ThreadPool#spawn_thread'
+
+Information for cause: PG::ConnectionBad (connection to server at "::1", port 5432 failed: FATAL:  database "tailview_development" does not exist
+):
+  
+pg-1.6.2-arm64 (darwin) lib/pg/connection.rb:751:in 'PG::Connection::Pollable#polling_loop'
+pg-1.6.2-arm64 (darwin) lib/pg/connection.rb:795:in 'PG::Connection#async_connect_or_reset'
+pg-1.6.2-arm64 (darwin) lib/pg/connection.rb:951:in 'PG::Connection.connect_to_hosts'
+pg-1.6.2-arm64 (darwin) lib/pg/connection.rb:871:in 'PG::Connection.new'
+pg-1.6.2-arm64 (darwin) lib/pg.rb:88:in 'PG.connect'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql_adapter.rb:58:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter.new_client'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql_adapter.rb:939:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#connect'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql_adapter.rb:951:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#reconnect'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:669:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activesupport (8.0.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:668:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:773:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activesupport (8.0.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:763:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:781:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#connect!'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:987:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activesupport (8.0.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:986:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql/quoting.rb:128:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote_string'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract/quoting.rb:76:in 'ActiveRecord::ConnectionAdapters::Quoting#quote'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql/quoting.rb:122:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1142:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#quoted_scope'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1119:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#data_source_sql'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract/schema_statements.rb:60:in 'ActiveRecord::ConnectionAdapters::SchemaStatements#table_exists?'
+activerecord (8.0.3) lib/active_record/schema_migration.rb:55:in 'block in ActiveRecord::SchemaMigration#create_table'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:422:in 'ActiveRecord::ConnectionAdapters::ConnectionPool#with_connection'
+activerecord (8.0.3) lib/active_record/schema_migration.rb:54:in 'ActiveRecord::SchemaMigration#create_table'
+activerecord (8.0.3) lib/active_record/migration.rb:1430:in 'ActiveRecord::Migrator#initialize'
+activerecord (8.0.3) lib/active_record/migration.rb:1278:in 'Class#new'
+activerecord (8.0.3) lib/active_record/migration.rb:1278:in 'ActiveRecord::MigrationContext#open'
+activerecord (8.0.3) lib/active_record/migration.rb:762:in 'block (2 levels) in ActiveRecord::Migration.pending_migrations'
+activerecord (8.0.3) lib/active_record/migration/pending_migration_connection.rb:8:in 'ActiveRecord::PendingMigrationConnection.with_temporary_pool'
+activerecord (8.0.3) lib/active_record/migration.rb:761:in 'block in ActiveRecord::Migration.pending_migrations'
+activerecord (8.0.3) lib/active_record/migration.rb:760:in 'Array#each'
+activerecord (8.0.3) lib/active_record/migration.rb:760:in 'ActiveRecord::Migration.pending_migrations'
+activerecord (8.0.3) lib/active_record/migration.rb:739:in 'ActiveRecord::Migration.check_pending_migrations'
+activerecord (8.0.3) lib/active_record/migration.rb:659:in 'block (2 levels) in ActiveRecord::Migration::CheckPending#call'
+activesupport (8.0.3) lib/active_support/file_update_checker.rb:85:in 'ActiveSupport::FileUpdateChecker#execute'
+activerecord (8.0.3) lib/active_record/migration.rb:664:in 'block in ActiveRecord::Migration::CheckPending#call'
+activerecord (8.0.3) lib/active_record/migration.rb:656:in 'Thread::Mutex#synchronize'
+activerecord (8.0.3) lib/active_record/migration.rb:656:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.3) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.3) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.3) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.3) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.3) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.3) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.3) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+propshaft (1.3.1) lib/propshaft/server.rb:37:in 'Propshaft::Server#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.3) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.3) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (7.1.0) lib/puma/configuration.rb:300:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (7.1.0) lib/puma/request.rb:101:in 'block in Puma::Request#handle_request'
+puma (7.1.0) lib/puma/thread_pool.rb:355:in 'Puma::ThreadPool#with_force_shutdown'
+puma (7.1.0) lib/puma/request.rb:100:in 'Puma::Request#handle_request'
+puma (7.1.0) lib/puma/server.rb:503:in 'Puma::Server#process_client'
+puma (7.1.0) lib/puma/server.rb:262:in 'block in Puma::Server#run'
+puma (7.1.0) lib/puma/thread_pool.rb:182:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/favicon.ico" for ::1 at 2025-10-30 21:23:57 +0530
+  
+ActiveRecord::NoDatabaseError (We could not find your database: tailview_development. Available database configurations can be found in config/database.yml.
+
+To resolve this error:
+
+- Did you not create the database, or did you delete it? To create the database, run:
+
+    bin/rails db:create
+
+- Has the database name changed? Verify that config/database.yml contains the correct database name.
+)
+Caused by: PG::ConnectionBad (connection to server at "::1", port 5432 failed: FATAL:  database "tailview_development" does not exist
+)
+
+Information for: ActiveRecord::NoDatabaseError (We could not find your database: tailview_development. Available database configurations can be found in config/database.yml.
+
+To resolve this error:
+
+- Did you not create the database, or did you delete it? To create the database, run:
+
+    bin/rails db:create
+
+- Has the database name changed? Verify that config/database.yml contains the correct database name.
+):
+  
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql_adapter.rb:63:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter.new_client'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql_adapter.rb:939:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#connect'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql_adapter.rb:951:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#reconnect'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:669:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activesupport (8.0.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:668:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:773:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activesupport (8.0.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:763:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:781:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#connect!'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:987:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activesupport (8.0.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:986:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql/quoting.rb:128:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote_string'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract/quoting.rb:76:in 'ActiveRecord::ConnectionAdapters::Quoting#quote'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql/quoting.rb:122:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1142:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#quoted_scope'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1119:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#data_source_sql'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract/schema_statements.rb:60:in 'ActiveRecord::ConnectionAdapters::SchemaStatements#table_exists?'
+activerecord (8.0.3) lib/active_record/schema_migration.rb:55:in 'block in ActiveRecord::SchemaMigration#create_table'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:422:in 'ActiveRecord::ConnectionAdapters::ConnectionPool#with_connection'
+activerecord (8.0.3) lib/active_record/schema_migration.rb:54:in 'ActiveRecord::SchemaMigration#create_table'
+activerecord (8.0.3) lib/active_record/migration.rb:1430:in 'ActiveRecord::Migrator#initialize'
+activerecord (8.0.3) lib/active_record/migration.rb:1278:in 'Class#new'
+activerecord (8.0.3) lib/active_record/migration.rb:1278:in 'ActiveRecord::MigrationContext#open'
+activerecord (8.0.3) lib/active_record/migration.rb:762:in 'block (2 levels) in ActiveRecord::Migration.pending_migrations'
+activerecord (8.0.3) lib/active_record/migration/pending_migration_connection.rb:8:in 'ActiveRecord::PendingMigrationConnection.with_temporary_pool'
+activerecord (8.0.3) lib/active_record/migration.rb:761:in 'block in ActiveRecord::Migration.pending_migrations'
+activerecord (8.0.3) lib/active_record/migration.rb:760:in 'Array#each'
+activerecord (8.0.3) lib/active_record/migration.rb:760:in 'ActiveRecord::Migration.pending_migrations'
+activerecord (8.0.3) lib/active_record/migration.rb:739:in 'ActiveRecord::Migration.check_pending_migrations'
+activerecord (8.0.3) lib/active_record/migration.rb:659:in 'block (2 levels) in ActiveRecord::Migration::CheckPending#call'
+activesupport (8.0.3) lib/active_support/file_update_checker.rb:85:in 'ActiveSupport::FileUpdateChecker#execute'
+activerecord (8.0.3) lib/active_record/migration.rb:664:in 'block in ActiveRecord::Migration::CheckPending#call'
+activerecord (8.0.3) lib/active_record/migration.rb:656:in 'Thread::Mutex#synchronize'
+activerecord (8.0.3) lib/active_record/migration.rb:656:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.3) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.3) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.3) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.3) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.3) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.3) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.3) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+propshaft (1.3.1) lib/propshaft/server.rb:37:in 'Propshaft::Server#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.3) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.3) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (7.1.0) lib/puma/configuration.rb:300:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (7.1.0) lib/puma/request.rb:101:in 'block in Puma::Request#handle_request'
+puma (7.1.0) lib/puma/thread_pool.rb:355:in 'Puma::ThreadPool#with_force_shutdown'
+puma (7.1.0) lib/puma/request.rb:100:in 'Puma::Request#handle_request'
+puma (7.1.0) lib/puma/server.rb:503:in 'Puma::Server#process_client'
+puma (7.1.0) lib/puma/server.rb:262:in 'block in Puma::Server#run'
+puma (7.1.0) lib/puma/thread_pool.rb:182:in 'block in Puma::ThreadPool#spawn_thread'
+
+Information for cause: PG::ConnectionBad (connection to server at "::1", port 5432 failed: FATAL:  database "tailview_development" does not exist
+):
+  
+pg-1.6.2-arm64 (darwin) lib/pg/connection.rb:751:in 'PG::Connection::Pollable#polling_loop'
+pg-1.6.2-arm64 (darwin) lib/pg/connection.rb:795:in 'PG::Connection#async_connect_or_reset'
+pg-1.6.2-arm64 (darwin) lib/pg/connection.rb:951:in 'PG::Connection.connect_to_hosts'
+pg-1.6.2-arm64 (darwin) lib/pg/connection.rb:871:in 'PG::Connection.new'
+pg-1.6.2-arm64 (darwin) lib/pg.rb:88:in 'PG.connect'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql_adapter.rb:58:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter.new_client'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql_adapter.rb:939:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#connect'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql_adapter.rb:951:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#reconnect'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:669:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activesupport (8.0.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:668:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:773:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activesupport (8.0.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:763:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:781:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#connect!'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:987:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activesupport (8.0.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract_adapter.rb:986:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql/quoting.rb:128:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote_string'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract/quoting.rb:76:in 'ActiveRecord::ConnectionAdapters::Quoting#quote'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql/quoting.rb:122:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1142:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#quoted_scope'
+activerecord (8.0.3) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1119:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#data_source_sql'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract/schema_statements.rb:60:in 'ActiveRecord::ConnectionAdapters::SchemaStatements#table_exists?'
+activerecord (8.0.3) lib/active_record/schema_migration.rb:55:in 'block in ActiveRecord::SchemaMigration#create_table'
+activerecord (8.0.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:422:in 'ActiveRecord::ConnectionAdapters::ConnectionPool#with_connection'
+activerecord (8.0.3) lib/active_record/schema_migration.rb:54:in 'ActiveRecord::SchemaMigration#create_table'
+activerecord (8.0.3) lib/active_record/migration.rb:1430:in 'ActiveRecord::Migrator#initialize'
+activerecord (8.0.3) lib/active_record/migration.rb:1278:in 'Class#new'
+activerecord (8.0.3) lib/active_record/migration.rb:1278:in 'ActiveRecord::MigrationContext#open'
+activerecord (8.0.3) lib/active_record/migration.rb:762:in 'block (2 levels) in ActiveRecord::Migration.pending_migrations'
+activerecord (8.0.3) lib/active_record/migration/pending_migration_connection.rb:8:in 'ActiveRecord::PendingMigrationConnection.with_temporary_pool'
+activerecord (8.0.3) lib/active_record/migration.rb:761:in 'block in ActiveRecord::Migration.pending_migrations'
+activerecord (8.0.3) lib/active_record/migration.rb:760:in 'Array#each'
+activerecord (8.0.3) lib/active_record/migration.rb:760:in 'ActiveRecord::Migration.pending_migrations'
+activerecord (8.0.3) lib/active_record/migration.rb:739:in 'ActiveRecord::Migration.check_pending_migrations'
+activerecord (8.0.3) lib/active_record/migration.rb:659:in 'block (2 levels) in ActiveRecord::Migration::CheckPending#call'
+activesupport (8.0.3) lib/active_support/file_update_checker.rb:85:in 'ActiveSupport::FileUpdateChecker#execute'
+activerecord (8.0.3) lib/active_record/migration.rb:664:in 'block in ActiveRecord::Migration::CheckPending#call'
+activerecord (8.0.3) lib/active_record/migration.rb:656:in 'Thread::Mutex#synchronize'
+activerecord (8.0.3) lib/active_record/migration.rb:656:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.0.3) lib/active_support/callbacks.rb:100:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.0.3) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.0.3) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.0.3) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/remote_ip.rb:96:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.3) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.3) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.0.3) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/executor.rb:16:in 'ActionDispatch::Executor#call'
+propshaft (1.3.1) lib/propshaft/server.rb:37:in 'Propshaft::Server#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.3) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+actionpack (8.0.3) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.0.3) lib/rails/engine.rb:535:in 'Rails::Engine#call'
+puma (7.1.0) lib/puma/configuration.rb:300:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (7.1.0) lib/puma/request.rb:101:in 'block in Puma::Request#handle_request'
+puma (7.1.0) lib/puma/thread_pool.rb:355:in 'Puma::ThreadPool#with_force_shutdown'
+puma (7.1.0) lib/puma/request.rb:100:in 'Puma::Request#handle_request'
+puma (7.1.0) lib/puma/server.rb:503:in 'Puma::Server#process_client'
+puma (7.1.0) lib/puma/server.rb:262:in 'block in Puma::Server#run'
+puma (7.1.0) lib/puma/thread_pool.rb:182:in 'block in Puma::ThreadPool#spawn_thread'
+Started POST "/rails/actions" for ::1 at 2025-10-30 21:24:00 +0530
+  [1m[35mSQL (0.3ms)[0m  [1m[35mSET search_path TO public /*application='TailViewUI'*/[0m
+  [1m[35m (189.5ms)[0m  [1m[35mCREATE DATABASE "tailview_development" ENCODING = 'unicode' /*application='TailViewUI'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='TailViewUI'*/[0m
+  [1m[35m (83.0ms)[0m  [1m[35mCREATE DATABASE "tailview_development_cache" ENCODING = 'unicode' /*application='TailViewUI'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='TailViewUI'*/[0m
+  [1m[35m (78.4ms)[0m  [1m[35mCREATE DATABASE "tailview_development_queue" ENCODING = 'unicode' /*application='TailViewUI'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='TailViewUI'*/[0m
+  [1m[35m (78.7ms)[0m  [1m[35mCREATE DATABASE "tailview_development_cable" ENCODING = 'unicode' /*application='TailViewUI'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='TailViewUI'*/[0m
+  [1m[35m (80.3ms)[0m  [1m[35mCREATE DATABASE "tailview_test" ENCODING = 'unicode' /*application='TailViewUI'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='TailViewUI'*/[0m
+  [1m[35m (78.5ms)[0m  [1m[35mCREATE DATABASE "tailview_test_cache" ENCODING = 'unicode' /*application='TailViewUI'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='TailViewUI'*/[0m
+  [1m[35m (83.3ms)[0m  [1m[35mCREATE DATABASE "tailview_test_queue" ENCODING = 'unicode' /*application='TailViewUI'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='TailViewUI'*/[0m
+  [1m[35m (72.1ms)[0m  [1m[35mCREATE DATABASE "tailview_test_cable" ENCODING = 'unicode' /*application='TailViewUI'*/[0m
+Started GET "/" for ::1 at 2025-10-30 21:24:01 +0530
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='TailViewUI'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='TailViewUI'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TailViewUI'*/[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='TailViewUI'*/[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='TailViewUI'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TailViewUI'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='TailViewUI'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='TailViewUI'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TailViewUI'*/[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='TailViewUI'*/[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='TailViewUI'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TailViewUI'*/[0m
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | GC: 0.0ms)
+Completed 200 OK in 45ms (Views: 7.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.6ms)
+
+
+Started GET "/tabs" for ::1 at 2025-10-30 21:24:05 +0530
+Processing by TabsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tabs/index.html.erb within layouts/application
+  Rendered tabs/index.html.erb within layouts/application (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.3ms | GC: 0.5ms)
+Completed 200 OK in 35ms (Views: 7.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/avatars" for ::1 at 2025-10-30 21:24:05 +0530
+Processing by AvatarsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering avatars/index.html.erb within layouts/application
+  Rendered avatars/index.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.2ms | GC: 0.3ms)
+Completed 200 OK in 22ms (Views: 1.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/tabs" for ::1 at 2025-10-30 21:24:05 +0530
+Processing by TabsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tabs/index.html.erb within layouts/application
+  Rendered tabs/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.6ms | GC: 0.0ms)
+Completed 200 OK in 26ms (Views: 0.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/breadcrumbs" for ::1 at 2025-10-30 21:24:46 +0530
+Processing by BreadcrumbsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering breadcrumbs/index.html.erb within layouts/application
+  Rendered breadcrumbs/index.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | GC: 0.2ms)
+Completed 200 OK in 24ms (Views: 1.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/alerts" for ::1 at 2025-10-30 21:24:47 +0530
+Processing by AlertsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering alerts/index.html.erb within layouts/application
+  Rendered alerts/index.html.erb within layouts/application (Duration: 22.5ms | GC: 3.6ms)
+  Rendered layout layouts/application.html.erb (Duration: 23.1ms | GC: 3.9ms)
+Completed 200 OK in 45ms (Views: 23.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 3.9ms)
+
+
+Started GET "/toasts" for ::1 at 2025-10-30 21:24:56 +0530
+Processing by ToastsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering toasts/index.html.erb within layouts/application
+  Rendered toasts/index.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.8ms | GC: 0.8ms)
+Completed 200 OK in 27ms (Views: 2.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.6ms)
+
+
+Started GET "/forms" for ::1 at 2025-10-30 21:24:57 +0530
+Processing by FormsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering forms/index.html.erb within layouts/application
+  Rendered forms/index.html.erb within layouts/application (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.0ms | GC: 1.0ms)
+Completed 200 OK in 28ms (Views: 2.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.7ms)
+
+
+Started GET "/toasts" for ::1 at 2025-10-30 21:24:57 +0530
+Processing by ToastsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering toasts/index.html.erb within layouts/application
+  Rendered toasts/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.7ms | GC: 1.1ms)
+Completed 200 OK in 30ms (Views: 2.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.6ms)
+
+
+Started GET "/tables" for ::1 at 2025-10-30 21:24:58 +0530
+Processing by TablesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tables/index.html.erb within layouts/application
+  Rendered tables/_user_row.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered tables/_user_row.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered tables/_user_row.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered tables/_user_row.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered tables/_inline_edit_example.html.erb (Duration: 1.2ms | GC: 0.0ms)
+  Rendered tables/_users_table.html.erb (Duration: 0.5ms | GC: 0.3ms)
+  Rendered tables/_live_search_example.html.erb (Duration: 1.7ms | GC: 0.3ms)
+  Rendered tables/_users_table.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered tables/_pagination.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered tables/_pagination_example.html.erb (Duration: 0.7ms | GC: 0.0ms)
+  Rendered tables/_lazy_load_example.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered tables/_responsive_table_example.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered tables/_filters_example.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered tables/index.html.erb within layouts/application (Duration: 6.0ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.3ms | GC: 0.3ms)
+Completed 200 OK in 36ms (Views: 6.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.9ms)
+
+
+Started GET "/toasts" for ::1 at 2025-10-30 21:25:00 +0530
+Processing by ToastsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering toasts/index.html.erb within layouts/application
+  Rendered toasts/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.6ms | GC: 0.0ms)
+Completed 200 OK in 26ms (Views: 0.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/forms" for ::1 at 2025-10-30 21:25:00 +0530
+Processing by FormsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering forms/index.html.erb within layouts/application
+  Rendered forms/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.6ms | GC: 0.0ms)
+Completed 200 OK in 26ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/tables" for ::1 at 2025-10-30 21:25:01 +0530
+Processing by TablesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tables/index.html.erb within layouts/application
+  Rendered tables/_user_row.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered tables/_user_row.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered tables/_user_row.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered tables/_user_row.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered tables/_inline_edit_example.html.erb (Duration: 1.0ms | GC: 0.0ms)
+  Rendered tables/_users_table.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered tables/_live_search_example.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered tables/_users_table.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered tables/_pagination.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered tables/_pagination_example.html.erb (Duration: 0.6ms | GC: 0.0ms)
+  Rendered tables/_lazy_load_example.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered tables/_responsive_table_example.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered tables/_filters_example.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered tables/index.html.erb within layouts/application (Duration: 4.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.3ms | GC: 0.0ms)
+Completed 200 OK in 26ms (Views: 6.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/accordions" for ::1 at 2025-10-30 21:25:01 +0530
+Processing by AccordionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering accordions/index.html.erb within layouts/application
+  Rendered accordions/_faq_item.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered accordions/_faq_item.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered accordions/_faq_item.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered accordions/_faq_item.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered accordions/_accordion_item.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered accordions/_accordion_item.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered accordions/_accordion_item.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered accordions/_accordion_item.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered accordions/_accordion_item.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered accordions/_accordion_item.html.erb (Duration: 0.0ms | GC: 0.0ms)
+  Rendered accordions/index.html.erb within layouts/application (Duration: 1.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.0ms | GC: 0.0ms)
+Completed 200 OK in 29ms (Views: 2.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/avatars" for ::1 at 2025-10-30 21:25:02 +0530
+Processing by AvatarsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering avatars/index.html.erb within layouts/application
+  Rendered avatars/index.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.0ms | GC: 0.0ms)
+Completed 200 OK in 26ms (Views: 1.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/tabs" for ::1 at 2025-10-30 21:25:03 +0530
+Processing by TabsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tabs/index.html.erb within layouts/application
+  Rendered tabs/index.html.erb within layouts/application (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.0ms | GC: 0.0ms)
+Completed 200 OK in 26ms (Views: 1.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/popovers" for ::1 at 2025-10-30 21:25:03 +0530
+Processing by PopoversController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering popovers/index.html.erb within layouts/application
+  Rendered popovers/index.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.9ms | GC: 0.0ms)
+Completed 200 OK in 28ms (Views: 1.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2025-10-30 21:25:09 +0530
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.8ms | GC: 0.0ms)
+Completed 200 OK in 26ms (Views: 1.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2025-10-30 21:25:17 +0530
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | GC: 0.0ms)
+Completed 200 OK in 23ms (Views: 2.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/breadcrumbs" for ::1 at 2025-10-30 21:25:28 +0530
+Processing by BreadcrumbsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering breadcrumbs/index.html.erb within layouts/application
+  Rendered breadcrumbs/index.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.8ms | GC: 0.0ms)
+Completed 200 OK in 25ms (Views: 1.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/workspace" for ::1 at 2025-10-30 21:25:29 +0530
+Processing by WorkspacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering workspaces/index.html.erb within layouts/application
+  Rendered workspaces/index.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.9ms | GC: 0.0ms)
+Completed 200 OK in 25ms (Views: 1.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/workspace" for ::1 at 2025-10-30 21:29:03 +0530
+Processing by WorkspacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering workspaces/index.html.erb within layouts/application
+  Rendered workspaces/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.3ms | GC: 1.0ms)
+Completed 200 OK in 22ms (Views: 4.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.0ms)
+
+
+Started GET "/" for ::1 at 2025-10-30 21:29:05 +0530
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.8ms | GC: 0.0ms)
+Completed 200 OK in 26ms (Views: 1.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/" for ::1 at 2025-10-30 21:29:07 +0530
+Processing by PagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.0ms | GC: 0.5ms)
+Completed 200 OK in 27ms (Views: 1.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/forms" for ::1 at 2025-10-30 21:29:11 +0530
+Processing by FormsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering forms/index.html.erb within layouts/application
+  Rendered forms/index.html.erb within layouts/application (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.0ms | GC: 0.0ms)
+Completed 200 OK in 25ms (Views: 1.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/forms" for ::1 at 2025-10-30 21:29:20 +0530
+Processing by FormsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering forms/index.html.erb within layouts/application
+  Rendered forms/index.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | GC: 0.2ms)
+Completed 200 OK in 23ms (Views: 3.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/avatars" for ::1 at 2025-10-30 21:31:10 +0530
+Processing by AvatarsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering avatars/index.html.erb within layouts/application
+  Rendered avatars/index.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.9ms | GC: 0.0ms)
+Completed 200 OK in 26ms (Views: 1.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/workspace" for ::1 at 2025-10-30 21:38:14 +0530
+Processing by WorkspacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering workspaces/index.html.erb within layouts/application
+  Rendered workspaces/index.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.8ms | GC: 0.0ms)
+Completed 200 OK in 25ms (Views: 1.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/workspace" for ::1 at 2025-10-30 21:40:27 +0530
+Processing by WorkspacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering workspaces/index.html.erb within layouts/application
+  Rendered workspaces/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.3ms | GC: 0.0ms)
+Completed 200 OK in 24ms (Views: 5.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/workspace" for ::1 at 2025-10-30 21:40:28 +0530
+Processing by WorkspacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering workspaces/index.html.erb within layouts/application
+  Rendered workspaces/index.html.erb within layouts/application (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.5ms | GC: 0.0ms)
+Completed 200 OK in 27ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/workspace" for ::1 at 2025-10-30 21:43:25 +0530
+Processing by WorkspacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering workspaces/index.html.erb within layouts/application
+  Rendered workspaces/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | GC: 0.5ms)
+Completed 200 OK in 23ms (Views: 4.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/workspace" for ::1 at 2025-10-30 21:44:20 +0530
+Processing by WorkspacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering workspaces/index.html.erb within layouts/application
+  Rendered workspaces/index.html.erb within layouts/application (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.5ms | GC: 0.1ms)
+Completed 200 OK in 28ms (Views: 3.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/workspace" for ::1 at 2025-10-30 21:44:36 +0530
+Processing by WorkspacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering workspaces/index.html.erb within layouts/application
+  Rendered workspaces/index.html.erb within layouts/application (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.6ms | GC: 0.3ms)
+Completed 200 OK in 30ms (Views: 3.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/workspace" for ::1 at 2025-10-30 21:44:36 +0530
+Processing by WorkspacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering workspaces/index.html.erb within layouts/application
+  Rendered workspaces/index.html.erb within layouts/application (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.5ms | GC: 0.0ms)
+Completed 200 OK in 27ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/workspace" for ::1 at 2025-10-30 21:44:37 +0530
+Processing by WorkspacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering workspaces/index.html.erb within layouts/application
+  Rendered workspaces/index.html.erb within layouts/application (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.5ms | GC: 0.0ms)
+Completed 200 OK in 25ms (Views: 0.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/workspace" for ::1 at 2025-10-30 21:44:56 +0530
+Processing by WorkspacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering workspaces/index.html.erb within layouts/application
+  Rendered workspaces/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | GC: 0.0ms)
+Completed 200 OK in 23ms (Views: 2.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/workspace" for ::1 at 2025-10-30 21:45:12 +0530
+Processing by WorkspacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering workspaces/index.html.erb within layouts/application
+  Rendered workspaces/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.1ms | GC: 0.8ms)
+Completed 200 OK in 26ms (Views: 6.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/workspace" for ::1 at 2025-10-31 09:55:55 +0530
+Processing by WorkspacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering workspaces/index.html.erb within layouts/application
+  Rendered workspaces/index.html.erb within layouts/application (Duration: 0.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.5ms | GC: 0.0ms)
+Completed 200 OK in 22ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/workspace" for ::1 at 2025-10-31 10:19:36 +0530
+Processing by WorkspacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering workspaces/index.html.erb within layouts/application
+  Rendered workspaces/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.7ms | GC: 0.2ms)
+Completed 200 OK in 21ms (Views: 3.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/workspace" for ::1 at 2025-10-31 10:21:38 +0530
+Processing by WorkspacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering workspaces/index.html.erb within layouts/application
+  Rendered workspaces/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.7ms | GC: 0.0ms)
+Completed 200 OK in 24ms (Views: 5.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
