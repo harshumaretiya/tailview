@@ -54,6 +54,8 @@ Rails.application.routes.draw do
   get '/dashboard/user_growth', to: 'dashboards#user_growth', as: :dashboard_user_growth
   get '/products', to: 'products#index'
   get '/team', to: 'teams#index'
+  get '/deployments', to: 'deployments#index'
+  get '/deployments/refresh_activities', to: 'deployments#refresh_activities', as: :deployments_refresh_activities
   
   # Test route for debugging
   get '/test-turbo-frame', to: 'turbo_frame_examples#settings'

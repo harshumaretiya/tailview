@@ -1,0 +1,61 @@
+<table class="mt-6 w-full text-left whitespace-nowrap">
+  <colgroup>
+    <col class="w-full sm:w-4/12" />
+    <col class="lg:w-4/12" />
+    <col class="lg:w-2/12" />
+    <col class="lg:w-1/12" />
+    <col class="lg:w-1/12" />
+  </colgroup>
+  <thead class="border-b border-gray-200 text-sm/6 text-gray-900 dark:border-white/10 dark:text-white">
+    <tr>
+      <th scope="col" class="py-2 pr-8 pl-4 font-semibold sm:pl-6 lg:pl-8">User</th>
+      <th scope="col" class="hidden py-2 pr-8 pl-0 font-semibold sm:table-cell">Commit</th>
+      <th scope="col" class="py-2 pr-4 pl-0 text-right font-semibold sm:pr-8 sm:text-left lg:pr-20">Status</th>
+      <th scope="col" class="hidden py-2 pr-8 pl-0 font-semibold md:table-cell lg:pr-20">Duration</th>
+      <th scope="col" class="hidden py-2 pr-4 pl-0 text-right font-semibold sm:table-cell sm:pr-6 lg:pr-8">Deployed at</th>
+    </tr>
+  </thead>
+  <tbody class="divide-y divide-gray-100 dark:divide-white/5">
+    <% activities.each do |activity| %>
+      <tr>
+        <td class="py-4 pr-8 pl-4 sm:pl-6 lg:pl-8">
+          <div class="flex items-center gap-x-4">
+            <img src="<%= activity[:user_avatar] %>" alt="" class="size-8 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-800 dark:outline-white/10" />
+            <div class="truncate text-sm/6 font-medium text-gray-900 dark:text-white"><%= activity[:user_name] %></div>
+          </div>
+        </td>
+        <td class="hidden py-4 pr-4 pl-0 sm:table-cell sm:pr-8">
+          <div class="flex gap-x-3">
+            <div class="font-mono text-sm/6 text-gray-500 dark:text-gray-400"><%= activity[:commit_hash] %></div>
+            <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-gray-300 ring-inset dark:bg-gray-400/10 dark:text-gray-400 dark:ring-gray-400/20">
+              <%= activity[:branch] %>
+            </span>
+          </div>
+        </td>
+        <td class="py-4 pr-4 pl-0 text-sm/6 sm:pr-8 lg:pr-20">
+          <div class="flex items-center justify-end gap-x-2 sm:justify-start">
+            <time datetime="<%= activity[:deployed_at].iso8601 %>" class="text-gray-500 sm:hidden dark:text-gray-400">
+              <%= time_ago_in_words(activity[:deployed_at]) %> ago
+            </time>
+            <% status_color = activity[:status] == 'completed' ? 'green' : 'rose' %>
+            <div class="flex-none rounded-full bg-<%= status_color %>-500/10 p-1 text-<%= status_color %>-500 dark:bg-<%= status_color %>-400/10 dark:text-<%= status_color %>-400">
+              <div class="size-1.5 rounded-full bg-current"></div>
+            </div>
+            <div class="hidden text-gray-900 sm:block dark:text-white capitalize">
+              <%= activity[:status] %>
+            </div>
+          </div>
+        </td>
+        <td class="hidden py-4 pr-8 pl-0 text-sm/6 text-gray-500 md:table-cell lg:pr-20 dark:text-gray-400">
+          <%= activity[:duration] %>
+        </td>
+        <td class="hidden py-4 pr-4 pl-0 text-right text-sm/6 text-gray-500 sm:table-cell sm:pr-6 lg:pr-8 dark:text-gray-400">
+          <time datetime="<%= activity[:deployed_at].iso8601 %>">
+            <%= time_ago_in_words(activity[:deployed_at]) %> ago
+          </time>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
