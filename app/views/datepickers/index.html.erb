@@ -1,0 +1,415 @@
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+  <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="mb-8 flex items-center justify-between">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Date Picker</h1>
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Interactive calendar-based date selection component</p>
+      </div>
+      <%= render 'shared/back_to_home' %>
+    </div>
+
+    <!-- Examples Grid -->
+    <div class="grid gap-8 lg:grid-cols-2">
+      <!-- Basic Date Picker -->
+      <div class="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-950">
+        <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Basic Date Picker</h2>
+        <p class="mb-4 text-sm text-gray-600 dark:text-gray-400">Simple date picker with calendar popup</p>
+        
+        <div class="relative" 
+             data-controller="datepicker" 
+             data-action="click@window->datepicker#closeIfOutside">
+          <label class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+            Select Date
+          </label>
+          <div class="relative">
+            <input 
+              type="text" 
+              data-datepicker-target="input"
+              data-action="click->datepicker#toggle"
+              readonly
+              placeholder="Choose a date"
+              class="w-full cursor-pointer rounded-lg border border-gray-300 bg-white px-4 py-2.5 pr-10 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+            />
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+              <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+            </div>
+          </div>
+          
+          <!-- Calendar Popup -->
+          <div data-datepicker-target="calendar" class="absolute z-10 mt-2 hidden w-80 rounded-lg border border-gray-200 bg-white p-4 shadow-lg dark:border-gray-700 dark:bg-gray-800">
+            <!-- Header -->
+            <div class="mb-4 flex items-center justify-between">
+              <button 
+                type="button"
+                data-action="click->datepicker#previousMonth"
+                class="rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <svg class="h-5 w-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+              </button>
+              
+              <h3 data-datepicker-target="monthYear" class="text-sm font-semibold text-gray-900 dark:text-white">
+                Month Year
+              </h3>
+              
+              <button 
+                type="button"
+                data-action="click->datepicker#nextMonth"
+                class="rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <svg class="h-5 w-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+            
+            <!-- Calendar Grid -->
+            <div data-datepicker-target="grid" class="grid grid-cols-7 gap-1"></div>
+            
+            <!-- Footer -->
+            <div class="mt-4 flex items-center justify-between border-t border-gray-200 pt-4 dark:border-gray-700">
+              <button 
+                type="button"
+                data-action="click->datepicker#today"
+                class="text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+                Today
+              </button>
+              <button 
+                type="button"
+                data-action="click->datepicker#clear"
+                class="text-sm font-medium text-gray-600 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
+                Clear
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Date Picker with Min/Max -->
+      <div class="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-950">
+        <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Date Range Restriction</h2>
+        <p class="mb-4 text-sm text-gray-600 dark:text-gray-400">Date picker with min/max date constraints (±30 days from today)</p>
+        
+        <div class="relative" 
+             data-controller="datepicker" 
+             data-datepicker-min-date-value="<%= @min_date.iso8601 %>"
+             data-datepicker-max-date-value="<%= @max_date.iso8601 %>"
+             data-action="click@window->datepicker#closeIfOutside">
+          <label class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+            Select Date (Limited Range)
+          </label>
+          <div class="relative">
+            <input 
+              type="text" 
+              data-datepicker-target="input"
+              data-action="click->datepicker#toggle"
+              readonly
+              placeholder="Choose a date within range"
+              class="w-full cursor-pointer rounded-lg border border-gray-300 bg-white px-4 py-2.5 pr-10 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+            />
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+              <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+            </div>
+          </div>
+          
+          <!-- Calendar Popup -->
+          <div data-datepicker-target="calendar" class="absolute z-10 mt-2 hidden w-80 rounded-lg border border-gray-200 bg-white p-4 shadow-lg dark:border-gray-700 dark:bg-gray-800">
+            <div class="mb-4 flex items-center justify-between">
+              <button 
+                type="button"
+                data-action="click->datepicker#previousMonth"
+                class="rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <svg class="h-5 w-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+              </button>
+              
+              <h3 data-datepicker-target="monthYear" class="text-sm font-semibold text-gray-900 dark:text-white">
+                Month Year
+              </h3>
+              
+              <button 
+                type="button"
+                data-action="click->datepicker#nextMonth"
+                class="rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <svg class="h-5 w-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+            
+            <div data-datepicker-target="grid" class="grid grid-cols-7 gap-1"></div>
+            
+            <div class="mt-4 flex items-center justify-between border-t border-gray-200 pt-4 dark:border-gray-700">
+              <button 
+                type="button"
+                data-action="click->datepicker#today"
+                class="text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+                Today
+              </button>
+              <button 
+                type="button"
+                data-action="click->datepicker#clear"
+                class="text-sm font-medium text-gray-600 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
+                Clear
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-4 rounded-lg bg-blue-50 p-3 dark:bg-blue-900/20">
+          <p class="text-xs text-blue-800 dark:text-blue-300">
+            <strong>Date Range:</strong> <%= @min_date.strftime('%b %d, %Y') %> to <%= @max_date.strftime('%b %d, %Y') %>
+          </p>
+        </div>
+      </div>
+
+      <!-- Inline Date Picker -->
+      <div class="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-950">
+        <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Inline Calendar</h2>
+        <p class="mb-4 text-sm text-gray-600 dark:text-gray-400">Always visible calendar without popup</p>
+        
+        <div data-controller="datepicker">
+          <div class="mb-4">
+            <label class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+              Selected Date
+            </label>
+            <div class="rounded-lg border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-900 dark:text-white">
+              <span data-datepicker-target="selectedDate">Select a date</span>
+            </div>
+          </div>
+          
+          <!-- Always Visible Calendar -->
+          <div class="w-full rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+            <div class="mb-4 flex items-center justify-between">
+              <button 
+                type="button"
+                data-action="click->datepicker#previousMonth"
+                class="rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <svg class="h-5 w-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+              </button>
+              
+              <h3 data-datepicker-target="monthYear" class="text-sm font-semibold text-gray-900 dark:text-white">
+                Month Year
+              </h3>
+              
+              <button 
+                type="button"
+                data-action="click->datepicker#nextMonth"
+                class="rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <svg class="h-5 w-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+            
+            <div data-datepicker-target="grid" class="grid grid-cols-7 gap-1"></div>
+            
+            <div class="mt-4 flex items-center justify-between border-t border-gray-200 pt-4 dark:border-gray-700">
+              <button 
+                type="button"
+                data-action="click->datepicker#today"
+                class="text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+                Today
+              </button>
+              <button 
+                type="button"
+                data-action="click->datepicker#clear"
+                class="text-sm font-medium text-gray-600 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
+                Clear
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pre-selected Date -->
+      <div class="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-950">
+        <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Pre-selected Date</h2>
+        <p class="mb-4 text-sm text-gray-600 dark:text-gray-400">Date picker with default value set to today</p>
+        
+        <div class="relative" 
+             data-controller="datepicker" 
+             data-datepicker-selected-date-value="<%= @today.iso8601 %>"
+             data-action="click@window->datepicker#closeIfOutside">
+          <label class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+            Appointment Date
+          </label>
+          <div class="relative">
+            <input 
+              type="text" 
+              data-datepicker-target="input"
+              data-action="click->datepicker#toggle"
+              readonly
+              value="<%= @today.strftime('%b %-d, %Y') %>"
+              class="w-full cursor-pointer rounded-lg border border-gray-300 bg-white px-4 py-2.5 pr-10 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+            />
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+              <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+            </div>
+          </div>
+          
+          <!-- Calendar Popup -->
+          <div data-datepicker-target="calendar" class="absolute z-10 mt-2 hidden w-80 rounded-lg border border-gray-200 bg-white p-4 shadow-lg dark:border-gray-700 dark:bg-gray-800">
+            <div class="mb-4 flex items-center justify-between">
+              <button 
+                type="button"
+                data-action="click->datepicker#previousMonth"
+                class="rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <svg class="h-5 w-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+              </button>
+              
+              <h3 data-datepicker-target="monthYear" class="text-sm font-semibold text-gray-900 dark:text-white">
+                Month Year
+              </h3>
+              
+              <button 
+                type="button"
+                data-action="click->datepicker#nextMonth"
+                class="rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <svg class="h-5 w-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+            
+            <div data-datepicker-target="grid" class="grid grid-cols-7 gap-1"></div>
+            
+            <div class="mt-4 flex items-center justify-between border-t border-gray-200 pt-4 dark:border-gray-700">
+              <button 
+                type="button"
+                data-action="click->datepicker#today"
+                class="text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+                Today
+              </button>
+              <button 
+                type="button"
+                data-action="click->datepicker#clear"
+                class="text-sm font-medium text-gray-600 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
+                Clear
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="mt-8 rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-950">
+      <h2 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white">Features</h2>
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div class="flex items-start gap-3">
+          <div class="rounded-lg bg-blue-100 p-2 dark:bg-blue-900/30">
+            <svg class="h-5 w-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-medium text-gray-900 dark:text-white">Month Navigation</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Navigate between months with arrow buttons</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-3">
+          <div class="rounded-lg bg-blue-100 p-2 dark:bg-blue-900/30">
+            <svg class="h-5 w-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-medium text-gray-900 dark:text-white">Date Restrictions</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Set minimum and maximum date constraints</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-3">
+          <div class="rounded-lg bg-blue-100 p-2 dark:bg-blue-900/30">
+            <svg class="h-5 w-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-medium text-gray-900 dark:text-white">Today Shortcut</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Quick button to select today's date</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-3">
+          <div class="rounded-lg bg-blue-100 p-2 dark:bg-blue-900/30">
+            <svg class="h-5 w-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-medium text-gray-900 dark:text-white">Clear Selection</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Reset to empty state with clear button</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-3">
+          <div class="rounded-lg bg-blue-100 p-2 dark:bg-blue-900/30">
+            <svg class="h-5 w-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-medium text-gray-900 dark:text-white">Dark Mode</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Fully styled for light and dark themes</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-3">
+          <div class="rounded-lg bg-blue-100 p-2 dark:bg-blue-900/30">
+            <svg class="h-5 w-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-medium text-gray-900 dark:text-white">Custom Events</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Dispatches events for integration</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Usage Section -->
+    <div class="mt-8 rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-950">
+      <h2 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white">Usage</h2>
+      <div class="prose prose-sm max-w-none dark:prose-invert">
+        <h3 class="text-gray-900 dark:text-white">Basic Usage</h3>
+        <pre class="rounded-lg bg-gray-100 p-4 dark:bg-gray-900"><code>&lt;div data-controller="datepicker"&gt;
+  &lt;input type="text" 
+         data-datepicker-target="input"
+         data-action="click-&gt;datepicker#toggle" /&gt;
+  &lt;div data-datepicker-target="calendar"&gt;
+    &lt;!-- Calendar UI --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+        <h3 class="mt-6 text-gray-900 dark:text-white">With Date Constraints</h3>
+        <pre class="rounded-lg bg-gray-100 p-4 dark:bg-gray-900"><code>&lt;div data-controller="datepicker"
+     data-datepicker-min-date-value="2025-01-01"
+     data-datepicker-max-date-value="2025-12-31"&gt;
+  &lt;!-- Date picker UI --&gt;
+&lt;/div&gt;</code></pre>
+
+        <h3 class="mt-6 text-gray-900 dark:text-white">With Pre-selected Date</h3>
+        <pre class="rounded-lg bg-gray-100 p-4 dark:bg-gray-900"><code>&lt;div data-controller="datepicker"
+     data-datepicker-selected-date-value="2025-11-02"&gt;
+  &lt;!-- Date picker UI --&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+

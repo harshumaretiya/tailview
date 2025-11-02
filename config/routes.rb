@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   get '/breadcrumbs', to: 'breadcrumbs#index'
   get '/modals', to: 'modals#index'
   get '/drawers', to: 'drawers#index'
+  get '/datepickers', to: 'datepickers#index'
+  get '/interactive', to: 'interactive#index'
   # Interactive Drawer Examples
   get '/drawers/cart', to: 'drawers#cart', as: :drawers_cart
   get '/drawers/cart_items', to: 'drawers#cart_items', as: :drawers_cart_items
