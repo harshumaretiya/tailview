@@ -1,0 +1,23 @@
+<% 
+  badge_classes = case status
+  when 'todo'
+    'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300'
+  when 'in_progress'
+    'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400'
+  when 'done'
+    'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
+  when 'canceled'
+    'bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-500'
+  when 'backlog'
+    'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400'
+  else
+    'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300'
+  end
+
+  status_text = status.to_s.split('_').map(&:capitalize).join(' ')
+%>
+
+<span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium <%= badge_classes %>">
+  <%= status_text %>
+</span>
+

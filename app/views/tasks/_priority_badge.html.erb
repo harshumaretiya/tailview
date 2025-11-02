@@ -1,0 +1,28 @@
+<% 
+  icon_color = case priority
+  when 'high'
+    'text-red-500'
+  when 'medium'
+    'text-yellow-500'
+  when 'low'
+    'text-gray-400'
+  else
+    'text-gray-400'
+  end
+
+  priority_text = priority.to_s.capitalize
+%>
+
+<div class="flex items-center gap-2">
+  <svg class="h-4 w-4 <%= icon_color %>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <% if priority == 'high' %>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+    <% elsif priority == 'medium' %>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"/>
+    <% else %>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+    <% end %>
+  </svg>
+  <span class="text-sm text-gray-600 dark:text-gray-400"><%= priority_text %></span>
+</div>
+

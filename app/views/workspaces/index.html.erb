@@ -1,7 +1,16 @@
 <div class="bg-white" data-controller="filters">
-  <div class="px-4 py-16 text-center sm:px-6 lg:px-8">
-    <h1 class="text-4xl font-bold tracking-tight text-gray-900">Workspace</h1>
-    <p class="mx-auto mt-4 max-w-xl text-base text-gray-500">The secret to a tidy desk? Don't get rid of anything, just put it in really really nice looking containers.</p>
+  <div class="px-4 py-12 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <div class="flex items-center justify-between mb-8">
+        <div class="text-center flex-1">
+          <h1 class="text-4xl font-bold tracking-tight text-gray-900">Workspace</h1>
+          <p class="mx-auto mt-4 max-w-xl text-base text-gray-500">The secret to a tidy desk? Don't get rid of anything, just put it in really really nice looking containers.</p>
+        </div>
+        <div class="flex-shrink-0">
+          <%= render 'shared/back_to_home' %>
+        </div>
+      </div>
+    </div>
   </div>
 
   <section aria-labelledby="filter-heading" class="grid items-center border-t border-b border-gray-200">

@@ -109,8 +109,11 @@
           </div>
           <p class="mt-2 text-xs/6 text-gray-500 dark:text-gray-400"><%= @project[:deploy_source] %></p>
         </div>
-        <div class="order-first flex-none rounded-full bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-500 ring-1 ring-indigo-200 ring-inset sm:order-0 dark:bg-indigo-400/10 dark:text-indigo-400 dark:ring-indigo-400/30">
-          <%= @project[:status] %>
+        <div class="flex items-center gap-3">
+          <div class="order-first flex-none rounded-full bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-500 ring-1 ring-indigo-200 ring-inset sm:order-0 dark:bg-indigo-400/10 dark:text-indigo-400 dark:ring-indigo-400/30">
+            <%= @project[:status] %>
+          </div>
+          <%= render 'shared/back_to_home' %>
         </div>
       </div>
 

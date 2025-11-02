@@ -1,0 +1,275 @@
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+  <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="mb-8 flex items-center justify-between">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Welcome back!</h1>
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Here's a list of your tasks for this month.</p>
+      </div>
+      <%= render 'shared/back_to_home' %>
+    </div>
+
+    <!-- Main Card -->
+    <div class="rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-950">
+      <!-- Filters and Search Bar -->
+      <div class="border-b border-gray-200 dark:border-gray-800 p-4" 
+           data-controller="task-filter"
+           data-task-filter-url-value="<%= tasks_path %>">
+        
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <!-- Search Input -->
+          <div class="flex-1 max-w-sm">
+            <input 
+              type="text" 
+              placeholder="Search tasks..."
+              data-task-filter-target="search"
+              data-action="input->task-filter#search"
+              class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:placeholder-gray-500"
+            />
+          </div>
+
+          <!-- Filter Buttons -->
+          <div class="flex flex-wrap gap-2">
+            <!-- Status Filter -->
+            <div class="relative" data-controller="dropdown" data-action="click@window->dropdown#closeIfOutside keydown@window->dropdown#handleKeydown">
+              <button 
+                type="button"
+                data-dropdown-target="button"
+                data-action="click->dropdown#toggle"
+                aria-expanded="false"
+                class="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800"
+              >
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                  <path stroke-linecap="round" d="M12 6v6l4 2"/>
+                </svg>
+                Status
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+
+              <div 
+                data-dropdown-target="menu"
+                class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md border border-gray-200 bg-white shadow-lg hidden dark:border-gray-700 dark:bg-gray-900"
+              >
+                <div class="py-1">
+                  <a href="#" data-action="click->task-filter#filterStatus click->dropdown#close" data-value="all" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">All</a>
+                  <a href="#" data-action="click->task-filter#filterStatus click->dropdown#close" data-value="todo" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">Todo</a>
+                  <a href="#" data-action="click->task-filter#filterStatus click->dropdown#close" data-value="in_progress" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">In Progress</a>
+                  <a href="#" data-action="click->task-filter#filterStatus click->dropdown#close" data-value="done" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">Done</a>
+                  <a href="#" data-action="click->task-filter#filterStatus click->dropdown#close" data-value="canceled" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">Canceled</a>
+                  <a href="#" data-action="click->task-filter#filterStatus click->dropdown#close" data-value="backlog" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">Backlog</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Priority Filter -->
+            <div class="relative" data-controller="dropdown" data-action="click@window->dropdown#closeIfOutside keydown@window->dropdown#handleKeydown">
+              <button 
+                type="button"
+                data-dropdown-target="button"
+                data-action="click->dropdown#toggle"
+                aria-expanded="false"
+                class="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800"
+              >
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"/>
+                </svg>
+                Priority
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+
+              <div 
+                data-dropdown-target="menu"
+                class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md border border-gray-200 bg-white shadow-lg hidden dark:border-gray-700 dark:bg-gray-900"
+              >
+                <div class="py-1">
+                  <a href="#" data-action="click->task-filter#filterPriority click->dropdown#close" data-value="all" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">All</a>
+                  <a href="#" data-action="click->task-filter#filterPriority click->dropdown#close" data-value="low" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">Low</a>
+                  <a href="#" data-action="click->task-filter#filterPriority click->dropdown#close" data-value="medium" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">Medium</a>
+                  <a href="#" data-action="click->task-filter#filterPriority click->dropdown#close" data-value="high" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">High</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- View Button -->
+            <button 
+              type="button"
+              class="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800"
+            >
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+              View
+            </button>
+
+            <!-- Add Task Button -->
+            <button 
+              type="button"
+              class="inline-flex items-center gap-2 rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            >
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+              </svg>
+              Add Task
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="overflow-x-auto" data-controller="task-selection">
+        <table class="w-full text-left text-sm">
+          <thead class="border-b border-gray-200 dark:border-gray-800">
+            <tr>
+              <th class="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">
+                <input 
+                  type="checkbox" 
+                  data-action="change->task-selection#toggleAll"
+                  data-task-selection-target="selectAll"
+                  class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                />
+              </th>
+              <th class="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Task</th>
+              <th class="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Title</th>
+              <th class="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Status</th>
+              <th class="px-4 py-3 font-medium text-gray-500 dark:text-gray-400">Priority</th>
+              <th class="px-4 py-3 font-medium text-gray-500 dark:text-gray-400"></th>
+            </tr>
+          </thead>
+          <tbody data-task-selection-target="tbody">
+            <% @tasks.each do |task| %>
+              <tr class="border-b border-gray-100 hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-900/50">
+                <td class="px-4 py-3">
+                  <input 
+                    type="checkbox" 
+                    data-action="change->task-selection#updateCount"
+                    data-task-selection-target="checkbox"
+                    class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                  />
+                </td>
+                <td class="px-4 py-3">
+                  <div class="flex items-center gap-2">
+                    <span class="font-mono text-xs text-gray-500 dark:text-gray-400"><%= task[:id] %></span>
+                  </div>
+                </td>
+                <td class="px-4 py-3">
+                  <div class="flex items-center gap-3">
+                    <%= render partial: 'task_label', locals: { label: task[:label] } %>
+                    <span class="max-w-lg truncate text-gray-900 dark:text-white"><%= task[:title] %></span>
+                  </div>
+                </td>
+                <td class="px-4 py-3">
+                  <%= render partial: 'status_badge', locals: { status: task[:status] } %>
+                </td>
+                <td class="px-4 py-3">
+                  <%= render partial: 'priority_badge', locals: { priority: task[:priority] } %>
+                </td>
+                <td class="px-4 py-3">
+                  <div class="relative" data-controller="dropdown" data-action="click@window->dropdown#closeIfOutside keydown@window->dropdown#handleKeydown">
+                    <button 
+                      type="button"
+                      data-dropdown-target="button"
+                      data-action="click->dropdown#toggle"
+                      aria-expanded="false"
+                      class="rounded p-1 hover:bg-gray-100 dark:hover:bg-gray-800"
+                    >
+                      <svg class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="5" r="2"/>
+                        <circle cx="12" cy="12" r="2"/>
+                        <circle cx="12" cy="19" r="2"/>
+                      </svg>
+                    </button>
+
+                    <div 
+                      data-dropdown-target="menu"
+                      class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md border border-gray-200 bg-white shadow-lg hidden dark:border-gray-700 dark:bg-gray-900"
+                    >
+                      <div class="py-1">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">Edit</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">Make a copy</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800">Favorite</a>
+                        <div class="my-1 border-t border-gray-100 dark:border-gray-800"></div>
+                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-800">Delete</a>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Footer with Pagination -->
+      <div class="flex items-center justify-between border-t border-gray-200 px-4 py-3 dark:border-gray-800">
+        <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+          <span data-task-selection-target="count">0</span> of <%= @tasks.length %> row(s) selected.
+        </div>
+
+        <div class="flex items-center gap-4">
+          <!-- Rows per page -->
+          <div class="flex items-center gap-2">
+            <span class="text-sm text-gray-600 dark:text-gray-400">Rows per page</span>
+            <select 
+              data-action="change->task-filter#changePerPage"
+              data-task-filter-target="perPage"
+              class="rounded-md border border-gray-300 bg-white px-2 py-1 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+            >
+              <option value="10" <%= @per_page == 10 ? 'selected' : '' %>>10</option>
+              <option value="20" <%= @per_page == 20 ? 'selected' : '' %>>20</option>
+              <option value="50" <%= @per_page == 50 ? 'selected' : '' %>>50</option>
+              <option value="100" <%= @per_page == 100 ? 'selected' : '' %>>100</option>
+            </select>
+          </div>
+
+          <!-- Page info -->
+          <span class="text-sm text-gray-600 dark:text-gray-400">
+            Page <%= @page %> of <%= @total_pages %>
+          </span>
+
+          <!-- Pagination buttons -->
+          <div class="flex items-center gap-1">
+            <a 
+              href="<%= tasks_path(page: 1, per_page: @per_page, status: params[:status], priority: params[:priority], search: params[:search]) %>"
+              class="rounded p-1 hover:bg-gray-100 disabled:opacity-50 dark:hover:bg-gray-800 <%= @page == 1 ? 'pointer-events-none opacity-50' : '' %>"
+            >
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/>
+              </svg>
+            </a>
+            <a 
+              href="<%= tasks_path(page: [@page - 1, 1].max, per_page: @per_page, status: params[:status], priority: params[:priority], search: params[:search]) %>"
+              class="rounded p-1 hover:bg-gray-100 disabled:opacity-50 dark:hover:bg-gray-800 <%= @page == 1 ? 'pointer-events-none opacity-50' : '' %>"
+            >
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+              </svg>
+            </a>
+            <a 
+              href="<%= tasks_path(page: [@page + 1, @total_pages].min, per_page: @per_page, status: params[:status], priority: params[:priority], search: params[:search]) %>"
+              class="rounded p-1 hover:bg-gray-100 disabled:opacity-50 dark:hover:bg-gray-800 <%= @page == @total_pages ? 'pointer-events-none opacity-50' : '' %>"
+            >
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </a>
+            <a 
+              href="<%= tasks_path(page: @total_pages, per_page: @per_page, status: params[:status], priority: params[:priority], search: params[:search]) %>"
+              class="rounded p-1 hover:bg-gray-100 disabled:opacity-50 dark:hover:bg-gray-800 <%= @page == @total_pages ? 'pointer-events-none opacity-50' : '' %>"
+            >
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

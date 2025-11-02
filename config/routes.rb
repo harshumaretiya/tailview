@@ -56,6 +56,7 @@ Rails.application.routes.draw do
   get '/team', to: 'teams#index'
   get '/deployments', to: 'deployments#index'
   get '/deployments/refresh_activities', to: 'deployments#refresh_activities', as: :deployments_refresh_activities
+  get '/tasks', to: 'tasks#index'
   
   # Test route for debugging
   get '/test-turbo-frame', to: 'turbo_frame_examples#settings'
