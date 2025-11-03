@@ -9,6 +9,16 @@
     <%= csp_meta_tag %>
 
     <%= yield :head %>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= ENV.fetch("ANALYTICS_GA4_ID", nil) %>"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', <%= ENV.fetch("ANALYTICS_GA4_ID", nil) %>);
+    </script>
+
 
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
@@ -23,6 +33,7 @@
   </head>
 
   <body data-controller="smooth-scroll">
+
     <!-- Fixed notification areas -->
     <!-- Top Right -->
     <div id="notifications-top-right" class="fixed top-4 right-4 z-50 w-full max-w-md space-y-3 pointer-events-auto">
