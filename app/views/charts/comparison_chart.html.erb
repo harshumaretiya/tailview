@@ -1,0 +1,229 @@
+<%# Comparison Chart - Compare current vs previous period %>
+<%= turbo_frame_tag 'comparison_chart' do %>
+  <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900" 
+       data-controller="area-chart">
+    <!-- Chart Header -->
+    <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <div class="mb-2 flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500 to-red-600">
+            <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Period Comparison</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Current vs Previous Period</p>
+          </div>
+        </div>
+      </div>
+      
+      <%# Period selector %>
+      <div class="inline-flex rounded-lg border border-gray-200 bg-gray-50 p-1 dark:border-gray-700 dark:bg-gray-800">
+        <% ['week', 'month', 'year'].each do |period| %>
+          <%= link_to period.capitalize, 
+              "/charts/comparison_chart?period=#{period}", 
+              class: "px-4 py-2 text-sm font-medium rounded-md transition-all #{@period == period ? 'bg-white text-blue-600 shadow-sm dark:bg-gray-700 dark:text-blue-400' : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200'}",
+              data: { turbo_frame: 'comparison_chart' } %>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Comparison Stats -->
+    <div class="mb-6 grid gap-4 sm:grid-cols-2">
+      <div class="rounded-lg border-2 border-blue-200 bg-blue-50 p-4 dark:border-blue-900 dark:bg-blue-950/30">
+        <div class="mb-2 flex items-center justify-between">
+          <p class="text-sm font-medium text-blue-700 dark:text-blue-400">Current Period</p>
+          <span class="rounded-full bg-blue-600 px-2 py-0.5 text-xs font-bold text-white">Now</span>
+        </div>
+        <p class="text-3xl font-bold text-gray-900 dark:text-white"><%= number_with_delimiter(@current_total) %></p>
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">visitors this <%= @period %></p>
+      </div>
+
+      <div class="rounded-lg border-2 border-gray-300 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800/50">
+        <div class="mb-2 flex items-center justify-between">
+          <p class="text-sm font-medium text-gray-700 dark:text-gray-400">Previous Period</p>
+          <span class="rounded-full bg-gray-400 px-2 py-0.5 text-xs font-bold text-white">Past</span>
+        </div>
+        <p class="text-3xl font-bold text-gray-900 dark:text-white"><%= number_with_delimiter(@previous_total) %></p>
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">visitors last <%= @period %></p>
+      </div>
+    </div>
+
+    <!-- Change Indicator -->
+    <div class="mb-6 rounded-lg border-2 border-dashed <%= @change >= 0 ? 'border-green-300 bg-green-50 dark:border-green-900 dark:bg-green-950/20' : 'border-red-300 bg-red-50 dark:border-red-900 dark:bg-red-950/20' %> p-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Performance Change</p>
+          <p class="mt-1 text-2xl font-bold <%= @change >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400' %>">
+            <%= @change >= 0 ? '+' : '' %><%= @change %>%
+          </p>
+        </div>
+        <div class="rounded-full <%= @change >= 0 ? 'bg-green-100 dark:bg-green-900/50' : 'bg-red-100 dark:bg-red-900/50' %> p-4">
+          <svg class="h-8 w-8 <%= @change >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400' %>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <% if @change >= 0 %>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            <% else %>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"/>
+            <% end %>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparison Chart -->
+    <div class="relative rounded-lg bg-gray-50 p-4 dark:bg-gray-800/50" style="height: 360px;">
+      <!-- Single Tooltip Container -->
+      <div 
+        data-area-chart-target="tooltipContainer"
+        class="pointer-events-none absolute left-0 top-0 z-10 hidden opacity-0 transition-opacity duration-200"
+        style="will-change: transform, opacity;">
+        <div class="rounded-lg border-2 border-blue-500 bg-white px-4 py-3 shadow-xl dark:border-blue-400 dark:bg-gray-800">
+          <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400" data-area-chart-target="tooltipLabel">Mon</p>
+          <div class="mt-2 space-y-1.5">
+            <div>
+              <p class="text-xs font-medium text-blue-600 dark:text-blue-400">Current</p>
+              <p class="text-xl font-bold text-gray-900 dark:text-white" data-area-chart-target="tooltipValue">2,247</p>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500 dark:text-gray-400">Previous</p>
+              <p class="text-sm font-medium text-gray-600 dark:text-gray-400" data-area-chart-target="tooltipPrevious">2,100</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <svg viewBox="0 0 <%= @current_data.length * 40 %> 300" class="h-full w-full" preserveAspectRatio="none" data-area-chart-target="canvas">
+        <defs>
+          <linearGradient id="currentGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:rgb(59, 130, 246);stop-opacity:0.5" />
+            <stop offset="100%" style="stop-color:rgb(59, 130, 246);stop-opacity:0" />
+          </linearGradient>
+          <linearGradient id="previousGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:rgb(156, 163, 175);stop-opacity:0.3" />
+            <stop offset="100%" style="stop-color:rgb(156, 163, 175);stop-opacity:0" />
+          </linearGradient>
+        </defs>
+
+        <!-- Grid -->
+        <% 5.times do |i| %>
+          <line x1="0" y1="<%= i * 60 %>" x2="<%= @current_data.length * 40 %>" y2="<%= i * 60 %>" 
+                stroke="currentColor" class="stroke-gray-300 dark:stroke-gray-700" stroke-width="1" opacity="0.3"/>
+        <% end %>
+
+        <%# Calculate points for both datasets %>
+        <% 
+          all_values = @current_data.map { |d| d[:value] } + @previous_data.map { |d| d[:value] }
+          max_value = all_values.max
+          
+          current_points = @current_data.each_with_index.map do |d, i|
+            x = i * 40 + 20
+            y = 280 - ((d[:value].to_f / max_value) * 250)
+            { x: x, y: y, value: d[:value], label: d[:label] }
+          end
+          
+          previous_points = @previous_data.each_with_index.map do |d, i|
+            x = i * 40 + 20
+            y = 280 - ((d[:value].to_f / max_value) * 250)
+            { x: x, y: y, value: d[:value], label: d[:label] }
+          end
+        %>
+
+        <!-- Previous Period Area (gray, in background) -->
+        <path 
+          d="M 0,300 L <%= previous_points.first[:x] %>,<%= previous_points.first[:y] %> 
+             <% previous_points.each_cons(2) do |p1, p2| %>
+               L <%= p2[:x] %>,<%= p2[:y] %>
+             <% end %>
+             L <%= previous_points.last[:x] %>,300 Z"
+          fill="url(#previousGradient)"
+          class="transition-all duration-700"
+        />
+
+        <path 
+          d="M <%= previous_points.first[:x] %>,<%= previous_points.first[:y] %> 
+             <% previous_points.each_cons(2) do |p1, p2| %>
+               L <%= p2[:x] %>,<%= p2[:y] %>
+             <% end %>"
+          stroke="rgb(156, 163, 175)"
+          stroke-width="2"
+          fill="none"
+          stroke-dasharray="5,5"
+        />
+
+        <!-- Current Period Area (blue, in foreground) -->
+        <path 
+          d="M 0,300 L <%= current_points.first[:x] %>,<%= current_points.first[:y] %> 
+             <% current_points.each_cons(2) do |p1, p2| %>
+               L <%= p2[:x] %>,<%= p2[:y] %>
+             <% end %>
+             L <%= current_points.last[:x] %>,300 Z"
+          fill="url(#currentGradient)"
+          data-area-chart-target="area"
+          class="transition-all duration-700"
+        />
+
+        <path 
+          d="M <%= current_points.first[:x] %>,<%= current_points.first[:y] %> 
+             <% current_points.each_cons(2) do |p1, p2| %>
+               L <%= p2[:x] %>,<%= p2[:y] %>
+             <% end %>"
+          stroke="rgb(59, 130, 246)"
+          stroke-width="3"
+          fill="none"
+        />
+
+        <!-- Data points for current period -->
+        <% current_points.each_with_index do |point, i| %>
+          <g data-area-chart-target="point" 
+             data-action="mouseenter->area-chart#showTooltip mouseleave->area-chart#hideTooltip"
+             data-label="<%= @current_data[i][:label] %>"
+             data-value="<%= number_with_delimiter(current_points[i][:value]) %>"
+             data-previous="<%= number_with_delimiter(previous_points[i][:value]) %>"
+             data-index="<%= i %>"
+             class="cursor-pointer">
+            <!-- Large hover area -->
+            <circle cx="<%= point[:x] %>" cy="<%= point[:y] %>" r="20" 
+                    fill="transparent" stroke="none"
+                    data-area-chart-target="hitArea"/>
+            
+            <!-- Animated pulse on hover -->
+            <circle cx="<%= point[:x] %>" cy="<%= point[:y] %>" r="10" 
+                    fill="rgb(59, 130, 246)" opacity="0"
+                    data-area-chart-target="pulse"
+                    class="transition-all duration-300"/>
+            
+            <!-- Main point -->
+            <circle cx="<%= point[:x] %>" cy="<%= point[:y] %>" r="5" 
+                    fill="rgb(59, 130, 246)" stroke="white" stroke-width="3"
+                    data-area-chart-target="pointCircle"
+                    class="transition-all duration-200 drop-shadow-lg"/>
+          </g>
+        <% end %>
+      </svg>
+    </div>
+
+    <!-- Legend -->
+    <div class="mt-6 flex items-center justify-between border-t border-gray-200 pt-4 dark:border-gray-700">
+      <div class="flex flex-wrap gap-6">
+        <div class="flex items-center gap-2">
+          <div class="h-3 w-8 rounded bg-blue-600"></div>
+          <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Current Period</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="h-3 w-8 rounded border-2 border-dashed border-gray-400 bg-gray-400"></div>
+          <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Previous Period</span>
+        </div>
+      </div>
+      <button 
+        data-action="click->area-chart#exportData"
+        class="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+        </svg>
+        Export
+      </button>
+    </div>
+  </div>
+<% end %>
+

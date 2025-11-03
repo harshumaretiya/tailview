@@ -60,6 +60,14 @@ Rails.application.routes.draw do
   get '/deployments/refresh_activities', to: 'deployments#refresh_activities', as: :deployments_refresh_activities
   get '/tasks', to: 'tasks#index'
   
+  # Charts - Area Charts with Interactive Features
+  get '/charts', to: 'charts#index'
+  get '/charts/basic_area_chart', to: 'charts#basic_area_chart', as: :charts_basic_area
+  get '/charts/stacked_area_chart', to: 'charts#stacked_area_chart', as: :charts_stacked_area
+  get '/charts/gradient_area_chart', to: 'charts#gradient_area_chart', as: :charts_gradient_area
+  get '/charts/multi_metric_chart', to: 'charts#multi_metric_chart', as: :charts_multi_metric
+  get '/charts/comparison_chart', to: 'charts#comparison_chart', as: :charts_comparison
+  
   # Test route for debugging
   get '/test-turbo-frame', to: 'turbo_frame_examples#settings'
 

@@ -1,0 +1,19 @@
+<%# Period Selector Partial - Reusable period filter buttons
+  Usage: <%= render 'charts/period_selector', current_period: @period, endpoint: '/charts/basic_area_chart', frame_id: 'basic_area_chart' %>
+%>
+<%
+  current_period = local_assigns[:current_period] || 'week'
+  endpoint = local_assigns[:endpoint] || '/charts'
+  frame_id = local_assigns[:frame_id]
+  periods = local_assigns[:periods] || ['week', 'month', 'year']
+%>
+
+<div class="inline-flex rounded-lg border border-gray-200 bg-gray-50 p-1 dark:border-gray-700 dark:bg-gray-800">
+  <% periods.each do |period| %>
+    <%= link_to period.capitalize, 
+        "#{endpoint}?period=#{period}", 
+        class: "px-4 py-2 text-sm font-medium rounded-md transition-all #{current_period == period ? 'bg-white text-blue-600 shadow-sm dark:bg-gray-700 dark:text-blue-400' : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200'}",
+        data: frame_id ? { turbo_frame: frame_id } : {} %>
+  <% end %>
+</div>
+

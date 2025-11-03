@@ -1,0 +1,62 @@
+<%# Stat Card Partial - Reusable statistic card component
+  Usage: <%= render 'charts/stat_card', 
+               label: 'Total Visitors', 
+               value: '52,143', 
+               change: '+12.5%', 
+               trend: 'up',
+               icon_path: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
+               icon_color: 'blue' %>
+%>
+<%
+  label = local_assigns[:label] || 'Metric'
+  value = local_assigns[:value] || '0'
+  change = local_assigns[:change] || '+0%'
+  trend = local_assigns[:trend] || 'up' # 'up', 'down', or 'neutral'
+  icon_path = local_assigns[:icon_path]
+  icon_color = local_assigns[:icon_color] || 'blue'
+  
+  color_classes = {
+    'blue' => { bg: 'bg-blue-100 dark:bg-blue-900/30', icon: 'text-blue-600 dark:text-blue-400' },
+    'green' => { bg: 'bg-green-100 dark:bg-green-900/30', icon: 'text-green-600 dark:text-green-400' },
+    'purple' => { bg: 'bg-purple-100 dark:bg-purple-900/30', icon: 'text-purple-600 dark:text-purple-400' },
+    'orange' => { bg: 'bg-orange-100 dark:bg-orange-900/30', icon: 'text-orange-600 dark:text-orange-400' },
+    'red' => { bg: 'bg-red-100 dark:bg-red-900/30', icon: 'text-red-600 dark:text-red-400' }
+  }
+  
+  colors = color_classes[icon_color] || color_classes['blue']
+  
+  trend_color = case trend
+  when 'up' then 'text-green-600 dark:text-green-400'
+  when 'down' then 'text-red-600 dark:text-red-400'
+  else 'text-gray-600 dark:text-gray-400'
+  end
+  
+  trend_icon = case trend
+  when 'up' then 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6'
+  when 'down' then 'M13 17h8m0 0V9m0 8l-8-8-4 4-6-6'
+  else 'M5 12h14'
+  end
+%>
+
+<div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-gray-800 dark:bg-gray-900">
+  <div class="flex items-center justify-between">
+    <div>
+      <p class="text-sm font-medium text-gray-600 dark:text-gray-400"><%= label %></p>
+      <p class="mt-2 text-3xl font-bold text-gray-900 dark:text-white"><%= value %></p>
+      <p class="mt-2 flex items-center text-sm <%= trend_color %>">
+        <svg class="mr-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="<%= trend_icon %>"/>
+        </svg>
+        <%= change %>
+      </p>
+    </div>
+    <% if icon_path %>
+      <div class="rounded-full <%= colors[:bg] %> p-3">
+        <svg class="h-8 w-8 <%= colors[:icon] %>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="<%= icon_path %>"/>
+        </svg>
+      </div>
+    <% end %>
+  </div>
+</div>
+

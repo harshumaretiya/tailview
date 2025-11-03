@@ -1,0 +1,231 @@
+<%# Gradient Area Chart - Revenue chart with beautiful gradient fill %>
+<%= turbo_frame_tag 'gradient_area_chart' do %>
+  <div class="rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-900" 
+       data-controller="area-chart">
+    <!-- Chart Header -->
+    <div class="border-b border-gray-200 p-6 dark:border-gray-700">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <div class="mb-2 flex items-center gap-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-600 shadow-lg">
+              <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Revenue Trends</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Beautiful gradient visualization</p>
+            </div>
+          </div>
+        </div>
+      
+        <%# Period selector %>
+        <div class="inline-flex rounded-lg border border-gray-200 bg-gray-50 p-1 dark:border-gray-700 dark:bg-gray-800">
+          <% ['week', 'month', 'year'].each do |period| %>
+            <%= link_to period.capitalize, 
+                "/charts/gradient_area_chart?period=#{period}", 
+                class: "px-4 py-2 text-sm font-medium rounded-md transition-all #{@period == period ? 'bg-white text-blue-600 shadow-sm dark:bg-gray-700 dark:text-blue-400' : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200'}",
+                data: { turbo_frame: 'gradient_area_chart' } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Revenue Stats -->
+    <div class="grid gap-4 border-b border-gray-200 p-6 dark:border-gray-700 sm:grid-cols-3">
+      <div class="rounded-lg bg-gradient-to-br from-emerald-50 to-teal-50 p-4 dark:from-emerald-950/30 dark:to-teal-950/30">
+        <p class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Total Revenue</p>
+        <p class="mt-2 text-3xl font-bold text-gray-900 dark:text-white"><%= number_to_currency(@total_revenue) %></p>
+        <p class="mt-2 flex items-center gap-1 text-sm font-medium <%= @change >= 0 ? 'text-green-600' : 'text-red-600' %>">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <% if @change >= 0 %>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            <% else %>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"/>
+            <% end %>
+          </svg>
+          <span><%= @change.abs %>% vs last period</span>
+        </p>
+      </div>
+
+      <div class="rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 p-4 dark:from-blue-950/30 dark:to-indigo-950/30">
+        <p class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Average</p>
+        <p class="mt-2 text-3xl font-bold text-gray-900 dark:text-white"><%= number_to_currency(@avg_revenue) %></p>
+        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">per <%= @period == 'year' ? 'month' : 'day' %></p>
+      </div>
+
+      <div class="rounded-lg bg-gradient-to-br from-purple-50 to-pink-50 p-4 dark:from-purple-950/30 dark:to-pink-950/30">
+        <p class="text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">Peak Revenue</p>
+        <p class="mt-2 text-3xl font-bold text-gray-900 dark:text-white"><%= number_to_currency(@data.max_by { |d| d[:value] }[:value]) %></p>
+        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">on <%= @data.max_by { |d| d[:value] }[:label] %></p>
+      </div>
+    </div>
+
+    <!-- Gradient Area Chart -->
+    <div class="p-6">
+      <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-6" style="height: 420px;">
+        <!-- Single Tooltip Container -->
+        <div 
+          data-area-chart-target="tooltipContainer"
+          class="pointer-events-none absolute left-0 top-0 z-10 hidden opacity-0 transition-opacity duration-200"
+          style="will-change: transform, opacity;">
+          <div class="rounded-xl border-2 border-emerald-400/50 bg-gray-900/95 px-4 py-3 shadow-2xl backdrop-blur-md">
+            <p class="text-xs font-semibold uppercase tracking-wide text-emerald-300" data-area-chart-target="tooltipLabel">Mon</p>
+            <p class="mt-1.5 text-2xl font-bold text-white" data-area-chart-target="tooltipValue">$28,750</p>
+            <p class="mt-1 flex items-center gap-1 text-xs text-emerald-400">
+              <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+              </svg>
+              <span>Revenue</span>
+            </p>
+          </div>
+        </div>
+        
+        <svg viewBox="0 0 <%= @data.length * 50 %> 360" class="h-full w-full" preserveAspectRatio="none" data-area-chart-target="canvas" style="padding: 20px;">
+        <!-- Define multi-color gradient -->
+        <defs>
+          <linearGradient id="rainbowGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:rgb(16, 185, 129);stop-opacity:0.8" />
+            <stop offset="30%" style="stop-color:rgb(20, 184, 166);stop-opacity:0.6" />
+            <stop offset="60%" style="stop-color:rgb(6, 182, 212);stop-opacity:0.4" />
+            <stop offset="100%" style="stop-color:rgb(14, 165, 233);stop-opacity:0.1" />
+          </linearGradient>
+          
+          <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:rgb(16, 185, 129)"/>
+            <stop offset="50%" style="stop-color:rgb(20, 184, 166)"/>
+            <stop offset="100%" style="stop-color:rgb(6, 182, 212)"/>
+          </linearGradient>
+          
+          <!-- Glow effect -->
+          <filter id="glow2">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- Grid lines (light for dark background) -->
+        <% 5.times do |i| %>
+          <line x1="0" y1="<%= 50 + (i * 60) %>" x2="<%= @data.length * 50 %>" y2="<%= 50 + (i * 60) %>" 
+                stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <% end %>
+
+        <%# Calculate points %>
+        <% 
+          max_value = @data.map { |d| d[:value] }.max
+          points = @data.each_with_index.map do |d, i|
+            x = i * 50 + 40
+            y = 310 - ((d[:value].to_f / max_value) * 240)
+            { x: x, y: y, value: d[:value], label: d[:label] }
+          end
+        %>
+
+        <!-- Area with rainbow gradient -->
+        <path 
+          d="M 0,340 L <%= points.first[:x] %>,<%= points.first[:y] %> 
+             <% points.each_cons(2) do |p1, p2| %>
+               <% cp1x = p1[:x] + 25 %>
+               <% cp2x = p2[:x] - 25 %>
+               Q <%= cp1x %>,<%= p1[:y] %> <%= (p1[:x] + p2[:x]) / 2 %>,<%= (p1[:y] + p2[:y]) / 2 %>
+               Q <%= cp2x %>,<%= p2[:y] %> <%= p2[:x] %>,<%= p2[:y] %>
+             <% end %>
+             L <%= points.last[:x] %>,340 Z"
+          fill="url(#rainbowGradient)"
+          data-area-chart-target="area"
+          class="transition-all duration-1000"
+        />
+
+        <!-- Glowing line -->
+        <path 
+          d="M <%= points.first[:x] %>,<%= points.first[:y] %> 
+             <% points.each_cons(2) do |p1, p2| %>
+               <% cp1x = p1[:x] + 25 %>
+               <% cp2x = p2[:x] - 25 %>
+               Q <%= cp1x %>,<%= p1[:y] %> <%= (p1[:x] + p2[:x]) / 2 %>,<%= (p1[:y] + p2[:y]) / 2 %>
+               Q <%= cp2x %>,<%= p2[:y] %> <%= p2[:x] %>,<%= p2[:y] %>
+             <% end %>"
+          stroke="url(#lineGradient)"
+          stroke-width="3.5"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          filter="url(#glow2)"
+        />
+
+        <!-- Data points with gradient colors -->
+        <% points.each_with_index do |point, i| %>
+          <% 
+            progress = i / points.length.to_f
+            color = if progress < 0.33
+              "rgb(16, 185, 129)" # emerald
+            elsif progress < 0.66
+              "rgb(20, 184, 166)" # teal
+            else
+              "rgb(6, 182, 212)" # cyan
+            end
+          %>
+          <g data-area-chart-target="point" 
+             data-action="mouseenter->area-chart#showTooltip mouseleave->area-chart#hideTooltip"
+             data-label="<%= @data[i][:label] %>"
+             data-value="<%= number_to_currency(point[:value]) %>"
+             data-index="<%= i %>"
+             class="cursor-pointer">
+            <!-- Large hover area -->
+            <circle cx="<%= point[:x] %>" cy="<%= point[:y] %>" r="20" 
+                    fill="transparent" stroke="none"
+                    data-area-chart-target="hitArea"/>
+            
+            <!-- Animated pulse on hover -->
+            <circle cx="<%= point[:x] %>" cy="<%= point[:y] %>" r="12" 
+                    fill="<%= color %>" opacity="0"
+                    data-area-chart-target="pulse"
+                    class="transition-all duration-300"/>
+            
+            <!-- Main point -->
+            <circle cx="<%= point[:x] %>" cy="<%= point[:y] %>" r="6" 
+                    fill="<%= color %>" stroke="white" stroke-width="3"
+                    data-area-chart-target="pointCircle"
+                    class="drop-shadow-xl transition-all duration-200"/>
+          </g>
+        <% end %>
+      </svg>
+      </div>
+
+      <!-- X-axis labels (light for dark background) -->
+      <div class="mt-4 flex justify-between rounded-lg bg-gray-800 px-4 py-2 text-xs font-medium text-gray-300">
+        <% if @period == 'month' %>
+          <% [1, 5, 10, 15, 20, 25, 30].each do |day| %>
+            <span class="inline-block w-8 text-center"><%= day %></span>
+          <% end %>
+        <% else %>
+          <% @data.each_with_index do |d, i| %>
+            <% if @period == 'year' || i % (@period == 'week' ? 1 : 2) == 0 %>
+              <span class="flex-1 text-center"><%= d[:label] %></span>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex items-center justify-between border-t border-gray-200 p-6 dark:border-gray-700">
+      <div class="flex items-center gap-3">
+        <div class="h-4 w-24 rounded-full bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 shadow-sm"></div>
+        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Revenue Gradient</span>
+      </div>
+      <button 
+        data-action="click->area-chart#exportData"
+        class="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition-all hover:bg-gray-50 hover:shadow dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+        </svg>
+        Export
+      </button>
+    </div>
+  </div>
+<% end %>
+

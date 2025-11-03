@@ -1,0 +1,219 @@
+<%# Basic Area Chart - Shows single dataset with period filtering %>
+<%= turbo_frame_tag 'basic_area_chart' do %>
+  <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg transition-shadow hover:shadow-xl dark:border-gray-800 dark:bg-gray-900" data-controller="area-chart" data-area-chart-data-value="<%= @data.to_json %>">
+    <!-- Chart Header -->
+    <div class="border-b border-gray-100 bg-gradient-to-br from-blue-50/50 to-indigo-50/50 p-6 dark:border-gray-800 dark:from-blue-950/20 dark:to-indigo-950/20">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <div class="mb-3 flex items-center gap-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg shadow-blue-500/30">
+              <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Visitor Analytics</h3>
+              <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Track your website traffic over time</p>
+            </div>
+          </div>
+        </div>
+        
+        <%# Period selector buttons %>
+        <div class="inline-flex rounded-xl border border-gray-200 bg-white/80 p-1.5 backdrop-blur-sm dark:border-gray-700 dark:bg-gray-800/80">
+          <% ['week', 'month', 'year'].each do |period| %>
+            <%= link_to period.capitalize, 
+                "/charts/basic_area_chart?period=#{period}", 
+                class: "px-5 py-2.5 text-sm font-semibold rounded-lg transition-all #{@period == period ? 'bg-gradient-to-br from-blue-500 to-indigo-600 text-white shadow-md shadow-blue-500/30' : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700'}",
+                data: { turbo_frame: 'basic_area_chart' } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="grid gap-6 border-b border-gray-100 bg-white p-8 dark:border-gray-800 dark:bg-gray-900 sm:grid-cols-3">
+      <!-- Total Visitors -->
+      <div class="group relative overflow-hidden rounded-2xl border border-gray-100 bg-gradient-to-br from-blue-50 to-indigo-50/50 p-6 transition-all hover:scale-105 hover:shadow-lg dark:border-gray-800 dark:from-blue-950/20 dark:to-indigo-950/20">
+        <div class="absolute right-4 top-4 opacity-10 group-hover:opacity-20">
+          <svg class="h-16 w-16 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+          </svg>
+        </div>
+        <p class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Total Visitors</p>
+        <p class="mt-3 text-4xl font-extrabold text-gray-900 dark:text-white"><%= number_with_delimiter(@total) %></p>
+        <p class="mt-3 flex items-center gap-2 text-sm font-semibold <%= @change_percentage >= 0 ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400' %>">
+          <span class="flex items-center rounded-full <%= @change_percentage >= 0 ? 'bg-green-100 dark:bg-green-900/30' : 'bg-red-100 dark:bg-red-900/30' %> px-2 py-1">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <% if @change_percentage >= 0 %>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+              <% else %>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"/>
+              <% end %>
+            </svg>
+            <span class="ml-1"><%= @change_percentage.abs %>%</span>
+          </span>
+          <span class="text-xs text-gray-600 dark:text-gray-400">from last period</span>
+        </p>
+      </div>
+
+      <!-- Average Daily -->
+      <div class="group relative overflow-hidden rounded-2xl border border-gray-100 bg-gradient-to-br from-purple-50 to-pink-50/50 p-6 transition-all hover:scale-105 hover:shadow-lg dark:border-gray-800 dark:from-purple-950/20 dark:to-pink-950/20">
+        <div class="absolute right-4 top-4 opacity-10 group-hover:opacity-20">
+          <svg class="h-16 w-16 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+        </div>
+        <p class="text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400">Average <%= @period == 'week' ? 'Daily' : @period == 'month' ? 'Daily' : 'Monthly' %></p>
+        <p class="mt-3 text-4xl font-extrabold text-gray-900 dark:text-white"><%= number_with_delimiter((@total / @data.length.to_f).round) %></p>
+        <p class="mt-3 text-sm font-medium text-gray-600 dark:text-gray-400">per <%= @period == 'year' ? 'month' : 'day' %></p>
+      </div>
+
+      <!-- Peak Traffic -->
+      <div class="group relative overflow-hidden rounded-2xl border border-gray-100 bg-gradient-to-br from-emerald-50 to-teal-50/50 p-6 transition-all hover:scale-105 hover:shadow-lg dark:border-gray-800 dark:from-emerald-950/20 dark:to-teal-950/20">
+        <div class="absolute right-4 top-4 opacity-10 group-hover:opacity-20">
+          <svg class="h-16 w-16 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+          </svg>
+        </div>
+        <p class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Peak Traffic</p>
+        <p class="mt-3 text-4xl font-extrabold text-gray-900 dark:text-white"><%= number_with_delimiter(@data.max_by { |d| d[:value] }[:value]) %></p>
+        <p class="mt-3 text-sm font-medium text-gray-600 dark:text-gray-400">on <%= @data.max_by { |d| d[:value] }[:label] %></p>
+      </div>
+    </div>
+
+    <!-- SVG Area Chart -->
+    <div class="p-8">
+      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-50 to-blue-50/30 dark:from-gray-800/50 dark:to-blue-950/20" style="height: 400px;">
+        <!-- Tooltip Container (positioned absolutely) -->
+        <div 
+          data-area-chart-target="tooltipContainer"
+          class="pointer-events-none absolute left-0 top-0 z-10 hidden opacity-0 transition-opacity duration-200"
+          style="will-change: transform, opacity;">
+          <div class="rounded-xl border-2 border-blue-500/20 bg-white/95 px-6 py-4 shadow-2xl backdrop-blur-lg dark:border-blue-400/30 dark:bg-gray-800/95">
+            <p class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400" data-area-chart-target="tooltipLabel">Mon</p>
+            <p class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-white" data-area-chart-target="tooltipValue">2,247</p>
+            <p class="mt-1 text-sm font-medium text-gray-500 dark:text-gray-400">visitors</p>
+          </div>
+        </div>
+        
+        <svg viewBox="0 0 <%= @data.length * 50 %> 360" class="h-full w-full" preserveAspectRatio="none" data-area-chart-target="canvas" style="padding: 20px;">
+        <!-- Define gradient -->
+        <defs>
+          <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:rgb(37, 99, 235);stop-opacity:0.3" />
+            <stop offset="100%" style="stop-color:rgb(37, 99, 235);stop-opacity:0" />
+          </linearGradient>
+        </defs>
+
+        <!-- Grid lines -->
+        <% 5.times do |i| %>
+          <line x1="0" y1="<%= 40 + (i * 55) %>" x2="<%= @data.length * 50 %>" y2="<%= 40 + (i * 55) %>" 
+                stroke="currentColor" class="stroke-gray-300 dark:stroke-gray-600" stroke-width="1" opacity="0.3"/>
+        <% end %>
+
+        <!-- Calculate points for smooth area -->
+        <% 
+          max_value = @data.map { |d| d[:value] }.max
+          points = @data.each_with_index.map do |d, i|
+            x = i * 50 + 40
+            y = 280 - ((d[:value].to_f / max_value) * 220)
+            { x: x, y: y, value: d[:value], label: d[:label] }
+          end
+        %>
+
+        <!-- Area path with gradient fill -->
+        <path 
+          d="M 0,300 L <%= points.first[:x] %>,<%= points.first[:y] %> 
+             <% points.each_cons(2) do |p1, p2| %>
+               <% cp1x = p1[:x] + 20 %>
+               <% cp2x = p2[:x] - 20 %>
+               Q <%= cp1x %>,<%= p1[:y] %> <%= (p1[:x] + p2[:x]) / 2 %>,<%= (p1[:y] + p2[:y]) / 2 %>
+               Q <%= cp2x %>,<%= p2[:y] %> <%= p2[:x] %>,<%= p2[:y] %>
+             <% end %>
+             L <%= points.last[:x] %>,300 Z"
+          fill="url(#areaGradient)"
+          data-area-chart-target="area"
+          class="transition-all duration-1000"
+        />
+
+        <!-- Line path -->
+        <path 
+          d="M <%= points.first[:x] %>,<%= points.first[:y] %> 
+             <% points.each_cons(2) do |p1, p2| %>
+               <% cp1x = p1[:x] + 20 %>
+               <% cp2x = p2[:x] - 20 %>
+               Q <%= cp1x %>,<%= p1[:y] %> <%= (p1[:x] + p2[:x]) / 2 %>,<%= (p1[:y] + p2[:y]) / 2 %>
+               Q <%= cp2x %>,<%= p2[:y] %> <%= p2[:x] %>,<%= p2[:y] %>
+             <% end %>"
+          stroke="rgb(37, 99, 235)"
+          stroke-width="3"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+
+        <!-- Data points with hover interaction -->
+        <% points.each_with_index do |point, i| %>
+          <g data-area-chart-target="point" 
+             data-action="mouseenter->area-chart#showTooltip mouseleave->area-chart#hideTooltip"
+             data-label="<%= @data[i][:label] %>"
+             data-value="<%= number_with_delimiter(point[:value]) %>"
+             data-index="<%= i %>"
+             class="cursor-pointer">
+            <!-- Hover area (invisible large circle) -->
+            <circle cx="<%= point[:x] %>" cy="<%= point[:y] %>" r="20" 
+                    fill="transparent" stroke="none"
+                    data-area-chart-target="hitArea"/>
+            
+            <!-- Animated pulse on hover -->
+            <circle cx="<%= point[:x] %>" cy="<%= point[:y] %>" r="10" 
+                    fill="rgb(37, 99, 235)" opacity="0"
+                    data-area-chart-target="pulse"
+                    class="transition-all duration-300"/>
+            
+            <!-- Main point -->
+            <circle cx="<%= point[:x] %>" cy="<%= point[:y] %>" r="5" 
+                    fill="white" stroke="rgb(37, 99, 235)" stroke-width="3"
+                    data-area-chart-target="pointCircle"
+                    class="transition-all duration-200 drop-shadow-lg"/>
+          </g>
+        <% end %>
+      </svg>
+      </div>
+
+      <!-- X-axis labels -->
+      <div class="mt-4 flex justify-between px-2 text-xs font-medium text-gray-500 dark:text-gray-400">
+        <% if @period == 'month' %>
+          <% [1, 5, 10, 15, 20, 25, 30].each do |day| %>
+            <span class="inline-block w-8 text-center"><%= day %></span>
+          <% end %>
+        <% else %>
+          <% @data.each_with_index do |d, i| %>
+            <% if @period == 'year' || i % (@period == 'week' ? 1 : 2) == 0 %>
+              <span class="flex-1 text-center"><%= d[:label] %></span>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Chart Actions -->
+    <div class="flex items-center justify-between border-t border-gray-100 bg-gray-50/50 p-6 dark:border-gray-800 dark:bg-gray-900/50">
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2 rounded-lg bg-blue-100 px-3 py-2 dark:bg-blue-900/30">
+          <div class="h-3 w-3 animate-pulse rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 shadow-lg"></div>
+          <span class="text-sm font-semibold text-blue-700 dark:text-blue-300">Visitors</span>
+        </div>
+      </div>
+      <button 
+        data-action="click->area-chart#exportData"
+        class="inline-flex items-center gap-2 rounded-xl border-2 border-blue-500 bg-gradient-to-r from-blue-500 to-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/30 transition-all hover:scale-105 hover:shadow-xl hover:shadow-blue-500/40">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+        </svg>
+        Export CSV
+      </button>
+    </div>
+  </div>
+<% end %>
+

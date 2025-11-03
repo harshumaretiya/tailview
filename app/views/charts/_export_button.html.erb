@@ -1,0 +1,16 @@
+<%# Export Button Partial - Reusable export button
+  Usage: <%= render 'charts/export_button', text: 'Export CSV' %>
+%>
+<%
+  text = local_assigns[:text] || 'Export'
+%>
+
+<button 
+  data-action="click->area-chart#exportData"
+  class="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700">
+  <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+  </svg>
+  <%= text %>
+</button>
+

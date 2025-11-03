@@ -1,0 +1,264 @@
+<%# Multi-Metric Chart - Shows multiple separate metrics side by side %>
+<%= turbo_frame_tag 'multi_metric_chart' do %>
+  <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
+    <!-- Chart Header -->
+    <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <div class="mb-2 flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600">
+            <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Multi-Metric Dashboard</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Key performance indicators at a glance</p>
+          </div>
+        </div>
+      </div>
+      
+      <%# Period selector %>
+      <div class="inline-flex rounded-lg border border-gray-200 bg-gray-50 p-1 dark:border-gray-700 dark:bg-gray-800">
+        <% ['week', 'month', 'year'].each do |period| %>
+          <%= link_to period.capitalize, 
+              "/charts/multi_metric_chart?period=#{period}", 
+              class: "px-4 py-2 text-sm font-medium rounded-md transition-all #{@period == period ? 'bg-white text-blue-600 shadow-sm dark:bg-gray-700 dark:text-blue-400' : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200'}",
+              data: { turbo_frame: 'multi_metric_chart' } %>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Multi-Metric Charts Grid -->
+    <div class="grid gap-6 lg:grid-cols-3">
+      
+      <!-- Visitors Metric -->
+      <div class="rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-900 dark:bg-blue-950/20" data-controller="area-chart">
+        <div class="mb-4 flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-blue-700 dark:text-blue-400">Visitors</p>
+            <p class="mt-1 text-2xl font-bold text-gray-900 dark:text-white"><%= number_with_delimiter(@metrics[:visitors][:total]) %></p>
+          </div>
+          <div class="rounded-full bg-blue-100 p-2 dark:bg-blue-900/50">
+            <svg class="h-6 w-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+          </div>
+        </div>
+        
+        <!-- Mini Chart -->
+        <div class="relative h-24">
+          <svg viewBox="0 0 <%= @metrics[:visitors][:data].length * 20 %> 100" class="h-full w-full" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="visitorsGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:rgb(59, 130, 246);stop-opacity:0.4" />
+                <stop offset="100%" style="stop-color:rgb(59, 130, 246);stop-opacity:0" />
+              </linearGradient>
+            </defs>
+            
+            <% 
+              max_val = @metrics[:visitors][:data].map { |d| d[:value] }.max
+              points = @metrics[:visitors][:data].each_with_index.map do |d, i|
+                x = i * 20 + 10
+                y = 90 - ((d[:value].to_f / max_val) * 80)
+                { x: x, y: y }
+              end
+            %>
+            
+            <path 
+              d="M 0,100 L <%= points.first[:x] %>,<%= points.first[:y] %> 
+                 <% points.each_cons(2) do |p1, p2| %>
+                   L <%= p2[:x] %>,<%= p2[:y] %>
+                 <% end %>
+                 L <%= points.last[:x] %>,100 Z"
+              fill="url(#visitorsGradient)"
+            />
+            <path 
+              d="M <%= points.first[:x] %>,<%= points.first[:y] %> 
+                 <% points.each_cons(2) do |p1, p2| %>
+                   L <%= p2[:x] %>,<%= p2[:y] %>
+                 <% end %>"
+              stroke="rgb(59, 130, 246)"
+              stroke-width="2"
+              fill="none"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Revenue Metric -->
+      <div class="rounded-lg border border-green-200 bg-green-50 p-4 dark:border-green-900 dark:bg-green-950/20" data-controller="area-chart">
+        <div class="mb-4 flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-green-700 dark:text-green-400">Revenue</p>
+            <p class="mt-1 text-2xl font-bold text-gray-900 dark:text-white">$<%= number_with_delimiter(@metrics[:revenue][:total]) %></p>
+          </div>
+          <div class="rounded-full bg-green-100 p-2 dark:bg-green-900/50">
+            <svg class="h-6 w-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+        </div>
+        
+        <!-- Mini Chart -->
+        <div class="relative h-24">
+          <svg viewBox="0 0 <%= @metrics[:revenue][:data].length * 20 %> 100" class="h-full w-full" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="revenueGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:rgb(34, 197, 94);stop-opacity:0.4" />
+                <stop offset="100%" style="stop-color:rgb(34, 197, 94);stop-opacity:0" />
+              </linearGradient>
+            </defs>
+            
+            <% 
+              max_val = @metrics[:revenue][:data].map { |d| d[:value] }.max
+              points = @metrics[:revenue][:data].each_with_index.map do |d, i|
+                x = i * 20 + 10
+                y = 90 - ((d[:value].to_f / max_val) * 80)
+                { x: x, y: y }
+              end
+            %>
+            
+            <path 
+              d="M 0,100 L <%= points.first[:x] %>,<%= points.first[:y] %> 
+                 <% points.each_cons(2) do |p1, p2| %>
+                   L <%= p2[:x] %>,<%= p2[:y] %>
+                 <% end %>
+                 L <%= points.last[:x] %>,100 Z"
+              fill="url(#revenueGradient)"
+            />
+            <path 
+              d="M <%= points.first[:x] %>,<%= points.first[:y] %> 
+                 <% points.each_cons(2) do |p1, p2| %>
+                   L <%= p2[:x] %>,<%= p2[:y] %>
+                 <% end %>"
+              stroke="rgb(34, 197, 94)"
+              stroke-width="2"
+              fill="none"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Conversion Metric -->
+      <div class="rounded-lg border border-purple-200 bg-purple-50 p-4 dark:border-purple-900 dark:bg-purple-950/20" data-controller="area-chart">
+        <div class="mb-4 flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-purple-700 dark:text-purple-400">Conversion Rate</p>
+            <p class="mt-1 text-2xl font-bold text-gray-900 dark:text-white"><%= (@metrics[:conversions][:total] / @metrics[:conversions][:data].length.to_f).round(2) %>%</p>
+          </div>
+          <div class="rounded-full bg-purple-100 p-2 dark:bg-purple-900/50">
+            <svg class="h-6 w-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+          </div>
+        </div>
+        
+        <!-- Mini Chart -->
+        <div class="relative h-24">
+          <svg viewBox="0 0 <%= @metrics[:conversions][:data].length * 20 %> 100" class="h-full w-full" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="conversionGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:rgb(168, 85, 247);stop-opacity:0.4" />
+                <stop offset="100%" style="stop-color:rgb(168, 85, 247);stop-opacity:0" />
+              </linearGradient>
+            </defs>
+            
+            <% 
+              max_val = @metrics[:conversions][:data].map { |d| d[:value] }.max
+              points = @metrics[:conversions][:data].each_with_index.map do |d, i|
+                x = i * 20 + 10
+                y = 90 - ((d[:value].to_f / max_val) * 80)
+                { x: x, y: y }
+              end
+            %>
+            
+            <path 
+              d="M 0,100 L <%= points.first[:x] %>,<%= points.first[:y] %> 
+                 <% points.each_cons(2) do |p1, p2| %>
+                   L <%= p2[:x] %>,<%= p2[:y] %>
+                 <% end %>
+                 L <%= points.last[:x] %>,100 Z"
+              fill="url(#conversionGradient)"
+            />
+            <path 
+              d="M <%= points.first[:x] %>,<%= points.first[:y] %> 
+                 <% points.each_cons(2) do |p1, p2| %>
+                   L <%= p2[:x] %>,<%= p2[:y] %>
+                 <% end %>"
+              stroke="rgb(168, 85, 247)"
+              stroke-width="2"
+              fill="none"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary Section -->
+    <div class="mt-8 rounded-xl border-2 border-dashed border-gray-300 bg-gradient-to-br from-gray-50 to-gray-100 p-6 dark:border-gray-700 dark:from-gray-800 dark:to-gray-900">
+      <h4 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Performance Summary</h4>
+      <div class="grid gap-4 sm:grid-cols-3">
+        <div class="flex items-center gap-3">
+          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-900/50">
+            <svg class="h-6 w-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs text-gray-600 dark:text-gray-400">Traffic Growth</p>
+            <p class="text-lg font-bold text-gray-900 dark:text-white">+12.5%</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-green-100 dark:bg-green-900/50">
+            <svg class="h-6 w-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs text-gray-600 dark:text-gray-400">Revenue Growth</p>
+            <p class="text-lg font-bold text-gray-900 dark:text-white">+8.3%</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-purple-100 dark:bg-purple-900/50">
+            <svg class="h-6 w-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs text-gray-600 dark:text-gray-400">Conversion Improvement</p>
+            <p class="text-lg font-bold text-gray-900 dark:text-white">+0.8%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="mt-6 flex items-center justify-between border-t border-gray-200 pt-4 dark:border-gray-700">
+      <div class="flex flex-wrap gap-4">
+        <div class="flex items-center gap-2">
+          <div class="h-3 w-3 rounded-full bg-blue-600"></div>
+          <span class="text-sm text-gray-600 dark:text-gray-400">Visitors</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="h-3 w-3 rounded-full bg-green-600"></div>
+          <span class="text-sm text-gray-600 dark:text-gray-400">Revenue</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="h-3 w-3 rounded-full bg-purple-600"></div>
+          <span class="text-sm text-gray-600 dark:text-gray-400">Conversion</span>
+        </div>
+      </div>
+      <button 
+        data-action="click->area-chart#exportData"
+        class="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+        </svg>
+        Export All
+      </button>
+    </div>
+  </div>
+<% end %>
+

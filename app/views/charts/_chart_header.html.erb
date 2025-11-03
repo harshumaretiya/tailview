@@ -1,0 +1,22 @@
+<%# Chart Header Partial - Reusable chart header with icon and description
+  Usage: <%= render 'charts/chart_header', title: 'Chart Title', description: 'Description', icon_class: 'from-blue-500 to-indigo-600', icon_path: 'M...' %>
+%>
+<%
+  title = local_assigns[:title] || 'Chart Title'
+  description = local_assigns[:description] || 'Chart description'
+  icon_class = local_assigns[:icon_class] || 'from-blue-500 to-indigo-600'
+  icon_path = local_assigns[:icon_path] || 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6'
+%>
+
+<div class="mb-6 flex items-center gap-3">
+  <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br <%= icon_class %>">
+    <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="<%= icon_path %>"/>
+    </svg>
+  </div>
+  <div>
+    <h3 class="text-lg font-semibold text-gray-900 dark:text-white"><%= title %></h3>
+    <p class="text-sm text-gray-600 dark:text-gray-400"><%= description %></p>
+  </div>
+</div>
+
