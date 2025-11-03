@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   delete '/alerts/clear_alerts', to: 'alerts#clear_alerts', as: :alerts_clear_alerts
   get '/cards', to: 'cards#index'
   get '/badges', to: 'badges#index'
+  get '/spinners', to: 'spinners#index'
+  post '/spinners/trigger_spinner', to: 'spinners#trigger_spinner', as: :spinners_trigger_spinner
+  post '/spinners/simulate_operation', to: 'spinners#simulate_operation', as: :spinners_simulate_operation
   get '/avatars', to: 'avatars#index'
   get '/toasts', to: 'toasts#index'
   get '/tabs', to: 'tabs#index'

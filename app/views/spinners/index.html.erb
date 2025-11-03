@@ -1,0 +1,340 @@
+<div class="min-h-screen bg-gray-50">
+  <!-- Header -->
+  <div class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">Spinners - Hotwire Edition</h1>
+          <p class="mt-1 text-sm text-gray-500">
+            Loading spinners with Stimulus, Turbo & Hotwire integration
+          </p>
+        </div>
+        <%= link_to "/", class: "text-sm text-blue-600 hover:text-blue-700" do %>
+          ← Back to Home
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="space-y-12">
+
+      <!-- Basic Spinners -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Basic Spinners</h2>
+          <p class="mt-1 text-sm text-gray-600">Simple loading indicators in different sizes and colors</p>
+        </div>
+
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <h3 class="text-lg font-semibold text-gray-800 mb-4">Sizes</h3>
+          <div class="flex items-center gap-6 flex-wrap">
+            <%= spinner_component(variant: :primary, size: :xs) %>
+            <%= spinner_component(variant: :primary, size: :sm) %>
+            <%= spinner_component(variant: :primary, size: :md) %>
+            <%= spinner_component(variant: :primary, size: :lg) %>
+            <%= spinner_component(variant: :primary, size: :xl) %>
+          </div>
+
+          <h3 class="text-lg font-semibold text-gray-800 mb-4 mt-6">Colors</h3>
+          <div class="flex items-center gap-6 flex-wrap">
+            <%= spinner_component(variant: :primary, size: :md) %>
+            <%= spinner_component(variant: :secondary, size: :md) %>
+            <%= spinner_component(variant: :success, size: :md) %>
+            <%= spinner_component(variant: :danger, size: :md) %>
+            <%= spinner_component(variant: :warning, size: :md) %>
+            <%= spinner_component(variant: :info, size: :md) %>
+          </div>
+
+          <div class="mt-4 bg-gray-900 rounded-md overflow-hidden">
+            <pre class="p-4 overflow-x-auto text-xs"><code class="text-gray-100">&lt;%= spinner_component(variant: :primary, size: :md) %&gt;
+&lt;%= spinner_component(variant: :success, size: :lg) %&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Spinner Types -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Spinner Types</h2>
+          <p class="mt-1 text-sm text-gray-600">Different animation styles</p>
+        </div>
+
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h3 class="text-lg font-semibold text-gray-800 mb-3">Border (Default)</h3>
+              <div class="flex items-center justify-center p-8 bg-gray-50 rounded-md">
+                <%= spinner_component(variant: :primary, size: :lg, type: :border) %>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-semibold text-gray-800 mb-3">Dots</h3>
+              <div class="flex items-center justify-center p-8 bg-gray-50 rounded-md">
+                <%= spinner_component(variant: :primary, size: :lg, type: :dots) %>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-semibold text-gray-800 mb-3">Bars</h3>
+              <div class="flex items-center justify-center p-8 bg-gray-50 rounded-md">
+                <%= spinner_component(variant: :primary, size: :lg, type: :bars) %>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-semibold text-gray-800 mb-3">Pulse</h3>
+              <div class="flex items-center justify-center p-8 bg-gray-50 rounded-md">
+                <%= spinner_component(variant: :primary, size: :lg, type: :pulse) %>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 bg-gray-900 rounded-md overflow-hidden">
+            <pre class="p-4 overflow-x-auto text-xs"><code class="text-gray-100">&lt;%= spinner_component(variant: :primary, size: :lg, type: :border) %&gt;
+&lt;%= spinner_component(variant: :primary, size: :lg, type: :dots) %&gt;
+&lt;%= spinner_component(variant: :primary, size: :lg, type: :bars) %&gt;
+&lt;%= spinner_component(variant: :primary, size: :lg, type: :pulse) %&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Spinners with Text -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Spinners with Text</h2>
+          <p class="mt-1 text-gray-600">Add context to your loading states</p>
+        </div>
+
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="flex flex-col gap-6">
+            <%= spinner_component(variant: :primary, size: :md, text: "Loading...") %>
+            <%= spinner_component(variant: :success, size: :lg, text: "Saving changes...") %>
+            <%= spinner_component(variant: :info, size: :lg, text: "Processing your request") %>
+          </div>
+
+          <div class="mt-4 bg-gray-900 rounded-md overflow-hidden">
+            <pre class="p-4 overflow-x-auto text-xs"><code class="text-gray-100">&lt;%= spinner_component(variant: :primary, size: :md, text: "Loading...") %&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Overlay Spinners -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Overlay Spinners</h2>
+          <p class="mt-1 text-sm text-gray-600">Full-screen loading overlays</p>
+        </div>
+
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="relative h-64 bg-gray-50 rounded-md overflow-hidden">
+            <p class="p-4 text-gray-600">Content area with overlay spinner (click button to show)</p>
+            <%= spinner_component(
+              variant: :primary,
+              size: :xl,
+              overlay: true,
+              text: "Loading content...",
+              type: :border
+            ) %>
+          </div>
+
+          <div class="mt-4 flex gap-2">
+            <button 
+              onclick="document.querySelector('[data-controller=\"spinner\"]').dispatchEvent(new CustomEvent('show'))"
+              class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700"
+              data-action="click->spinner#show"
+            >
+              Show Overlay
+            </button>
+            <button 
+              onclick="document.querySelector('[data-controller=\"spinner\"]').dispatchEvent(new CustomEvent('hide'))"
+              class="px-4 py-2 bg-gray-600 text-white text-sm rounded-md hover:bg-gray-700"
+              data-action="click->spinner#hide"
+            >
+              Hide Overlay
+            </button>
+          </div>
+
+          <div class="mt-4 bg-gray-900 rounded-md overflow-hidden">
+            <pre class="p-4 overflow-x-auto text-xs"><code class="text-gray-100">&lt;%= spinner_component(
+  variant: :primary,
+  size: :xl,
+  overlay: true,
+  text: "Loading content..."
+) %&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Turbo Integration -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">Turbo Integration</h2>
+          <p class="mt-1 text-sm text-gray-600">Automatic spinner display during Turbo requests</p>
+        </div>
+
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <h3 class="text-lg font-semibold text-gray-800 mb-4">Button with Turbo Stream</h3>
+          <p class="text-sm text-gray-600 mb-4">Click the button to trigger a Turbo Stream request with an automatic spinner:</p>
+          
+          <div class="relative">
+            <%= spinner_component(
+              variant: :primary,
+              size: :lg,
+              overlay: true,
+              text: "Processing...",
+              auto_show: false
+            ) %>
+            
+            <div class="p-6 bg-gray-50 rounded-md">
+              <div id="operation-status" class="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
+                <p class="text-sm text-blue-800">Ready to process...</p>
+              </div>
+              <%= form_with url: spinners_simulate_operation_path, method: :post, data: { turbo_stream: true } do |f| %>
+                <%= f.button "Simulate Long Operation", 
+                    type: "submit",
+                    class: "px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium" %>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="mt-4 bg-gray-900 rounded-md overflow-hidden">
+            <pre class="p-4 overflow-x-auto text-xs"><code class="text-gray-100">&lt;%= form_with url: simulate_operation_path, method: :post, data: { turbo_stream: true } do |f| %&gt;
+  &lt;%= spinner_component(
+    variant: :primary,
+    size: :lg,
+    overlay: true,
+    text: "Processing..."
+  ) %&gt;
+  &lt;%= f.button "Submit", type: "submit" %&gt;
+&lt;% end %&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Real-World Use Cases -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">🌍 Real-World Use Cases</h2>
+          <p class="mt-1 text-sm text-gray-600">Practical spinner implementations</p>
+        </div>
+
+        <div class="space-y-6">
+          
+          <!-- Form Submission -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">📝 Form Submission</h3>
+            <p class="text-sm text-gray-600 mb-4">Show spinner while form is submitting</p>
+            
+            <div class="relative">
+              <%= spinner_component(
+                variant: :primary,
+                size: :md,
+                overlay: true,
+                text: "Saving form...",
+                auto_show: false
+              ) %>
+              
+              <div class="p-4 bg-gray-50 rounded-md">
+                <%= form_with url: spinners_simulate_operation_path, method: :post, data: { turbo_stream: true } do |f| %>
+                  <div class="space-y-4">
+                    <div>
+                      <%= f.label :name, "Name", class: "block text-sm font-medium text-gray-700 mb-1" %>
+                      <%= f.text_field :name, class: "w-full px-3 py-2 border border-gray-300 rounded-md" %>
+                    </div>
+                    <div>
+                      <%= f.label :email, "Email", class: "block text-sm font-medium text-gray-700 mb-1" %>
+                      <%= f.email_field :email, class: "w-full px-3 py-2 border border-gray-300 rounded-md" %>
+                    </div>
+                    <%= f.button "Submit Form", 
+                        type: "submit",
+                        class: "w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <!-- Button Loading State -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">🔘 Button Loading State</h3>
+            <p class="text-sm text-gray-600 mb-4">Inline spinner within buttons</p>
+            
+            <div class="flex flex-wrap gap-4">
+              <button class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                <%= spinner_component(variant: :white, size: :sm, type: :border) %>
+                <span class="ml-2">Processing...</span>
+              </button>
+              
+              <button class="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
+                <%= spinner_component(variant: :white, size: :sm, type: :dots) %>
+                <span class="ml-2">Saving...</span>
+              </button>
+              
+              <button class="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700">
+                <%= spinner_component(variant: :white, size: :sm, type: :bars) %>
+                <span class="ml-2">Loading...</span>
+              </button>
+            </div>
+
+            <div class="mt-4 bg-gray-900 rounded-md overflow-hidden">
+              <pre class="p-4 overflow-x-auto text-xs"><code class="text-gray-100">&lt;button class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md"&gt;
+  &lt;%= spinner_component(variant: :white, size: :sm) %&gt;
+  &lt;span class="ml-2"&gt;Processing...&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+
+          <!-- Data Table Loading -->
+          <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">📊 Data Table Loading</h3>
+            <p class="text-sm text-gray-600 mb-4">Loading state for data tables</p>
+            
+            <div class="relative">
+              <%= spinner_component(
+                variant: :primary,
+                size: :lg,
+                overlay: true,
+                text: "Loading table data...",
+                auto_show: false
+              ) %>
+              
+              <div class="bg-gray-50 rounded-md p-4">
+                <table class="min-w-full divide-y divide-gray-200">
+                  <thead class="bg-gray-100">
+                    <tr>
+                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">Name</th>
+                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">Email</th>
+                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody class="bg-white divide-y divide-gray-200">
+                    <tr>
+                      <td class="px-4 py-3 text-sm text-gray-900">John Doe</td>
+                      <td class="px-4 py-3 text-sm text-gray-600">john@example.com</td>
+                      <td class="px-4 py-3 text-sm text-green-600">Active</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <button 
+                onclick="document.querySelectorAll('[data-controller=\"spinner\"]')[2].dispatchEvent(new CustomEvent('show'))"
+                class="mt-4 px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700"
+              >
+                Show Loading State
+              </button>
+            </div>
+          </div>
+
+
+        </div>
+      </section>
+
+
+    </div>
+  </div>
+</div>
+

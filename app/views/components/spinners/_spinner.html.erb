@@ -1,0 +1,123 @@
+<%
+  variant ||= :primary
+  size ||= :md
+  type ||= :border
+  overlay ||= false
+  fullscreen ||= false
+  text ||= nil
+  auto_show ||= false
+  
+  variants = {
+    primary: { color: "text-blue-600", bg_color: "bg-blue-600" },
+    secondary: { color: "text-gray-600", bg_color: "bg-gray-600" },
+    success: { color: "text-green-600", bg_color: "bg-green-600" },
+    danger: { color: "text-red-600", bg_color: "bg-red-600" },
+    warning: { color: "text-yellow-600", bg_color: "bg-yellow-600" },
+    info: { color: "text-blue-600", bg_color: "bg-blue-600" },
+    white: { color: "text-white", bg_color: "bg-white" }
+  }
+  
+  sizes = {
+    xs: "h-3 w-3",
+    sm: "h-4 w-4",
+    md: "h-6 w-6",
+    lg: "h-8 w-8",
+    xl: "h-12 w-12"
+  }
+  
+  variant_config = variants[variant.to_sym] || variants[:primary]
+  size_class = sizes[size.to_sym] || sizes[:md]
+  
+  container_classes = "inline-flex items-center justify-center"
+  if overlay
+    container_classes += " fixed inset-0 bg-black bg-opacity-50 z-50"
+  elsif fullscreen
+    container_classes += " fixed inset-0 bg-white bg-opacity-90 z-50"
+  end
+  
+  # Only hide by default if it's an overlay/fullscreen spinner without auto_show
+  # Basic inline spinners should be visible for demo purposes
+  hidden_class = if overlay || fullscreen
+    auto_show ? "" : "hidden"
+  else
+    "" # Inline spinners are visible by default
+  end
+%>
+
+<div class="<%= container_classes %> <%= hidden_class %>" data-controller="spinner"<% if auto_show %> data-spinner-auto-show-value="true"<% end %>>
+  <div class="flex flex-col items-center justify-center">
+    <% case type.to_sym %>
+    <% when :border %>
+      <div class="animate-spin <%= size_class %> rounded-full border-4 <%= variant_config[:color] %> border-t-transparent"></div>
+    <% when :dots %>
+      <div class="flex space-x-1 items-center">
+        <% dot_size = case size.to_sym
+             when :xs then "h-2 w-2"
+             when :sm then "h-2.5 w-2.5"
+             when :md then "h-3 w-3"
+             when :lg then "h-4 w-4"
+             when :xl then "h-5 w-5"
+             else "h-3 w-3"
+           end %>
+        <div class="<%= dot_size %> rounded-full <%= variant_config[:bg_color] %> spinner-dot" style="animation-delay: 0s;"></div>
+        <div class="<%= dot_size %> rounded-full <%= variant_config[:bg_color] %> spinner-dot" style="animation-delay: 0.2s;"></div>
+        <div class="<%= dot_size %> rounded-full <%= variant_config[:bg_color] %> spinner-dot" style="animation-delay: 0.4s;"></div>
+      </div>
+    <% when :bars %>
+      <div class="flex items-end space-x-1 h-8">
+        <% bar_width = case size.to_sym
+             when :xs then "w-1"
+             when :sm then "w-1.5"
+             when :md then "w-2"
+             when :lg then "w-2.5"
+             when :xl then "w-3"
+             else "w-2"
+           end %>
+        <div class="<%= bar_width %> <%= variant_config[:bg_color] %> rounded spinner-bar" style="height: 60%; animation-delay: 0s;"></div>
+        <div class="<%= bar_width %> <%= variant_config[:bg_color] %> rounded spinner-bar" style="height: 80%; animation-delay: 0.2s;"></div>
+        <div class="<%= bar_width %> <%= variant_config[:bg_color] %> rounded spinner-bar" style="height: 100%; animation-delay: 0.4s;"></div>
+      </div>
+    <% when :pulse %>
+      <div class="animate-pulse <%= size_class %> rounded-full <%= variant_config[:bg_color] %> opacity-75"></div>
+    <% else %>
+      <div class="animate-spin <%= size_class %> rounded-full border-4 <%= variant_config[:color] %> border-t-transparent"></div>
+    <% end %>
+    
+    <% if text.present? %>
+      <p class="ml-3 text-sm font-medium <%= variant_config[:color] %> mt-4"><%= text %></p>
+    <% end %>
+  </div>
+</div>
+
+<style>
+  .spinner-dot {
+    animation: dot-bounce 1.4s ease-in-out infinite;
+  }
+  
+  @keyframes dot-bounce {
+    0%, 80%, 100% {
+      transform: scale(0);
+      opacity: 0.5;
+    }
+    40% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .spinner-bar {
+    animation: bar-bounce 1.2s ease-in-out infinite;
+  }
+  
+  @keyframes bar-bounce {
+    0%, 40%, 100% {
+      transform: scaleY(0.4);
+      opacity: 0.5;
+    }
+    20% {
+      transform: scaleY(1);
+      opacity: 1;
+    }
+  }
+</style>
+

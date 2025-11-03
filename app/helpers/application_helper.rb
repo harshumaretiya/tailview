@@ -9,6 +9,19 @@ module ApplicationHelper
     render(BadgeComponent.new(text, **options))
   end
 
+  # Helper method to render spinner partial
+  def spinner_component(variant: :primary, size: :md, type: :border, overlay: false, fullscreen: false, text: nil, auto_show: false)
+    render partial: 'components/spinners/spinner', locals: {
+      variant: variant,
+      size: size,
+      type: type,
+      overlay: overlay,
+      fullscreen: fullscreen,
+      text: text,
+      auto_show: auto_show
+    }
+  end
+
   # Render flash messages as alert components
   def flash_alerts
     return if flash.empty?
