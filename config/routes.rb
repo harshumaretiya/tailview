@@ -62,6 +62,7 @@ Rails.application.routes.draw do
   get '/deployments', to: 'deployments#index'
   get '/deployments/refresh_activities', to: 'deployments#refresh_activities', as: :deployments_refresh_activities
   get '/tasks', to: 'tasks#index'
+  get '/orders', to: 'orders#index'
   
   # Charts - Area Charts with Interactive Features
   get '/charts', to: 'charts#index'

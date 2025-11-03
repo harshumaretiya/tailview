@@ -1,0 +1,196 @@
+<% content_for :head do %>
+  <style>
+    body main { padding: 0 !important; }
+  </style>
+<% end %>
+
+<div class="min-h-screen bg-slate-50">
+  <!-- Page Header -->
+  <div class="bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 class="text-3xl font-bold text-slate-900">Order History</h1>
+          <p class="mt-2 text-sm text-slate-600">Track and manage your recent orders</p>
+        </div>
+        <div class="flex gap-3">
+          <button class="inline-flex items-center px-4 py-2 border border-slate-300 rounded-lg text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 transition-colors">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+            </svg>
+            Filter
+          </button>
+          <button class="inline-flex items-center px-4 py-2 border border-slate-300 rounded-lg text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 transition-colors">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            Export
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Orders List -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="space-y-6">
+      <% @orders.each_with_index do |order, order_index| %>
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow">
+          <!-- Order Header -->
+          <div class="px-6 py-5 border-b border-slate-200 bg-slate-50">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0">
+                  <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-slate-500 to-slate-600 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-slate-900">
+                    Order <%= order[:id] %>
+                  </h3>
+                  <p class="text-sm text-slate-600 mt-1">
+                    Placed on <%= order[:date].strftime("%B %d, %Y") %>
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="text-right">
+                  <p class="text-sm text-slate-600">Total</p>
+                  <p class="text-xl font-bold text-slate-900">$<%= sprintf("%.2f", order[:total]) %></p>
+                </div>
+                <div class="flex gap-2">
+                  <%= link_to "#", class: "inline-flex items-center px-4 py-2 border border-slate-300 rounded-lg text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 transition-colors" do %>
+                    View Details
+                  <% end %>
+                  <button class="inline-flex items-center px-4 py-2 border border-slate-300 rounded-lg text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 transition-colors">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0-6l-3 3m3-3l3 3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Invoice
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Items -->
+          <div class="divide-y divide-slate-200">
+            <% order[:items].each_with_index do |item, item_index| %>
+              <div class="px-6 py-5 hover:bg-slate-50 transition-colors">
+                <div class="flex gap-5">
+                  <!-- Product Image -->
+                  <div class="flex-shrink-0">
+                    <img src="<%= item[:image] %>" alt="<%= item[:name] %>" class="w-24 h-24 sm:w-32 sm:h-32 rounded-lg object-cover border border-slate-200" />
+                  </div>
+
+                  <!-- Product Details -->
+                  <div class="flex-1 min-w-0">
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                      <div class="flex-1">
+                        <h4 class="text-base font-semibold text-slate-900 mb-1">
+                          <%= item[:name] %>
+                        </h4>
+                        <p class="text-sm text-slate-600 line-clamp-2 mb-3">
+                          <%= item[:description] %>
+                        </p>
+                        <div class="flex items-center gap-4 text-sm">
+                          <span class="font-medium text-slate-900">$<%= sprintf("%.2f", item[:price]) %></span>
+                          <%= link_to "#", class: "text-slate-600 hover:text-slate-900 font-medium transition-colors" do %>
+                            View Product →
+                          <% end %>
+                        </div>
+                      </div>
+
+                      <!-- Status Badge -->
+                      <div class="flex-shrink-0">
+                        <% if item[:status] == "Delivered" %>
+                          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-sm font-medium">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Delivered
+                          </div>
+                          <% if item[:delivered_date] %>
+                            <p class="text-xs text-slate-500 mt-1 text-right">
+                              <%= item[:delivered_date].strftime("%b %d, %Y") %>
+                            </p>
+                          <% end %>
+                        <% elsif item[:status] == "Cancelled" %>
+                          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-100 text-red-800 text-sm font-medium">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                            Cancelled
+                          </div>
+                        <% elsif item[:status].include?("Out for delivery") %>
+                          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-100 text-amber-800 text-sm font-medium">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Out for delivery
+                          </div>
+                        <% else %>
+                          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 text-slate-800 text-sm font-medium">
+                            <%= item[:status] %>
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex items-center gap-4 mt-4 pt-4 border-t border-slate-200">
+                      <%= link_to "#", class: "text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors" do %>
+                        View Product Details
+                      <% end %>
+                      <span class="text-slate-300">•</span>
+                      <%= link_to "#", class: "text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors" do %>
+                        Buy Again
+                      <% end %>
+                      <% if item[:status] == "Delivered" %>
+                        <span class="text-slate-300">•</span>
+                        <%= link_to "#", class: "text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors" do %>
+                          Return or Exchange
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+
+          <!-- Order Footer Actions -->
+          <div class="px-6 py-4 bg-slate-50 border-t border-slate-200">
+            <div class="flex flex-wrap items-center gap-3 text-sm">
+              <span class="text-slate-600">Need help with this order?</span>
+              <%= link_to "#", class: "font-medium text-slate-900 hover:text-slate-700 transition-colors" do %>
+                Contact Support
+              <% end %>
+              <span class="text-slate-300">•</span>
+              <%= link_to "#", class: "font-medium text-slate-900 hover:text-slate-700 transition-colors" do %>
+                Track Package
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Empty State (if no orders) -->
+    <% if @orders.empty? %>
+      <div class="text-center py-16">
+        <svg class="mx-auto h-16 w-16 text-slate-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+        </svg>
+        <h3 class="text-lg font-semibold text-slate-900 mb-2">No orders yet</h3>
+        <p class="text-slate-600 mb-6">When you place an order, it will appear here.</p>
+        <%= link_to "#", class: "inline-flex items-center px-4 py-2 bg-slate-900 text-white rounded-lg font-medium hover:bg-slate-800 transition-colors" do %>
+          Start Shopping
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
