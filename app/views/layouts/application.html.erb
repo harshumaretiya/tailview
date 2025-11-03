@@ -10,13 +10,13 @@
 
     <%= yield :head %>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= ENV.fetch("ANALYTICS_GA4_ID", nil) %>"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= ENV.fetch("ANALYTICS_GA4_ID", "G-1RL0K1MKD2") %>"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', <%= ENV.fetch("ANALYTICS_GA4_ID", nil) %>);
+      gtag('config', <%= ENV.fetch("ANALYTICS_GA4_ID", "G-1RL0K1MKD2") %>);
     </script>
 
 
