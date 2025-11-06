@@ -20,6 +20,176 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="space-y-12">
 
+      <!-- Interactive Toast Demo -->
+      <section>
+        <div class="mb-4">
+          <h2 class="text-2xl font-semibold text-gray-900">⚡ Interactive Toast Demo</h2>
+          <p class="mt-1 text-sm text-gray-600">Click the buttons below to see toasts appear in different positions. All toasts auto-dismiss after 5 seconds.</p>
+        </div>
+
+        <!-- Preview -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <div class="space-y-6">
+            <!-- Top Right -->
+            <div>
+              <h3 class="text-lg font-semibold text-gray-800 mb-3">📍 Top Right</h3>
+              <div class="flex gap-2 flex-wrap">
+                <button 
+                  data-controller="toast"
+                  data-toast-variant-value="success"
+                  data-toast-message-value="Successfully saved! Your changes have been saved."
+                  data-toast-position-value="top-right"
+                  data-toast-auto-dismiss-value="true"
+                  data-action="click->toast#show"
+                  class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 shadow-sm">
+                  Show Success Toast
+                </button>
+                <button 
+                  data-controller="toast"
+                  data-toast-variant-value="error"
+                  data-toast-message-value="Error occurred! Something went wrong."
+                  data-toast-position-value="top-right"
+                  data-toast-auto-dismiss-value="true"
+                  data-action="click->toast#show"
+                  class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 shadow-sm">
+                  Show Error Toast
+                </button>
+                <button 
+                  data-controller="toast"
+                  data-toast-variant-value="info"
+                  data-toast-title-value="New Message"
+                  data-toast-message-value="You have 3 new notifications."
+                  data-toast-position-value="top-right"
+                  data-toast-auto-dismiss-value="true"
+                  data-action="click->toast#show"
+                  class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 shadow-sm">
+                  Show Info Toast
+                </button>
+                <button 
+                  data-controller="toast"
+                  data-toast-variant-value="warning"
+                  data-toast-message-value="Warning! Please check your connection."
+                  data-toast-position-value="top-right"
+                  data-toast-auto-dismiss-value="true"
+                  data-action="click->toast#show"
+                  class="px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700 shadow-sm">
+                  Show Warning Toast
+                </button>
+              </div>
+            </div>
+
+            <!-- Top Left -->
+            <div>
+              <h3 class="text-lg font-semibold text-gray-800 mb-3">📍 Top Left</h3>
+              <div class="flex gap-2 flex-wrap">
+                <button 
+                  data-controller="toast"
+                  data-toast-variant-value="success"
+                  data-toast-message-value="Success! Top-left notification."
+                  data-toast-position-value="top-left"
+                  data-toast-auto-dismiss-value="true"
+                  data-action="click->toast#show"
+                  class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 shadow-sm">
+                  Show Success Toast
+                </button>
+                <button 
+                  data-controller="toast"
+                  data-toast-variant-value="info"
+                  data-toast-message-value="Info toast in top-left position."
+                  data-toast-position-value="top-left"
+                  data-toast-auto-dismiss-value="true"
+                  data-action="click->toast#show"
+                  class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 shadow-sm">
+                  Show Info Toast
+                </button>
+              </div>
+            </div>
+
+            <!-- Bottom Right -->
+            <div>
+              <h3 class="text-lg font-semibold text-gray-800 mb-3">📍 Bottom Right</h3>
+              <div class="flex gap-2 flex-wrap">
+                <button 
+                  data-controller="toast"
+                  data-toast-variant-value="success"
+                  data-toast-message-value="File uploaded successfully!"
+                  data-toast-position-value="bottom-right"
+                  data-toast-auto-dismiss-value="true"
+                  data-action="click->toast#show"
+                  class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 shadow-sm">
+                  Show Success Toast
+                </button>
+                <button 
+                  data-controller="toast"
+                  data-toast-variant-value="error"
+                  data-toast-message-value="Failed to save changes."
+                  data-toast-position-value="bottom-right"
+                  data-toast-auto-dismiss-value="true"
+                  data-action="click->toast#show"
+                  class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 shadow-sm">
+                  Show Error Toast
+                </button>
+              </div>
+            </div>
+
+            <!-- Bottom Left -->
+            <div>
+              <h3 class="text-lg font-semibold text-gray-800 mb-3">📍 Bottom Left</h3>
+              <div class="flex gap-2 flex-wrap">
+                <button 
+                  data-controller="toast"
+                  data-toast-variant-value="info"
+                  data-toast-message-value="Bottom-left toast notification."
+                  data-toast-position-value="bottom-left"
+                  data-toast-auto-dismiss-value="true"
+                  data-action="click->toast#show"
+                  class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 shadow-sm">
+                  Show Info Toast
+                </button>
+                <button 
+                  data-controller="toast"
+                  data-toast-variant-value="warning"
+                  data-toast-message-value="Warning message from bottom-left."
+                  data-toast-position-value="bottom-left"
+                  data-toast-auto-dismiss-value="true"
+                  data-action="click->toast#show"
+                  class="px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700 shadow-sm">
+                  Show Warning Toast
+                </button>
+              </div>
+            </div>
+
+            <!-- Top Center -->
+            <div>
+              <h3 class="text-lg font-semibold text-gray-800 mb-3">📍 Top Center</h3>
+              <div class="flex gap-2 flex-wrap">
+                <button 
+                  data-controller="toast"
+                  data-toast-variant-value="success"
+                  data-toast-message-value="Centered toast notification!"
+                  data-toast-position-value="top-center"
+                  data-toast-auto-dismiss-value="true"
+                  data-action="click->toast#show"
+                  class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 shadow-sm">
+                  Show Success Toast
+                </button>
+                <button 
+                  data-controller="toast"
+                  data-toast-variant-value="info"
+                  data-toast-title-value="System Update"
+                  data-toast-message-value="A new version is available."
+                  data-toast-position-value="top-center"
+                  data-toast-auto-dismiss-value="true"
+                  data-action="click->toast#show"
+                  class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 shadow-sm">
+                  Show Info Toast
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Basic Toasts -->
       <section>
         <div class="mb-4">

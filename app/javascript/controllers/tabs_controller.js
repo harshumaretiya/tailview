@@ -28,6 +28,12 @@ export default class extends Controller {
 
   // Shows the tab at the given index
   showTab(index) {
+    // Check if this is a boxed tab group by checking the nav container
+    // This needs to be done once for all tabs, not per tab
+    const firstTab = this.tabTargets[0]
+    const nav = firstTab ? firstTab.closest("nav") : null
+    const isBoxedTabGroup = nav && nav.classList.contains("bg-gray-100") && nav.classList.contains("p-1")
+    
     // Update tab styles
     this.tabTargets.forEach((tab, i) => {
       const isActive = i === index
@@ -37,13 +43,16 @@ export default class extends Controller {
         "border-blue-500", "border-transparent",
         "text-blue-600", "text-gray-500", "text-gray-700", "text-gray-900",
         "bg-blue-600", "bg-white", "bg-blue-50",
-        "text-white"
+        "text-white", "shadow"
       )
       
       // Add appropriate classes based on active state
       if (isActive) {
         // Active state
-        if (tab.classList.contains("border-b-2")) {
+        if (isBoxedTabGroup) {
+          // Boxed tabs: white background with shadow
+          tab.classList.add("bg-white", "shadow", "text-gray-900")
+        } else if (tab.classList.contains("border-b-2")) {
           tab.classList.add("border-blue-500", "text-blue-600")
         } else if (tab.classList.contains("rounded-full")) {
           tab.classList.add("text-white", "bg-blue-600")
@@ -56,7 +65,10 @@ export default class extends Controller {
         }
       } else {
         // Inactive state
-        if (tab.classList.contains("border-b-2") || tab.classList.contains("rounded-full")) {
+        if (isBoxedTabGroup) {
+          // Boxed tabs inactive: no background, no shadow
+          tab.classList.add("text-gray-600")
+        } else if (tab.classList.contains("border-b-2") || tab.classList.contains("rounded-full")) {
           tab.classList.add("border-transparent", "text-gray-500")
         } else if (tab.classList.contains("rounded-md")) {
           // Vertical tabs inactive
