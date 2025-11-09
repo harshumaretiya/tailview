@@ -40,12 +40,12 @@ services:
     env_file: .env.production
     environment:
       - POSTGRES_DB=${TAILVIEW_POSTGRES_DB:-tailview_production}
-      - POSTGRES_USER=${TAILVIEW_POSTGRES_USER:-tailview_user}
+      - POSTGRES_USER=${TAILVIEW_POSTGRES_USER:-postgres}
       - POSTGRES_PASSWORD=${TAILVIEW_POSTGRES_PASSWORD:-YourStrongPassword123!@#}
     volumes:
       - tailview_pg_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${TAILVIEW_POSTGRES_USER:-tailview_user}"]
+      test: ["CMD-SHELL", "pg_isready -U ${TAILVIEW_POSTGRES_USER:-postgres}"]
       interval: 10s
       timeout: 5s
       retries: 5
