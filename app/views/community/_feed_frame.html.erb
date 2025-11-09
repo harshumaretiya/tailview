@@ -1,0 +1,282 @@
+<%= turbo_frame_tag "community_feed" do %>
+  <% following_topics ||= [] %>
+  <% presence ||= [] %>
+  <div class="grid gap-10 lg:grid-cols-[260px_minmax(0,1fr)] xl:grid-cols-[260px_minmax(0,1fr)320px]">
+    <aside class="hidden lg:block">
+      <div class="sticky top-28 space-y-10">
+        <section>
+          <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-500">Filters</h2>
+          <ul class="mt-3 space-y-1">
+            <% tabs.each do |tab| %>
+              <% tab_params = { filter: tab[:key], scope: scope } %>
+              <% tab_params[:q] = search_query if search_query.present? %>
+              <% active = tab[:key] == filter %>
+              <% base_classes = "group flex items-center justify-between rounded-lg border px-3 py-2 text-sm font-medium transition" %>
+              <% active_classes = "#{base_classes} border-rose-200 bg-rose-50 text-rose-600 shadow-sm" %>
+              <% inactive_classes = "#{base_classes} border-transparent text-gray-600 hover:bg-gray-100 hover:text-gray-900" %>
+              <% link_classes = active ? active_classes : inactive_classes %>
+              <li>
+                <%= link_to tab[:label],
+                            community_path(tab_params),
+                            data: {
+                              turbo_frame: "community_feed"
+                            },
+                            class: link_classes %>
+              </li>
+            <% end %>
+          </ul>
+        </section>
+
+        <section>
+          <div class="flex items-center justify-between">
+            <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-500">Communities</h2>
+            <% view_all_params = { filter: filter, scope: scope } %>
+            <% view_all_params[:q] = search_query if search_query.present? %>
+            <%= link_to "View all",
+                        community_path(view_all_params),
+                        data: { turbo_frame: "community_feed" },
+                        class: "text-xs font-medium text-rose-600 hover:text-rose-500" %>
+          </div>
+          <%# Simplified accordion using native <details> elements %>
+          <ul class="mt-3 max-h-96 overflow-y-auto space-y-2 pr-1 scrollbar-hide" data-controller="community-topic-list">
+            <% communities.each do |community| %>
+              <% community_params = { filter: filter, scope: scope, topic: community[:key] } %>
+              <% community_params[:q] = search_query if search_query.present? %>
+              <% active = community[:key] == topic %>
+              <% has_highlights = community[:highlights].present? %>
+              
+              <li class="group rounded-lg border text-sm font-medium transition <%= active ? "border-rose-200 bg-rose-50 text-rose-600 shadow-sm" : "border-transparent text-gray-600 hover:bg-rose-50 hover:text-rose-600" %>">
+                <% if has_highlights %>
+                  <details <%= "open" if active %> 
+                           class="group/details"
+                           data-action="toggle->community-topic-list#toggle">
+                    <summary class="flex cursor-pointer list-none items-center justify-between gap-3 px-3 py-2">
+                      <%= link_to community[:name],
+                                  community_path(community_params),
+                                  data: { turbo_frame: "community_feed" },
+                                  class: "flex-1 truncate" %>
+                      <svg viewBox="0 0 20 20"
+                           fill="currentColor"
+                           aria-hidden="true"
+                           class="size-4 text-gray-400 transition-transform duration-150 group-open/details:rotate-180 group-hover:text-rose-500">
+                        <path d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.914l3.71-3.682a.75.75 0 0 1 1.08 1.04l-4.24 4.206a.75.75 0 0 1-1.06 0L5.21 8.27a.75.75 0 0 1 .02-1.06Z" />
+                      </svg>
+                    </summary>
+                    <div class="px-3 pb-3">
+                      <div class="max-h-48 overflow-y-auto pr-1 scrollbar-hide">
+                        <ul class="space-y-2 text-sm text-gray-600">
+                          <% community[:highlights].each do |highlight| %>
+                            <li class="flex items-start gap-2">
+                              <span class="mt-1 size-1.5 rounded-full bg-rose-400"></span>
+                              <span class="flex-1"><%= highlight %></span>
+                            </li>
+                          <% end %>
+                        </ul>
+                      </div>
+                    </div>
+                  </details>
+                <% else %>
+                  <div class="flex items-center justify-between gap-3 px-3 py-2">
+                    <%= link_to community[:name],
+                                community_path(community_params),
+                                data: { turbo_frame: "community_feed" },
+                                class: "flex-1 truncate" %>
+                    <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-4 text-gray-300 transition group-hover:text-rose-500">
+                      <path d="M7.22 5.22a.75.75 0 0 1 1.06 0L12 8.94l3.72-3.72a.75.75 0 0 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L7.22 6.28a.75.75 0 0 1 0-1.06Z" />
+                    </svg>
+                  </div>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </section>
+      </div>
+    </aside>
+
+    <main class="space-y-8">
+      <div class="flex flex-wrap items-start justify-between gap-6">
+        <div>
+          <p class="text-sm font-medium uppercase tracking-widest text-rose-500">Inside TailView</p>
+          <h1 class="mt-1 text-2xl font-semibold text-gray-900 sm:text-3xl">Share what you are shipping</h1>
+          <p class="mt-2 max-w-xl text-sm text-gray-600">
+            Trade product notes, async rituals, and launch playbooks with builders who lean on TailView every day.
+          </p>
+        </div>
+        <div class="hidden text-sm sm:flex sm:flex-col sm:items-end sm:justify-between">
+          <%= link_to "#",
+                      class: "inline-flex items-center gap-x-2 text-sm font-medium text-rose-600 hover:text-rose-500" do %>
+            Community guidelines
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-4">
+              <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
+            </svg>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="grid gap-4 lg:grid-cols-[minmax(0,1fr)]">
+        <%= render "community/presence_panel", presence: presence %>
+        <section class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+          <div class="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-widest text-rose-500">Share a quick win</p>
+              <h2 class="mt-1 text-lg font-semibold text-gray-900">Post to the feed in real time</h2>
+              <p class="mt-1 text-sm text-gray-600">
+                Start a conversation and everyone connected to the community tab will see it instantly.
+              </p>
+            </div>
+            <div class="inline-flex items-center gap-2 rounded-full border border-rose-100 bg-rose-50 px-3 py-1 text-xs font-semibold text-rose-600">
+              <span class="size-2 rounded-full bg-rose-500"></span>
+              Live collaboration
+            </div>
+          </div>
+          <div class="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 pt-4">
+            <p class="text-xs text-gray-500">
+              Drafts auto-save for 10 minutes. You can close the modal and come back without losing your momentum.
+            </p>
+            <div class="flex items-center gap-3">
+              <button type="button"
+                      class="inline-flex items-center gap-x-2 rounded-full bg-rose-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-rose-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2"
+                      data-action="community-composer-modal#open">
+                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-4">
+                  <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
+                </svg>
+                Share update
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="space-y-4">
+        <div class="flex flex-wrap items-center gap-2">
+          <% tabs.each do |tab| %>
+            <% tab_params = { filter: tab[:key], scope: scope } %>
+            <% tab_params[:q] = search_query if search_query.present? %>
+            <% tab_params[:topic] = topic if topic.present? %>
+            <% active = tab[:key] == filter %>
+            <% pill_base = "inline-flex items-center gap-x-2 rounded-full border px-4 py-2 text-sm font-medium transition" %>
+            <% pill_classes = if active
+                                "#{pill_base} border-rose-200 bg-rose-50 text-rose-600 shadow-sm"
+                              else
+                                "#{pill_base} border-gray-200 bg-white text-gray-600 hover:border-rose-200 hover:text-rose-600"
+                              end %>
+            <%= link_to tab[:label],
+                        community_path(tab_params),
+                        data: { turbo_frame: "community_feed" },
+                        class: pill_classes %>
+          <% end %>
+        </div>
+
+        <div class="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+          <div class="flex flex-wrap items-center gap-3">
+            <% scope_options = [
+                 { key: "all", label: "All activity" },
+                 { key: "following", label: "Following only" }
+               ] %>
+            <div class="inline-flex items-center gap-1 rounded-full border border-gray-200 bg-white p-1">
+              <% scope_options.each do |option| %>
+                <% scope_params = { filter: filter, scope: option[:key] } %>
+                <% scope_params[:q] = search_query if search_query.present? %>
+                <% scope_params[:topic] = topic if topic.present? %>
+                <% active = scope == option[:key] %>
+                <% scope_base = "inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold transition" %>
+                <% scope_classes = if active
+                                     "#{scope_base} bg-rose-600 text-white shadow-sm"
+                                   else
+                                     "#{scope_base} text-gray-600 hover:text-rose-600"
+                                   end %>
+                <%= link_to option[:label],
+                            community_path(scope_params),
+                            data: { turbo_frame: "community_feed" },
+                            class: scope_classes %>
+              <% end %>
+            </div>
+
+            <% if following_topics.present? %>
+              <div class="flex flex-wrap items-center gap-2 text-xs text-gray-500">
+                <span class="font-semibold uppercase tracking-widest text-gray-400">Following tags</span>
+                <% following_topics.each do |topic_key| %>
+                  <% community = communities.find { |entry| entry[:key] == topic_key } %>
+                  <% next unless community %>
+                  <% topic_params = { filter: filter, scope: scope, topic: topic_key } %>
+                  <% topic_params[:q] = search_query if search_query.present? %>
+                  <% active = topic == topic_key %>
+                  <% chip_base = "inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium transition" %>
+                  <% chip_classes = if active
+                                      "#{chip_base} border-rose-200 bg-rose-50 text-rose-600 shadow-sm"
+                                    else
+                                      "#{chip_base} border-gray-200 bg-white text-gray-600 hover:border-rose-200 hover:text-rose-600"
+                                    end %>
+                  <%= link_to community[:name],
+                              community_path(topic_params),
+                              data: { turbo_frame: "community_feed" },
+                              class: chip_classes %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+
+          <p class="text-sm text-gray-500">
+            <%= pluralize(discussions.size, "discussion") %>
+            <% if search_query.present? %>
+              matching "<%= search_query %>"
+            <% else %>
+              in this feed
+            <% end %>
+          </p>
+        </div>
+      </div>
+
+      <div class="lg:hidden">
+        <div class="flex gap-2 overflow-x-auto pb-2">
+          <% view_all_params = { filter: filter, scope: scope } %>
+          <% view_all_params[:q] = search_query if search_query.present? %>
+          <% base_chip_classes = "whitespace-nowrap rounded-full border px-4 py-2 text-sm font-medium transition" %>
+          <% active_chip_classes = "#{base_chip_classes} border-rose-200 bg-rose-50 text-rose-600 shadow-sm" %>
+          <% inactive_chip_classes = "#{base_chip_classes} border-gray-200 bg-white text-gray-600 hover:border-rose-200 hover:text-rose-600" %>
+          <%= link_to "All communities",
+                      community_path(view_all_params),
+                      data: { turbo_frame: "community_feed" },
+                      class: topic.present? ? inactive_chip_classes : active_chip_classes %>
+          <% communities.each do |community| %>
+            <% community_params = { filter: filter, scope: scope, topic: community[:key] } %>
+            <% community_params[:q] = search_query if search_query.present? %>
+            <% active = community[:key] == topic %>
+            <% chip_classes = active ? active_chip_classes : inactive_chip_classes %>
+            <%= link_to community_path(community_params),
+                        data: { turbo_frame: "community_feed" },
+                        class: chip_classes do %>
+              <%= community[:name] %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+      <%= render partial: "community/discussion_list",
+                 locals: {
+                   discussions: discussions,
+                   filter: filter,
+                   search_query: search_query
+                 } %>
+
+      <div class="grid gap-3 sm:hidden">
+        <%= link_to "#",
+                    class: "inline-flex items-center justify-center gap-x-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition hover:border-rose-200 hover:text-rose-600" do %>
+          Browse resources
+        <% end %>
+        <button type="button"
+                class="inline-flex items-center justify-center gap-x-2 rounded-full bg-rose-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-rose-500"
+                data-action="community-composer-modal#open">
+          Start a discussion
+        </button>
+      </div>
+    </main>
+
+    <aside class="hidden xl:block">
+      <div class="sticky top-28">
+        <%= render "community/community_sidebar" %>
+      </div>
+    </aside>
+  </div>
+<% end %>
+

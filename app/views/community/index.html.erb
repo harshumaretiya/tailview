@@ -1,0 +1,110 @@
+<div class="min-h-screen bg-gray-50" data-controller="community-composer-modal">
+  <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur supports-backdrop-blur:bg-white/80">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between gap-x-4">
+        <div class="flex flex-1 items-center gap-x-3">
+          <%= link_to "#", class: "flex items-center gap-x-2 rounded-full px-2 py-1 transition hover:bg-rose-50" do %>
+            <span class="inline-flex size-9 items-center justify-center rounded-full bg-rose-50 text-rose-600">
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-5">
+                <path d="m10 2.5 6.5 3.75v7.5L10 17.5l-6.5-3.75v-7.5L10 2.5Zm0 1.73L4.75 7l5.25 3.02L15.25 7 10 4.23ZM5.5 8.26v4.13L9.5 14.3v-4.12L5.5 8.26Zm9 0-4 1.92v4.12l4-1.91V8.26Z" />
+              </svg>
+            </span>
+            <span class="text-sm font-semibold uppercase tracking-wide text-rose-600">TailView</span>
+            <span class="text-base font-semibold text-gray-900">Community</span>
+          <% end %>
+
+          <%= form_with url: community_path, method: :get,
+                        data: { turbo_frame: "community_feed" },
+                        class: "relative hidden w-full max-w-md md:block" do |form| %>
+            <%= form.hidden_field :filter, value: @filter %>
+            <%= form.hidden_field :topic, value: @topic %>
+            <%= form.hidden_field :scope, value: @scope %>
+            <%= form.search_field :q,
+                                  value: @search_query,
+                                  placeholder: "Search discussions, people, or keywords",
+                                  class: "w-full rounded-full border border-gray-200 bg-white py-2 pl-10 pr-4 text-sm text-gray-900 shadow-sm transition focus:border-rose-400 focus:outline-none focus:ring-1 focus:ring-rose-400" %>
+            <span class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-gray-400">
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-5">
+                <path d="M9 2.5a6.5 6.5 0 1 1 0 13 6.5 6.5 0 0 1 0-13Zm0 2a4.5 4.5 0 1 0 2.77 8.08l3.825 3.825a1 1 0 0 0 1.415-1.414l-3.826-3.826A4.5 4.5 0 0 0 9 4.5Z" />
+            </svg>
+            </span>
+          <% end %>
+        </div>
+
+        <div class="flex items-center gap-x-2">
+          <button type="button" class="inline-flex items-center justify-center rounded-full border border-gray-200 bg-white p-2 text-gray-500 transition hover:border-rose-200 hover:text-rose-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2">
+            <span class="sr-only">Notifications</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" class="size-5">
+              <path d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            </button>
+          <%= link_to "#",
+                      class: "hidden rounded-full border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-600 transition hover:border-rose-200 hover:text-rose-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2 sm:inline-flex" do %>
+            Browse resources
+          <% end %>
+          <button type="button"
+                  class="inline-flex items-center gap-x-2 rounded-full bg-rose-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-rose-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2"
+                  data-action="community-composer-modal#open">
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-4">
+              <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
+            </svg>
+            New discussion
+          </button>
+          <button type="button" class="inline-flex items-center justify-center rounded-full border border-gray-200 bg-white p-1.5 text-gray-500 transition hover:border-rose-200 hover:text-rose-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2">
+            <span class="sr-only">Account menu</span>
+            <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=facearea&facepad=3&w=96&h=96&q=80" alt="Your profile" class="size-8 rounded-full" />
+          </button>
+        </div>
+      </div>
+
+      <div class="pb-4 md:hidden">
+        <%= form_with url: community_path, method: :get,
+                      data: { turbo_frame: "community_feed" },
+                      class: "relative" do |form| %>
+          <%= form.hidden_field :filter, value: @filter %>
+          <%= form.hidden_field :topic, value: @topic %>
+          <%= form.hidden_field :scope, value: @scope %>
+          <%= form.hidden_field :topic, value: @topic %>
+          <%= form.hidden_field :scope, value: @scope %>
+          <%= form.search_field :q,
+                                value: @search_query,
+                                placeholder: "Search discussions",
+                                class: "w-full rounded-full border border-gray-200 bg-white py-2 pl-10 pr-4 text-sm text-gray-900 shadow-sm transition focus:border-rose-400 focus:outline-none focus:ring-1 focus:ring-rose-400" %>
+          <span class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-gray-400">
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-5">
+              <path d="M9 2.5a6.5 6.5 0 1 1 0 13 6.5 6.5 0 0 1 0-13Zm0 2a4.5 4.5 0 1 0 2.77 8.08l3.825 3.825a1 1 0 0 0 1.415-1.414l-3.826-3.826A4.5 4.5 0 0 0 9 4.5Z" />
+            </svg>
+          </span>
+        <% end %>
+      </div>
+    </div>
+  </header>
+
+  <div class="py-10">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <%= turbo_stream_from "community_feed" %>
+      <%= turbo_stream_from "community_presence" %>
+
+      <%= render partial: "community/feed_frame",
+                 locals: {
+                   discussions: @discussions,
+                   filter: @filter,
+                   scope: @scope,
+                   search_query: @search_query,
+                   tabs: @tabs,
+                   communities: @communities,
+                   topic: @topic,
+                   presence: @presence,
+                   following_topics: @following_topics
+                 } %>
+
+      <div class="mt-12 xl:hidden">
+        <%= render "community/community_sidebar" %>
+      </div>
+    </div>
+    <%= render "community/composer_modal",
+                communities: @communities,
+                topic: @topic %>
+  </div>
+</div>
+

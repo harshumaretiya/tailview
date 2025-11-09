@@ -32,7 +32,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body data-controller="smooth-scroll">
+  <body data-controller="smooth-scroll" class="<%= content_for?(:body_class) ? content_for(:body_class) : "" %>">
 
     <!-- Fixed notification areas -->
     <!-- Top Right -->
@@ -55,7 +55,7 @@
       <!-- Bottom-right notifications will be appended here -->
     </div>
 
-    <main class="container mx-auto px-5">
+    <main class="<%= content_for?(:layout_main_class) ? content_for(:layout_main_class) : "container mx-auto px-5" %>">
       <%= yield %>
     </main>
   </body>

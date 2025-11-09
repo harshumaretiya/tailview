@@ -1,0 +1,32 @@
+<% if discussions.blank? %>
+  <div class="rounded-2xl border border-dashed border-gray-300 bg-white px-10 py-12 text-center shadow-sm">
+    <div class="mx-auto flex size-14 items-center justify-center rounded-full bg-rose-50 text-rose-600">
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-7">
+        <path d="M4 3a2 2 0 0 0-2 2v7.5a.5.5 0 0 0 .276.447l7.5 3.75a.5.5 0 0 0 .448 0l7.5-3.75A.5.5 0 0 0 18 12.5V5a2 2 0 0 0-2-2H4Zm1.5 3.5A1.5 1.5 0 0 1 7 5h6a1.5 1.5 0 0 1 1.5 1.5v2a1.5 1.5 0 0 1-1.5 1.5H7A1.5 1.5 0 0 1 5.5 8.5v-2Z" />
+      </svg>
+    </div>
+    <h2 class="mt-6 text-lg font-semibold text-gray-900">No conversations just yet</h2>
+    <p class="mt-2 text-sm text-gray-600">
+      <% if search_query.present? %>
+        We couldn't find any discussions matching "<%= search_query %>". Try a different phrase or reset the filters.
+      <% else %>
+        Nothing has been shared under the <%= filter.humanize %> filter. Start the thread you want to see.
+      <% end %>
+    </p>
+    <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm font-medium">
+      <%= link_to "Clear filters",
+                  community_path,
+                  class: "inline-flex items-center gap-x-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-gray-700 transition hover:border-rose-200 hover:text-rose-600" %>
+      <button type="button"
+              class="inline-flex items-center gap-x-2 rounded-full bg-rose-600 px-4 py-2 text-white shadow-sm transition hover:bg-rose-500"
+              data-action="community-composer-modal#open">
+        Start a discussion
+      </button>
+    </div>
+  </div>
+<% else %>
+  <ul role="list" class="space-y-4 py-2" id="community_discussions">
+    <%= render partial: "community/discussion", collection: discussions, as: :discussion %>
+  </ul>
+<% end %>
+

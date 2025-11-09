@@ -1,0 +1,83 @@
+<div class="space-y-6">
+  <section class="rounded-2xl border border-gray-200 bg-gradient-to-br from-white via-white to-rose-50 p-6 shadow-sm">
+    <div class="flex items-start justify-between">
+      <div>
+        <h2 class="text-base font-semibold text-gray-900">Keep the conversation moving</h2>
+        <p class="mt-2 text-sm text-gray-600">
+          Ship notes, retro templates, and internal rituals with teammates who are building alongside you.
+        </p>
+      </div>
+      <span class="inline-flex size-10 items-center justify-center rounded-full bg-rose-600 text-white shadow-sm">
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-6">
+          <path d="M9.97 2a1 1 0 0 1 .966.742l2.697 9.742 2.238-3.358a1 1 0 0 1 1.698 1.079l-3.5 5.25a1 1 0 0 1-1.79-.268l-1.71-6.18-1.874 5.622a1 1 0 0 1-1.86.11L4.658 10.96l-1.72 2.154a1 1 0 0 1-1.556-1.246l2.75-3.444a1 1 0 0 1 1.658.164l1.425 2.424 2.092-6.275A1 1 0 0 1 9.97 2Z" />
+        </svg>
+      </span>
+    </div>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <%= link_to "#",
+                  class: "inline-flex items-center gap-x-2 rounded-full bg-gray-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-gray-700" do %>
+        Publish a retrospective
+      <% end %>
+      <%= link_to "#",
+                  class: "inline-flex items-center gap-x-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition hover:border-rose-200 hover:text-rose-600" do %>
+        Share a playbook
+      <% end %>
+    </div>
+  </section>
+
+  <section class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+    <div class="flex items-center justify-between">
+      <h2 class="text-sm font-semibold uppercase tracking-widest text-gray-500">People to meet</h2>
+      <%= link_to "See all", "#", class: "text-xs font-medium text-rose-600 hover:text-rose-500" %>
+    </div>
+    <ul role="list" class="mt-4 space-y-4">
+      <% @suggestions.each do |suggestion| %>
+        <li class="flex items-center gap-3">
+          <img src="<%= suggestion[:avatar_url] %>" alt="<%= suggestion[:name] %>" class="size-10 rounded-full object-cover" />
+          <div class="min-w-0 flex-1">
+            <p class="text-sm font-medium text-gray-900"><%= suggestion[:name] %></p>
+            <p class="text-xs text-gray-500"><%= suggestion[:handle] %></p>
+          </div>
+          <%= link_to "#",
+                      class: "inline-flex items-center gap-x-1.5 rounded-full border border-gray-200 bg-white px-3 py-1 text-xs font-semibold text-gray-700 transition hover:border-rose-200 hover:text-rose-600" do %>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-4">
+              <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z" />
+            </svg>
+            Follow
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+    <div class="mt-4 rounded-xl bg-rose-50 p-4 text-sm text-rose-700">
+      <p class="font-semibold">Tip</p>
+      <p class="mt-1">
+        Introduce yourself in the <%= link_to "Welcome thread", "#", class: "font-medium text-rose-700 underline decoration-rose-200 underline-offset-4" %> and share one ritual your team can't ship without.
+      </p>
+    </div>
+  </section>
+
+  <section class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+    <div class="flex items-center justify-between">
+      <h2 class="text-sm font-semibold uppercase tracking-widest text-gray-500">Trending threads</h2>
+      <%= link_to "View board", "#", class: "text-xs font-medium text-rose-600 hover:text-rose-500" %>
+    </div>
+    <ul role="list" class="mt-4 space-y-4">
+      <% @trending_questions.each do |item| %>
+        <li class="flex items-start gap-3 rounded-xl border border-gray-100 bg-gray-50/60 p-4 transition hover:border-rose-200 hover:bg-rose-50/40">
+          <img src="<%= item[:author_avatar_url] %>" alt="<%= item[:author_name] %>" class="size-9 rounded-full object-cover" />
+          <div class="min-w-0 flex-1">
+            <p class="text-xs font-semibold uppercase tracking-widest text-rose-500">Open Q&A</p>
+            <p class="mt-1 text-sm font-medium text-gray-900"><%= item[:title] %></p>
+            <div class="mt-2 inline-flex items-center gap-x-2 rounded-full bg-white px-3 py-1 text-xs font-medium text-gray-600">
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-4 text-rose-500">
+                <path d="M10 2.75a7.25 7.25 0 0 1 6.94 5.35A3.5 3.5 0 0 1 18.5 15h-1.75a3.5 3.5 0 1 1-7 0H7.75a3.5 3.5 0 1 1-3.44-6.9A7.25 7.25 0 0 1 10 2.75Z" />
+              </svg>
+              <span><%= number_with_delimiter(item[:engagement]) %> replies</span>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+</div>
+

@@ -1,0 +1,39 @@
+<% presence ||= [] %>
+<div id="community_presence_panel"
+     class="flex flex-col gap-3 rounded-2xl border border-emerald-200 bg-emerald-50/70 p-5 shadow-sm transition">
+  <div class="flex flex-wrap items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <div class="flex -space-x-2">
+        <% presence.first(6).each do |member| %>
+          <span class="inline-flex size-9 items-center justify-center rounded-full border-2 border-emerald-100 bg-white text-sm font-semibold text-emerald-700 shadow-sm">
+            <%= member[:name]&.first&.upcase || "G" %>
+          </span>
+        <% end %>
+        <% if presence.size > 6 %>
+          <span class="inline-flex size-9 items-center justify-center rounded-full border-2 border-emerald-100 bg-white text-xs font-medium text-emerald-600 shadow-sm">
+            +<%= presence.size - 6 %>
+          </span>
+        <% elsif presence.blank? %>
+          <span class="inline-flex size-9 items-center justify-center rounded-full border-2 border-emerald-100 bg-white text-xs font-medium text-emerald-600 shadow-sm">
+            ✨
+          </span>
+        <% end %>
+      </div>
+      <div>
+        <p class="text-sm font-semibold text-emerald-700">
+          <%= presence.present? ? pluralize(presence.size, "member") : "Be the first to join" %>
+          <%= "active now" if presence.present? %>
+        </p>
+        <p class="text-xs text-emerald-600">
+          Sessions update in real time as people join or leave.
+        </p>
+      </div>
+    </div>
+    <div class="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-white px-3 py-1 text-xs font-medium text-emerald-700 shadow-sm">
+      <span class="size-2.5 animate-pulse rounded-full bg-emerald-500"></span>
+      Live
+    </div>
+  </div>
+
+</div>
+

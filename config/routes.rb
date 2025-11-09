@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get '/', to: 'pages#home'
   get '/guidelines', to: 'pages#guidelines'
+  get '/community', to: 'community#index', as: :community
+  get '/community/sidebar', to: 'community#sidebar', as: :community_sidebar
+  post '/community/discussions', to: 'community_discussions#create', as: :community_discussions
   
   # Component Examples Routes
   get '/buttons', to: 'buttons#index'
