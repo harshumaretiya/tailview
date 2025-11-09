@@ -37,6 +37,17 @@ class CommunityController < ApplicationController
     render partial: "community/community_sidebar", formats: [:html]
   end
 
+  # Debug endpoint to test presence tracking
+  def debug_presence
+    presence_data = {
+      active_count: Community::PresenceTracker.active.size,
+      active_users: Community::PresenceTracker.active,
+      cache_data: Rails.cache.read("community:presence:v1") || {}
+    }
+
+    render json: presence_data
+  end
+
   private
 
   def permitted_filter

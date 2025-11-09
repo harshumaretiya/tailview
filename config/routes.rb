@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/guidelines', to: 'pages#guidelines'
   get '/community', to: 'community#index', as: :community
   get '/community/sidebar', to: 'community#sidebar', as: :community_sidebar
+  get '/community/debug_presence', to: 'community#debug_presence', as: :community_debug_presence
   post '/community/discussions', to: 'community_discussions#create', as: :community_discussions
   
   # Component Examples Routes

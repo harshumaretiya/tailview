@@ -9,6 +9,11 @@ class CommunityFeedChannel < ApplicationCable::Channel
     Community::PresenceTracker.broadcast!
   end
 
+  def heartbeat
+    # Keep presence alive by updating last_seen_at timestamp
+    track_presence!
+  end
+
   private
 
   def track_presence!
