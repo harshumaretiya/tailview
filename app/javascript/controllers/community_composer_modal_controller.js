@@ -16,7 +16,7 @@ export default class extends Controller {
   open(event) {
     event?.preventDefault()
     if (!this.hasDialogTarget) return
-    
+
     this.dialogTarget.showModal()
     this.focusComposer()
   }

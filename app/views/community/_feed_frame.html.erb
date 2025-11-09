@@ -51,10 +51,10 @@
                            class="group/details"
                            data-action="toggle->community-topic-list#toggle">
                     <summary class="flex cursor-pointer list-none items-center justify-between gap-3 px-3 py-2">
-                      <%= link_to community[:name],
-                                  community_path(community_params),
-                                  data: { turbo_frame: "community_feed" },
-                                  class: "flex-1 truncate" %>
+                  <%= link_to community[:name],
+                              community_path(community_params),
+                              data: { turbo_frame: "community_feed" },
+                              class: "flex-1 truncate" %>
                       <svg viewBox="0 0 20 20"
                            fill="currentColor"
                            aria-hidden="true"
@@ -63,16 +63,16 @@
                       </svg>
                     </summary>
                     <div class="px-3 pb-3">
-                      <div class="max-h-48 overflow-y-auto pr-1 scrollbar-hide">
-                        <ul class="space-y-2 text-sm text-gray-600">
-                          <% community[:highlights].each do |highlight| %>
-                            <li class="flex items-start gap-2">
-                              <span class="mt-1 size-1.5 rounded-full bg-rose-400"></span>
-                              <span class="flex-1"><%= highlight %></span>
-                            </li>
-                          <% end %>
-                        </ul>
-                      </div>
+                    <div class="max-h-48 overflow-y-auto pr-1 scrollbar-hide">
+                      <ul class="space-y-2 text-sm text-gray-600">
+                        <% community[:highlights].each do |highlight| %>
+                          <li class="flex items-start gap-2">
+                            <span class="mt-1 size-1.5 rounded-full bg-rose-400"></span>
+                            <span class="flex-1"><%= highlight %></span>
+                          </li>
+                        <% end %>
+                      </ul>
+                    </div>
                     </div>
                   </details>
                 <% else %>

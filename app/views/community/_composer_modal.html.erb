@@ -3,17 +3,17 @@
         data-action="click->community-composer-modal#closeOnBackdrop"
         class="fixed inset-0 m-auto h-fit w-full max-w-3xl rounded-3xl bg-white p-0 shadow-2xl backdrop:bg-gray-900/70">
   <div class="relative max-h-[90vh] overflow-y-auto">
-    <button type="button"
+      <button type="button"
             class="absolute right-4 top-4 z-10 inline-flex size-10 items-center justify-center rounded-full bg-white text-gray-500 shadow-sm transition hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2"
-            data-action="community-composer-modal#close">
-      <span class="sr-only">Close composer</span>
-      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-5">
-        <path d="M14.348 5.652a.75.75 0 0 0-1.06-1.06L10 7.879 6.712 4.591a.75.75 0 0 0-1.06 1.06L8.939 8.94 5.652 12.228a.75.75 0 1 0 1.06 1.06L10 10.001l3.288 3.287a.75.75 0 0 0 1.06-1.06L11.061 8.94l3.287-3.288Z" />
-      </svg>
-    </button>
-    <%= render "community/composer",
-               communities: communities,
-               topic: topic %>
-  </div>
+              data-action="community-composer-modal#close">
+        <span class="sr-only">Close composer</span>
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-5">
+          <path d="M14.348 5.652a.75.75 0 0 0-1.06-1.06L10 7.879 6.712 4.591a.75.75 0 0 0-1.06 1.06L8.939 8.94 5.652 12.228a.75.75 0 1 0 1.06 1.06L10 10.001l3.288 3.287a.75.75 0 0 0 1.06-1.06L11.061 8.94l3.287-3.288Z" />
+        </svg>
+      </button>
+      <%= render "community/composer",
+                 communities: communities,
+                 topic: topic %>
+    </div>
 </dialog>
 
