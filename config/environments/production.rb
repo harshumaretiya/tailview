@@ -62,6 +62,14 @@ Rails.application.configure do
   # Set host to be used by links generated in mailer templates.
   config.action_mailer.default_url_options = { host: ENV.fetch("RAILS_HOST", "tailview.work"), protocol: "https" }
 
+  # Configure Action Cable URLs and allowed origins
+  config.action_cable.url = ENV.fetch("ACTION_CABLE_URL", "wss://tailview.work/cable")
+  config.action_cable.allowed_request_origins = [
+    "https://tailview.work",
+    "https://www.tailview.work"
+  ]
+  config.action_cable.disable_request_forgery_protection = true
+
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
   # config.action_mailer.smtp_settings = {
   #   user_name: Rails.application.credentials.dig(:smtp, :user_name),
