@@ -83,14 +83,14 @@ production:
     host: <%= ENV.fetch("TAILVIEW_POSTGRES_HOST", "tailview_postgres") %>
     port: <%= ENV.fetch("TAILVIEW_POSTGRES_PORT", "5432") %>
     database: <%= ENV.fetch("TAILVIEW_POSTGRES_DB", "tailview_production") %>
-    username: <%= ENV.fetch("TAILVIEW_POSTGRES_USER", "postgres") %>
+    username: <%= ENV.fetch("TAILVIEW_POSTGRES_USER", "tailview_user") %>
     password: <%= ENV.fetch("TAILVIEW_POSTGRES_PASSWORD", "") %>
   cache:
     <<: *default
     host: <%= ENV.fetch("TAILVIEW_POSTGRES_HOST", "tailview_postgres") %>
     port: <%= ENV.fetch("TAILVIEW_POSTGRES_PORT", "5432") %>
     database: <%= ENV.fetch("TAILVIEW_POSTGRES_DB", "tailview_production") %>_cache
-    username: <%= ENV.fetch("TAILVIEW_POSTGRES_USER", "postgres") %>
+    username: <%= ENV.fetch("TAILVIEW_POSTGRES_USER", "tailview_user") %>
     password: <%= ENV.fetch("TAILVIEW_POSTGRES_PASSWORD", "") %>
     migrations_paths: db/cache_migrate
   queue:
@@ -98,7 +98,7 @@ production:
     host: <%= ENV.fetch("TAILVIEW_POSTGRES_HOST", "tailview_postgres") %>
     port: <%= ENV.fetch("TAILVIEW_POSTGRES_PORT", "5432") %>
     database: <%= ENV.fetch("TAILVIEW_POSTGRES_DB", "tailview_production") %>_queue
-    username: <%= ENV.fetch("TAILVIEW_POSTGRES_USER", "postgres") %>
+    username: <%= ENV.fetch("TAILVIEW_POSTGRES_USER", "tailview_user") %>
     password: <%= ENV.fetch("TAILVIEW_POSTGRES_PASSWORD", "") %>
     migrations_paths: db/queue_migrate
   cable:
@@ -106,6 +106,6 @@ production:
     host: <%= ENV.fetch("TAILVIEW_POSTGRES_HOST", "tailview_postgres") %>
     port: <%= ENV.fetch("TAILVIEW_POSTGRES_PORT", "5432") %>
     database: <%= ENV.fetch("TAILVIEW_POSTGRES_DB", "tailview_production") %>_cable
-    username: <%= ENV.fetch("TAILVIEW_POSTGRES_USER", "postgres") %>
+    username: <%= ENV.fetch("TAILVIEW_POSTGRES_USER", "tailview_user") %>
     password: <%= ENV.fetch("TAILVIEW_POSTGRES_PASSWORD", "") %>
     migrations_paths: db/cable_migrate
