@@ -45,7 +45,7 @@ A comprehensive collection of modern, production-ready UI components built with 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Ruby 3.4.1 or higher
+- Ruby 3.4.8 or higher
 - Rails 8.0 or higher
 - Node.js 18+ (for Tailwind CSS)
 - SQLite3
