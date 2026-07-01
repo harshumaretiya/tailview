@@ -30,9 +30,6 @@ services:
       timeout: 5s
       retries: 3
       start_period: 30s
-    networks:
-      - tailview_frontend
-      - tailview_backend
 
   tailview_postgres:
     image: postgres:15
@@ -49,16 +46,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    networks:
-      - tailview_backend
-
-networks:
-  tailview_frontend:
-    name: frontend
-    external: true
-  tailview_backend:
-    name: tailview_backend
-    internal: true
 
 volumes:
   tailview_pg_data:
